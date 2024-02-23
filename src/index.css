@@ -38,3 +38,9 @@ body {
   background-color: #28a745; /* Use green for secondary buttons */
   color: #fff; /* White text color for contrast */
 }
+
+.container{
+  max-width: 1200px;
+  margin: auto;
+  width: full;
+}

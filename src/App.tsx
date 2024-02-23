@@ -1,12 +1,13 @@
+import UserLayout from "./components/layout/UserLayout"
 
-import './App.css'
+
 
 function App() {
 
 
   return (
     <>
-      <h1>Lather Rich</h1>
+     <UserLayout/>
     </>
   )
 }

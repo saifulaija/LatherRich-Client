@@ -1,0 +1,11 @@
+
+.top-header{
+    position: fixed;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 60px;
+    color: black;
+    background-color: #333;
+    width: 100%;
+  }
