@@ -1,10 +1,9 @@
-
 import { TQueryParam, TResponseRedux } from "../../../types/global.type";
 import { TProduct } from "../../../types/product.type";
 
 import { baseApi } from "../../api/baseApi";
 
- const productApi = baseApi.injectEndpoints({  
+const productApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getAllProducts: builder.query({
       query: (args) => {
@@ -31,29 +30,6 @@ import { baseApi } from "../../api/baseApi";
       },
     }),
 
-    getAllProductsForManager: builder.query({
-      query: ({ branch, params }) => {
-        const url = `/products/${branch}`;
-
-        const queryParams = new URLSearchParams();
-        params.forEach((item: TQueryParam) => {
-          queryParams.append(item.name, item.value as string);
-        });
-
-        return {
-          url: `${url}?${queryParams.toString()}`,
-          method: "GET",
-        };
-      },
-      providesTags: ["product", "sell"],
-      transformResponse: (response: TResponseRedux<TProduct[]>) => {
-        return {
-          data: response.data,
-          meta: response.meta,
-        };
-      },
-    }),
-
     createProduct: builder.mutation({
       query: (productInfo) => ({
         url: "/add-product",
@@ -61,6 +37,16 @@ import { baseApi } from "../../api/baseApi";
         body: productInfo,
       }),
       invalidatesTags: ["product"],
+    }),
+
+    getAllProductsByCategory: builder.query({
+      query: (category) => {
+        return {
+          url: `/products/${category}`,
+          method: "GET",
+        };
+      },
+      providesTags: ["branch"],
     }),
     deleteProduct: builder.mutation({
       query: (id) => ({
@@ -91,31 +77,13 @@ import { baseApi } from "../../api/baseApi";
     }),
     getSingleProductForDetails: builder.query({
       query: (productId) => {
-        console.log(productId)
+        console.log(productId);
         return {
           url: `/get-single-product/${productId}`,
           method: "GET",
         };
       },
       providesTags: ["product"],
-    }),
-    getAllProductsByBranch: builder.query({
-      query: (branch) => {
-        return {
-          url: `/products/get-all-products/${branch}`,
-          method: "GET",
-        };
-      },
-      providesTags: ["branch"],
-    }),
-    getAllProductsBySportType: builder.query({
-      query: (sportType) => {
-        return {
-          url: `/products/get-all-products-category/${sportType}`,
-          method: "GET",
-        };
-      },
-      providesTags: ["branch"],
     }),
   }),
 });
@@ -126,9 +94,6 @@ export const {
   useDeleteProductMutation,
   useUpdateProductNewMutation,
   useGetSingleProductQuery,
-  useGetAllProductsByBranchQuery,
-  useGetAllProductsForManagerQuery,
   useGetSingleProductForDetailsQuery,
-  useGetAllProductsBySportTypeQuery
-
+  useGetAllProductsByCategoryQuery,
 } = productApi;
