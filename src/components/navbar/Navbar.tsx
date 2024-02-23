@@ -6,9 +6,9 @@ import { useNavigate } from "react-router-dom";
 import { Button, Drawer, Flex, Menu } from "antd";
 import { useState } from "react";
 import {
+  DownOutlined,
   MenuOutlined,
   ShoppingCartOutlined,
-  UserOutlined,
   WomanOutlined,
 } from "@ant-design/icons";
 import { Header } from "antd/es/layout/layout";
@@ -17,53 +17,6 @@ import ShopingCartIcon from "../shopingCartIcon/ShopingCartIcon";
 const Navbar = () => {
   const [openDrawer, setOpenDrawer] = useState(false);
   return (
-    // <div className="headerMenu">
-    //   <Header className="navbar">
-    //     <div>logo</div>
-
-    //     {/* hamburger */}
-    //     <div
-    //   style={{
-
-    //     height: "60px",
-    //     paddingLeft: 12,
-    //     paddingTop: 12,
-    //   }}
-    //   className="menuIcon"
-    //   >
-    //     <MenuOutlined
-    //       style={{ color: "gold", fontSize: "30px" }}
-    //       onClick={() => {
-    //         setOpenDrawer(true);
-    //       }}
-    //     />
-    //   </div>
-
-    //     <span className="headerMenu">
-
-    //     <CustomeMenu />
-    //     </span>
-
-    //     <div>
-    //         <Link to='/login'>
-
-    //         Login
-    //         </Link>
-    //     </div>
-    //   </Header>
-
-    //   <Drawer
-    //     onClose={() => {
-    //       setOpenDrawer(false);
-    //     }}
-    //     open={openDrawer}
-    //     closable={false}
-    //     bodyStyle={{ backgroundColor: "white" }}
-    //   >
-    //     < CustomeMenuHeader isInline />
-    //   </Drawer>
-    // </div>
-
     <Header className="navbar">
       <div
         style={{
@@ -80,7 +33,7 @@ const Navbar = () => {
         />
       </div>
       <div className="logo">
-      <p>logo</p>
+        <p>logo</p>
       </div>
       <span className="headerMenu">
         <CustomeMenuHeader />
@@ -90,13 +43,13 @@ const Navbar = () => {
           setOpenDrawer(false);
         }}
         open={openDrawer}
-        closable={false}
+        closable={true}
         bodyStyle={{ backgroundColor: "white" }}
       >
         <CustomeMenuHeader isInline />
       </Drawer>
       <Flex justify="center" align="center" gap={2}>
-        <ShopingCartIcon/>
+        <ShopingCartIcon />
         <Button>Login</Button>
       </Flex>
     </Header>
@@ -119,7 +72,7 @@ const CustomeMenuHeader = ({ isInline = false }) => {
         theme="light"
         mode={isInline ? "inline" : "horizontal"}
       >
-        <Menu.SubMenu icon={<UserOutlined />} title="MEN">
+        <Menu.SubMenu icon={<DownOutlined />} title="MEN">
           <Menu.Item key="mans-casual" title="mans-casual">
             CASUAL
           </Menu.Item>
