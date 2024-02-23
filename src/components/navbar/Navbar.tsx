@@ -7,6 +7,7 @@ import { Button, Drawer, Flex, Menu } from "antd";
 import { useState } from "react";
 import {
   DownOutlined,
+  ManOutlined,
   MenuOutlined,
   ShoppingCartOutlined,
   WomanOutlined,
@@ -72,7 +73,7 @@ const CustomeMenuHeader = ({ isInline = false }) => {
         theme="light"
         mode={isInline ? "inline" : "horizontal"}
       >
-        <Menu.SubMenu icon={<DownOutlined />} title="MEN">
+        <Menu.SubMenu icon={<ManOutlined />} title="MEN">
           <Menu.Item key="mans-casual" title="mans-casual">
             CASUAL
           </Menu.Item>
