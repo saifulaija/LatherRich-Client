@@ -4,13 +4,15 @@ import NotFound from "../pages/notFound/NotFound";
 
 import ProductCategory from "../pages/productCategory/ProductCategory";
 import Login from "../pages/login/Login";
-import UserLayout from "../components/layout/UserLayout";
+
 import Home from "../components/home/Home";
+import CategoryLayout from "../components/layout/CategoryLayout";
+import HomeLayout from "../components/layout/HomeLayout";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <UserLayout />,
+    element:<HomeLayout/> ,
     errorElement: <NotFound />,
     children: [
       {
@@ -27,6 +29,17 @@ const router = createBrowserRouter([
       },
     ],
   },
+{
+  path:'/products',
+  element:<CategoryLayout/>,
+  children:[
+    {
+      path:':category',
+      element:<ProductCategory/>
+    }
+  ]
+}
+
 ]);
 
 export default router;

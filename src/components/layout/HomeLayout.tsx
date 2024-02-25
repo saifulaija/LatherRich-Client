@@ -3,15 +3,15 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "../navbar/Navbar";
 
-const UserLayout = () => {
+const HomeLayout = () => {
   return (
     <>
       <Navbar />
-      <div style={{ paddingTop: '60px' }}> {/* Add padding top equal to navbar height */}
+      <div className='min-h-[cal(100vh-190px)]'>
         <Outlet />
       </div>
     </>
   );
 };
 
-export default UserLayout;
+export default HomeLayout;

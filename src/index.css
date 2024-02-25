@@ -1,4 +1,10 @@
 
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;700&display=swap");
 
 * {
@@ -19,28 +25,4 @@ body {
 
 .primary-text {
   color: #007bff; /* Use blue for primary text */
-}
-
-.secondary-text {
-  color: #6c757d; /* Use dark gray for secondary text */
-}
-
-.accent-color {
-  color: #28a745; /* Use green as the accent color */
-}
-
-.button-primary {
-  background-color: #007bff; /* Use blue for primary buttons */
-  color: #fff; /* White text color for contrast */
-}
-
-.button-secondary {
-  background-color: #28a745; /* Use green for secondary buttons */
-  color: #fff; /* White text color for contrast */
-}
-
-.container{
-  max-width: 1200px;
-  margin: auto;
-  width: full;
-}
+/*  */

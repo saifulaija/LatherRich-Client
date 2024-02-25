@@ -5,8 +5,8 @@ import "./Navbar.css";
 import { useNavigate } from "react-router-dom";
 import { Button, Drawer, Flex, Menu } from "antd";
 import { useState } from "react";
+import logo from '../../assets/images/PNG-Richkid-Logo.png'
 import {
-  DownOutlined,
   ManOutlined,
   MenuOutlined,
   ShoppingCartOutlined,
@@ -18,7 +18,7 @@ import ShopingCartIcon from "../shopingCartIcon/ShopingCartIcon";
 const Navbar = () => {
   const [openDrawer, setOpenDrawer] = useState(false);
   return (
-    <Header className="navbar">
+    <Header className="navbar bg-white border border-b-orange-500">
       <div
         style={{
           paddingLeft: 12,
@@ -34,7 +34,7 @@ const Navbar = () => {
         />
       </div>
       <div className="logo">
-        <p>logo</p>
+      <img src={logo} alt="" />
       </div>
       <span className="headerMenu">
         <CustomeMenuHeader />
@@ -51,7 +51,7 @@ const Navbar = () => {
       </Drawer>
       <Flex justify="center" align="center" gap={2}>
         <ShopingCartIcon />
-        <Button>Login</Button>
+        <Button className="bg-orange-800 text-white">Login</Button>
       </Flex>
     </Header>
   );
@@ -69,36 +69,37 @@ const CustomeMenuHeader = ({ isInline = false }) => {
     <div>
       <Menu
         style={{ width: "100%", border: "none" }}
+        
         onClick={onMenuClick}
         theme="light"
         mode={isInline ? "inline" : "horizontal"}
       >
         <Menu.SubMenu icon={<ManOutlined />} title="MEN">
-          <Menu.Item key="mans-casual" title="mans-casual">
+          <Menu.Item key="man-casual" title="man-casual">
             CASUAL
           </Menu.Item>
-          <Menu.Item key="mans-formal" title="mans-formal">
+          <Menu.Item key="man-formal" title="man-formal">
             FORMAL
           </Menu.Item>
-          <Menu.Item key="mens-sandals" title="mens-sandals">
+          <Menu.Item key="man-sandals" title="men-sandals">
             SANDALS
           </Menu.Item>
-          <Menu.Item key="mens-sports" title="mens-sports">
+          <Menu.Item key="man-sports" title="men-sports">
             SPORTS
           </Menu.Item>
         </Menu.SubMenu>
 
         <Menu.SubMenu icon={<WomanOutlined />} title="WOMEN">
-          <Menu.Item key="womens-casual" title="womens-casual">
+          <Menu.Item key="women-casual" title="women-casual">
             CASUAL
           </Menu.Item>
-          <Menu.Item key="womens-formal" title="womens-formal">
+          <Menu.Item key="women-formal" title="women-formal">
             FORMAL
           </Menu.Item>
-          <Menu.Item key="womens-sandals" title="womens-sandals">
+          <Menu.Item key="women-sandals" title="women-sandals">
             SANDALS
           </Menu.Item>
-          <Menu.Item key="womens-pump-shoes" title="womens-pump-shoes">
+          <Menu.Item key="women-pump-shoes" title="women-pump-shoes">
             PUMP SHOES
           </Menu.Item>
         </Menu.SubMenu>
