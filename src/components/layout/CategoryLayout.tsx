@@ -19,13 +19,7 @@ const headerStyle: React.CSSProperties = {
   backgroundColor: '#4096ff',
 };
 
-const contentStyle: React.CSSProperties = {
-  textAlign: 'center',
 
-  lineHeight: '120px',
-  color: 'gray',
-  backgroundColor: '#fff',
-};
 
 const siderStyle: React.CSSProperties = {
   textAlign: 'center',

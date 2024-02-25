@@ -69,7 +69,7 @@ const productApi = baseApi.injectEndpoints({
     getSingleProduct: builder.query({
       query: (productId) => {
         return {
-          url: `/product/${productId}`,
+          url: `/products/get-single-product/${productId}`,
           method: "PUT",
         };
       },
@@ -79,7 +79,7 @@ const productApi = baseApi.injectEndpoints({
       query: (productId) => {
         console.log(productId);
         return {
-          url: `/get-single-product/${productId}`,
+          url: `/products/get-single-product/${productId}`,
           method: "GET",
         };
       },

@@ -8,35 +8,39 @@ import Login from "../pages/login/Login";
 import Home from "../components/home/Home";
 import CategoryLayout from "../components/layout/CategoryLayout";
 import HomeLayout from "../components/layout/HomeLayout";
+import ProductDetails from "../pages/productDetails/ProductDetails";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element:<HomeLayout/> ,
+    element: <HomeLayout />,
     errorElement: <NotFound />,
     children: [
       {
         path: "/",
         element: <Home />,
       },
-    
+      {
+        path: "product/:id",
+        element: <ProductDetails />,
+      },
+
       {
         path: "login",
         element: <Login />,
       },
     ],
   },
-{
-  path:'/products',
-  element:<CategoryLayout/>,
-  children:[
-    {
-      path:':category',
-      element:<ProductCategory/>
-    }
-  ]
-}
-
+  {
+    path: "/products",
+    element: <CategoryLayout />,
+    children: [
+      {
+        path: ":category",
+        element: <ProductCategory />,
+      },
+    ],
+  },
 ]);
 
 export default router;
