@@ -61,7 +61,7 @@ const CustomeMenuHeader = ({ isInline = false }) => {
   const navigate = useNavigate();
 
   const onMenuClick = (item: any) => {
-    navigate(`/${item.key}`);
+    navigate(`/products/${item.key}`);
     console.log(item);
   };
 

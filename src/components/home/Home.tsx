@@ -9,15 +9,26 @@ import Footer from "../footer/Footer";
 
 const Home = () => {
   return (
-    <div>
+    <div >
       <Banner />
-      <Divider>Best Selling Products</Divider>
+      <div className="mt-12 mb-12 ">
+      <Divider style={{ borderColor: 'gray', color:'red', fontSize:'18px', fontWeight:400 }}>Best Selling Products</Divider>
+      </div>
       <BestSellingProduct/>
-      <Divider>Mens Collection</Divider>
+      <div className="mt-12 mb-12 ">
+      <Divider style={{ borderColor: 'gray', color:'red', fontSize:'18px', fontWeight:400 }}>Men's Collection</Divider>
+      </div>
       <MenProduct/>
-      <Divider>Women's Collection</Divider>
+  
+    <div className="mt-12 mb-12 ">
+      <Divider style={{ borderColor: 'gray', color:'red', fontSize:'18px', fontWeight:400 }}>Women's Collection</Divider>
+      </div>
+ 
+
       <WomenProduct/>
-      <Divider>Kid's Collection</Divider>
+      <div className="mt-12 mb-12">
+      <Divider style={{ borderColor: 'gray', color:'red', fontSize:'18px', fontWeight:400 }}>Kid's Collection</Divider>
+      </div>
       <KidProducts/>
       <Footer/>
 

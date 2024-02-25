@@ -4,7 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* 
+
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;700&display=swap");
 
 * {
@@ -22,7 +22,8 @@ body {
   background-color: #ecf0f4; 
 }
 
+.btn{
+  @apply bg-orange-800 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-600 text-white px-6 py-2 rounded-md font-semibold tracking-wide shadow-md transition duration-300
+}
 
-.primary-text {
-  color: #007bff; /* Use blue for primary text */
-/*  */
+
