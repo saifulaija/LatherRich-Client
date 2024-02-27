@@ -1,13 +1,16 @@
 
 
 import { Outlet } from "react-router-dom";
-import Navbar from "../navbar/Navbar";
+
+import Header from "../header/NewHeader";
+
+
 
 const HomeLayout = () => {
   return (
     <>
-      <Navbar />
-      <div className='min-h-[cal(100vh-190px)]'>
+   <Header/>
+      <div className='mt-60px'>
         <Outlet />
       </div>
     </>

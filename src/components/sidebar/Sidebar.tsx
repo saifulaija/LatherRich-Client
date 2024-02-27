@@ -60,18 +60,11 @@ const Sidebar: React.FC = () => {
   );
 };
 
-const ExploreByCategory: React.FC = () => {
-  return (
-    <div style={{ marginBottom: '20px' }}>
-      <h2 style={{ textAlign: 'center', color: 'black' }}>Explore by Category</h2>
-    </div>
-  );
-};
 
 const SidebarWithExploreByCategory: React.FC = () => {
   return (
-    <div>
-      <ExploreByCategory />
+    <div className='p-120px'>
+      
       <Sidebar />
     </div>
   );

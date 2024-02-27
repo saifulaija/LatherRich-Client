@@ -7,7 +7,7 @@ const UserLayout = () => {
   return (
     <>
       <Navbar />
-      <div style={{ paddingTop: '60px' }}> {/* Add padding top equal to navbar height */}
+      <div className="min-h-[calc(100vh-60px)]"> {/* Add padding top equal to navbar height */}
         <Outlet />
       </div>
     </>

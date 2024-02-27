@@ -1,9 +1,14 @@
 import { useGetAllProductsByCategoryQuery } from "../../redux/features/product/productApi";
-import { Rate, Spin } from "antd";
+import { Drawer, Rate, Spin } from "antd";
 import { Link, useParams } from "react-router-dom";
 import NoDataFoundPage from "../noDataFoundPage/NoDataFoundPage";
+import Sidebar from "../../components/sidebar/Sidebar";
+
+import { FaFighterJet, FaFilter } from "react-icons/fa";
+import { useState } from "react";
 
 const ProductCategory = () => {
+  const [drawerVisible, setDrawerVisible] = useState(false);
   const { category } = useParams();
   const {
     data: productsData,
@@ -20,8 +25,26 @@ const ProductCategory = () => {
   }
 
   return (
-    <div className="w-full">
+    <div className="w-full p-20">
+       <div className=" flex justify-center items-center">
+       <button
+          className="  text-red-500 md:hidden hover:text-gray-300 focus:outline-none"
+          onClick={() => setDrawerVisible(true)}
+        >
+          <FaFighterJet/>
+        </button>
+      <Drawer   title="Menu"
+        placement="right"
+        closable={true}
+        onClose={() => setDrawerVisible(false)}
+        visible={drawerVisible}>
+      <Sidebar/>
+      </Drawer>
+       </div>
       <div className="container flex items-center justify-center mx-auto p-10">
+     
+  
+     
         <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-4 rounded-lg shadow-sm">
           {productsData?.data?.map((product, index) => (
             <Link to={`/product/${product._id}`}>

@@ -45,9 +45,9 @@ const Navbar = () => {
         }}
         open={openDrawer}
         closable={true}
-        bodyStyle={{ backgroundColor: "white" }}
+        bodyStyle={{ backgroundColor: "white"}}
       >
-        <CustomeMenuHeader isInline />
+        <CustomeMenuHeader  isInline />
       </Drawer>
       <Flex justify="center" align="center" gap={2}>
         <ShopingCartIcon />
@@ -66,7 +66,7 @@ const CustomeMenuHeader = ({ isInline = false }) => {
   };
 
   return (
-    <div>
+    <div className="max-w-full">
       <Menu
         style={{ width: "100%", border: "none" }}
         
