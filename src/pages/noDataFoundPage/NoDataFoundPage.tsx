@@ -1,15 +1,13 @@
+import React from 'react';
+import { Button, Empty } from 'antd';
 
-import { Result, Button } from 'antd';
-
-const NoDataFoundPage = () => {
-  return (
-    <Result
-      status="info"
-      title="No Data Found"
-      subTitle="Sorry, we couldn't find any data."
-      extra={<Button type="primary">Back to Shop</Button>}
-    />
-  );
-};
+const NoDataFoundPage: React.FC = () => (
+  <div className='flex justify-center items-center h-full'>
+    <Empty  >
+    <Button >Back to Shop</Button>
+    </Empty>
+    
+  </div>
+);
 
 export default NoDataFoundPage;

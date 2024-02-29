@@ -26,25 +26,24 @@ const ProductCategory = () => {
 
   return (
     <div className="w-full p-20">
-       <div className=" flex justify-center items-center">
-       <button
+      <div className=" flex justify-center items-center">
+        <button
           className="  text-red-500 md:hidden hover:text-gray-300 focus:outline-none"
           onClick={() => setDrawerVisible(true)}
         >
-          <FaFighterJet/>
+          <FaFighterJet />
         </button>
-      <Drawer   title="Menu"
-        placement="right"
-        closable={true}
-        onClose={() => setDrawerVisible(false)}
-        visible={drawerVisible}>
-      <Sidebar/>
-      </Drawer>
-       </div>
+        <Drawer
+          title="Menu"
+          placement="right"
+          closable={true}
+          onClose={() => setDrawerVisible(false)}
+          visible={drawerVisible}
+        >
+          <Sidebar />
+        </Drawer>
+      </div>
       <div className="container flex items-center justify-center mx-auto p-10">
-     
-  
-     
         <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-4 rounded-lg shadow-sm">
           {productsData?.data?.map((product, index) => (
             <Link to={`/product/${product._id}`}>
@@ -54,7 +53,7 @@ const ProductCategory = () => {
               >
                 <div className="relative overflow-hidden group">
                   <img
-                    src={product.image}
+                    src={product.images[1]}
                     alt="product-image"
                     className="object-cover w-full h-64 group-hover:transform group-hover:scale-105 transition-transform duration-300"
                   />

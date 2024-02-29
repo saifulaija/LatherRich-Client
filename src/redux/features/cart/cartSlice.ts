@@ -9,6 +9,7 @@ const initialState = {
     : [],
   cartTotalQuantity: 0,
   cartTotalAmount: 0,
+  selectSize:0,
 };
 
 
@@ -83,6 +84,11 @@ const cartSlice = createSlice({
         return state;
       });
     },
+    selectSizeForAddToCart:(state, action)=> {
+      state.selectSize= action.payload;
+      localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+      toast.success("size select", { position: "bottom-left" });
+    },
 
     
     getTotals:(state)=> {
@@ -113,7 +119,7 @@ const cartSlice = createSlice({
   },
 });
 
-export const { addToCart, decreaseCart, removeFromCart, getTotals, clearCart } =
+export const { addToCart, decreaseCart, removeFromCart, getTotals, clearCart,selectSizeForAddToCart } =
   cartSlice.actions;
 
 export default cartSlice.reducer;

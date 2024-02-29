@@ -7,7 +7,7 @@ export const items=[
       children: [
         {
           label: "CASUAL",
-          key: "man-casual",
+          key: "man-causal",
         },
         {
           label: "FORMAL",
@@ -45,7 +45,7 @@ export const items=[
        
         {
             label: "CASUAL",
-            key: "kid-casual",
+            key: "kid-causal",
           },
           {
             label: "FORMAL",

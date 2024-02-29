@@ -10,7 +10,7 @@ const HomeLayout = () => {
   return (
     <>
    <Header/>
-      <div className='mt-60px'>
+      <div className="mt-[60px]">
         <Outlet />
       </div>
     </>
