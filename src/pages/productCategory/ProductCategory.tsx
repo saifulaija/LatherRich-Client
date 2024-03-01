@@ -6,6 +6,8 @@ import Sidebar from "../../components/sidebar/Sidebar";
 
 import { FaFighterJet, FaFilter } from "react-icons/fa";
 import { useState } from "react";
+import PageNavigation from "../../components/pageNavigation/PageNavigation";
+import { RightOutlined } from "@ant-design/icons";
 
 const ProductCategory = () => {
   const [drawerVisible, setDrawerVisible] = useState(false);
@@ -25,7 +27,9 @@ const ProductCategory = () => {
   }
 
   return (
-    <div className="w-full p-20">
+    <div className="w-full mt-10">
+       <PageNavigation title={`products <RightOutlined /> category  <RightOutlined />  ${category}`} />
+
       <div className=" flex justify-center items-center">
         <button
           className="  text-red-500 md:hidden hover:text-gray-300 focus:outline-none"

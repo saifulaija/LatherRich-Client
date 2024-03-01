@@ -6,12 +6,14 @@ import { Button, Divider, Image, Spin } from "antd";
 import {
   CheckCircleOutlined,
   ExclamationCircleOutlined,
+  RightOutlined,
 } from "@ant-design/icons";
 import { useAppDispatch } from "../../redux/hooks";
 import {
   addToCart,
   selectSizeForAddToCart,
 } from "../../redux/features/cart/cartSlice";
+import PageNavigation from "../../components/pageNavigation/PageNavigation";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -37,7 +39,6 @@ const ProductDetails = () => {
     }
   }, [product, dispatch]);
 
- 
   const handleSizeSelect = (index: any) => {
     if (
       product &&
@@ -53,7 +54,6 @@ const ProductDetails = () => {
     }
   };
 
-
   const getStokIcon = () => {
     const stokNumber = parseFloat(selectedStok);
     if (stokNumber > 0) {
@@ -67,8 +67,16 @@ const ProductDetails = () => {
     setCurrentSlide(index);
   };
 
+ const icon= <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+  <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+</svg>
+
+
   return (
     <div className="container px-6 py-12 rounded-lg shadow-sm">
+     <PageNavigation title={`products <RightOutlined /> category <RightOutlined /> ${product?.data?.subCategory} <RightOutlined />  ${product?.data?.name}`} />
+
+
       <Spin spinning={isLoading}>
         <div className="md:flex md:justify-center md:items-center md:gap-8 rounded">
           <div className="md:w-1/3 bg-white p-7">
