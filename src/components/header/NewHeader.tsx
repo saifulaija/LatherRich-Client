@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useEffect } from "react";
 import { Drawer } from "antd";
 import { DownOutlined, UpOutlined } from "@ant-design/icons";
@@ -9,9 +10,11 @@ import { useAppSelector } from "../../redux/hooks";
 import { useCurrentUser } from "../../redux/features/auth/authSlice";
 import { HiUser } from "react-icons/hi";
 import { ShoppingBagIcon } from "@heroicons/react/16/solid";
+import ShoppingCart from "../shopingCart/ShoppingCart";
 
 const NewHeader = () => {
   const [drawerVisible, setDrawerVisible] = useState(false);
+  const [cartDrawerOpen, setCartDrawerOpen] = useState(false);
   const [activeSubMenu, setActiveSubMenu] = useState("");
   const [isMobile, setIsMobile] = useState(false);
   const navigate = useNavigate();
@@ -106,11 +109,15 @@ const NewHeader = () => {
         </div>
         <div className="flex items-center gap-4 text-2xl bg-white  p-4 ">
           <div className="flex items-center justify-cente border  w-10 h-10 py-0 ">
-            <ShoppingBagIcon className="text-gray-600" />
+            <ShoppingBagIcon   onClick={() => {
+          setCartDrawerOpen(true);
+        }} className="text-gray-600" />
             <span className=" text-gray-800  w-5 h-5 flex items-center justify-center">
-             {cart.cartTotalQuantity}
+             {cart.cartItems.length}
             </span>
           </div>
+
+          <ShoppingCart/>
           <HiUser className="text-gray-600" />
         </div>
 

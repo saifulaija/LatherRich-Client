@@ -66,6 +66,31 @@ const cartSlice = createSlice({
 
       localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
     },
+    decreaseCartBYshop(state, action) {
+      const itemIndex = state.cartItems.findIndex(
+        (item:any) => item._id === action.payload._id
+      );
+
+      if (state.cartItems[itemIndex].cartQuantity > 1) {
+        state.cartItems[itemIndex].cartQuantity -= 1;
+
+        toast.info("Decreased product quantity", {
+          position: "bottom-left",
+        });
+      } else if (state.cartItems[itemIndex].cartQuantity === 1) {
+        const nextCartItems = state.cartItems.filter(
+          (item:any) => item._id !== action.payload._id
+        );
+
+        state.cartItems = nextCartItems;
+
+        toast.error("Product removed from cart", {
+          position: "bottom-left",
+        });
+      }
+
+      localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+    },
 
     removeFromCart:(state, action)=> {
       state.cartItems.map((cartItem:any) => {
@@ -87,7 +112,7 @@ const cartSlice = createSlice({
     selectSizeForAddToCart:(state, action)=> {
       state.selectSize= action.payload;
       localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
-      toast.success("size select", { position: "bottom-left" });
+     
     },
 
     
@@ -119,7 +144,7 @@ const cartSlice = createSlice({
   },
 });
 
-export const { addToCart, decreaseCart, removeFromCart, getTotals, clearCart,selectSizeForAddToCart } =
+export const { addToCart, decreaseCart, removeFromCart, getTotals, clearCart,selectSizeForAddToCart, decreaseCartBYshop } =
   cartSlice.actions;
 
 export default cartSlice.reducer;

@@ -6,15 +6,17 @@ import MenProduct from "../mensProduct/MenProduct";
 import WomenProduct from "../womenProduct/WomenProduct";
 import KidProducts from "../kidsProduct/KidProducts";
 import Footer from "../footer/Footer";
-import PageNavigation from "../pageNavigation/PageNavigation";
+import SubBanner from "../subBanner/SubBanner";
+
 
 const Home = () => {
   return (
     <div className="pt-8">
      
       <Banner />
+      <SubBanner/>
       <div className="mt-12 mb-12 ">
-      <Divider  style={{ borderColor: 'gray', color:'red', fontSize:'18px', fontWeight:400 }}>Best Selling Products</Divider>
+      <Divider dashed orientation="left"  style={{ borderColor: 'gray', color:'red', fontSize:'18px', fontWeight:400 }}>Best Selling Products</Divider>
       </div>
       <BestSellingProduct/>
       <div className="mt-12 mb-12 ">
@@ -34,7 +36,7 @@ const Home = () => {
       <KidProducts/>
       <Footer/>
 
-      <Products />
+    
     </div>
   );
 };

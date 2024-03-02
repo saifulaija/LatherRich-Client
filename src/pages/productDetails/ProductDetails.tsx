@@ -6,14 +6,16 @@ import { Button, Divider, Image, Spin } from "antd";
 import {
   CheckCircleOutlined,
   ExclamationCircleOutlined,
-  RightOutlined,
 } from "@ant-design/icons";
-import { useAppDispatch } from "../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import {
   addToCart,
+  decreaseCart,
   selectSizeForAddToCart,
 } from "../../redux/features/cart/cartSlice";
 import PageNavigation from "../../components/pageNavigation/PageNavigation";
+
+import { FaMinus, FaPlus } from "react-icons/fa";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -23,7 +25,8 @@ const ProductDetails = () => {
   const [selectedStok, setSelectedStok] = useState("");
   const [currentSlide, setCurrentSlide] = useState(0);
   const dispatch = useAppDispatch();
-
+  const cart = useAppSelector((state) => state.cart);
+  cart.cartItems;
   // Initialize selected size when component mounts
   useEffect(() => {
     if (
@@ -67,15 +70,20 @@ const ProductDetails = () => {
     setCurrentSlide(index);
   };
 
- const icon= <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-  <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-</svg>
-
+  const handleDecreaseCart = (product: any) => {
+    console.log(product);
+    dispatch(decreaseCart(product));
+  };
+  const handleIncreaseCart = (product: any) => {
+    console.log(product);
+    dispatch(addToCart(product));
+  };
 
   return (
     <div className="container px-6 py-12 rounded-lg shadow-sm">
-     <PageNavigation title={`products <RightOutlined /> category <RightOutlined /> ${product?.data?.subCategory} <RightOutlined />  ${product?.data?.name}`} />
-
+      <PageNavigation
+        title={`products <RightOutlined /> category <RightOutlined /> ${product?.data?.subCategory} <RightOutlined />  ${product?.data?.name}`}
+      />
 
       <Spin spinning={isLoading}>
         <div className="md:flex md:justify-center md:items-center md:gap-8 rounded">
@@ -145,14 +153,39 @@ const ProductDetails = () => {
                     Stock: {selectedStok} {getStokIcon()}
                   </p>
                 </div>
+
+                <div className="flex justify-center items-center gap-6 p-2 bg-white border rounded-lg">
+                  <button
+
+                  onClick={()=>handleDecreaseCart(product?.data)}
+                    className="px-4 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-100 transition duration-300"
+                   
+                  >
+                    <FaMinus />
+                  </button>
+                  <div className="text-xl font-semibold">
+                    {cart.cartTotalQuantity}
+                  </div>
+                  <button
+               onClick={()=>handleIncreaseCart(product?.data)}
+                    className="px-4 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-100 transition duration-300"
+                  
+                  >
+                    <FaPlus />
+                  </button>
+                </div>
               </div>
 
-              <div className="md:w-1/2">
-                <p>Category:{product?.data?.category}</p>
-                <p>Category:{product?.data?.subCategory}</p>
-                <p>Tag:{product?.data?.tag}</p>
-                <p className="text-balance">
-                  Description:{product?.data?.description}
+              <div className="md:w-1/2 p-6">
+                <p className="text-gray-700 mb-2">
+                  Category: {product?.data?.category}
+                </p>
+                <p className="text-gray-700 mb-2">
+                  Subcategory: {product?.data?.subCategory}
+                </p>
+                <p className="text-gray-700 mb-2">Tag: {product?.data?.tag}</p>
+                <p className="text-gray-800">
+                  Description: {product?.data?.description}
                 </p>
               </div>
             </div>
@@ -162,7 +195,7 @@ const ProductDetails = () => {
               ডেলিভারি চার্জ একই থাকবে । প্রয়োজনে কল করুনঃ 01324250470
             </p>
             <div className="mt-[30px]">
-              <Button onClick={() => dispatch(addToCart(product?.data))} block>
+              <Button className="bg-gray-900 text-white" onClick={() => dispatch(addToCart(product?.data))} block>
                 ADD TO CART
               </Button>
             </div>
