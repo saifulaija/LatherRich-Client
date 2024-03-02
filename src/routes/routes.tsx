@@ -9,6 +9,7 @@ import Home from "../components/home/Home";
 import CategoryLayout from "../components/layout/CategoryLayout";
 import HomeLayout from "../components/layout/HomeLayout";
 import ProductDetails from "../pages/productDetails/ProductDetails";
+import ExchangeAndComplain from "../pages/exchangeAndComplaince/ExchangeAndComplain";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
         path: "login",
         element: <Login />,
       },
+      {
+        path:'complain',
+        element:<ExchangeAndComplain/>
+      }
     ],
   },
   {

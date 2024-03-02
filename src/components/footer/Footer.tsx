@@ -22,7 +22,7 @@ const Footer = () => {
           </h5>
           <div className="flex-start flex-column justify-center gap-4">
             <Link
-              to="/"
+              to="/complain"
               className="inline-block focus:outline-none hover:text-[#b35c5c] text-balance text-gray-500"
             >
               Exchange & Complaint

@@ -19,11 +19,11 @@
     
 
 body {
-  background-color: #ecf0f4; 
+  background-color: #fdfeff; 
 }
 
 .btn{
-  @apply bg-orange-800 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-600 text-white px-6 py-2 rounded-md font-semibold tracking-wide shadow-md transition duration-300
+  @apply bg-[#453433] hover:bg-opacity-55 focus:outline-none focus:ring-2 focus:ring-orange-600 text-white px-6 py-2 rounded-md font-semibold tracking-wide shadow-md transition duration-300
 }
 
 

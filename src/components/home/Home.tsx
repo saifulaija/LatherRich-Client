@@ -1,11 +1,11 @@
 import { Divider } from "antd";
-import Products from "../../pages/products/Products";
+
 import Banner from "../banner/Banner";
 import BestSellingProduct from "../bestSellingProduct/BestSellingProduct";
 import MenProduct from "../mensProduct/MenProduct";
 import WomenProduct from "../womenProduct/WomenProduct";
 import KidProducts from "../kidsProduct/KidProducts";
-import Footer from "../footer/Footer";
+
 import SubBanner from "../subBanner/SubBanner";
 
 
@@ -16,7 +16,7 @@ const Home = () => {
       <Banner />
       <SubBanner/>
       <div className="mt-12 mb-12 ">
-      <Divider dashed orientation="left"  style={{ borderColor: 'gray', color:'red', fontSize:'18px', fontWeight:400 }}>Best Selling Products</Divider>
+      <Divider dashed orientation="right"  style={{ borderColor: 'gray', color:'#453433', fontSize:'18px', fontWeight:400 }}>Best Selling Products</Divider>
       </div>
       <BestSellingProduct/>
       <div className="mt-12 mb-12 ">
@@ -25,7 +25,7 @@ const Home = () => {
       <MenProduct/>
   
     <div className="mt-12 mb-12 ">
-      <Divider style={{ borderColor: 'gray', color:'red', fontSize:'18px', fontWeight:400 }}>Women's Collection</Divider>
+      <Divider style={{ borderColor: 'gray', color:'#453433', fontSize:'18px', fontWeight:400 }}>Women's Collection</Divider>
       </div>
  
 
@@ -34,7 +34,7 @@ const Home = () => {
       <Divider style={{ borderColor: 'gray', color:'red', fontSize:'18px', fontWeight:400 }}>Kid's Collection</Divider>
       </div>
       <KidProducts/>
-      <Footer/>
+    
 
     
     </div>

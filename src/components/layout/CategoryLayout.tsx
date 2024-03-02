@@ -3,23 +3,18 @@ import { Layout } from "antd";
 import Sidebar from "../sidebar/Sidebar";
 import { Outlet } from "react-router-dom";
 import NewHeader from "../header/NewHeader";
+import Footer from "../footer/Footer";
 
 const CategoryLayout = () => {
-  const { Header, Footer, Sider, Content } = Layout;
+  const { Header, Sider, Content } = Layout;
 
   const siderStyle: React.CSSProperties = {
     textAlign: "center",
-    marginTop:'68px',
+    marginTop: "68px",
     lineHeight: "120px",
     height: "100vh",
     color: "#fff",
     backgroundColor: "#fff",
-  };
-
-  const footerStyle: React.CSSProperties = {
-    textAlign: "center",
-    color: "#fff",
-    backgroundColor: "#4096ff",
   };
 
   const layoutStyle = {
@@ -41,7 +36,8 @@ const CategoryLayout = () => {
           <Outlet />
         </Content>
       </Layout>
-      <Footer style={footerStyle}>Footer</Footer>
+
+      <Footer />
     </Layout>
   );
 };

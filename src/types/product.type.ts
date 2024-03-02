@@ -2,7 +2,7 @@ import { Key } from "antd/es/table/interface";
 
 export type TProductSizeStok = {
     size: string;
-    stok: number;
+    stock: number;
 };
   
 export type TProduct = {
@@ -10,7 +10,7 @@ export type TProduct = {
     category: string;
     price: number;
     description: string;
-    image: string;
+    images:[ string];
     reviews?: string;
     tag?: string;
     isDeleted: boolean;
@@ -21,4 +21,5 @@ export type TProduct = {
     createdAt?: string;
     updatedAt?: string;
     __v?: number;
+    _id:string
 } & { [x: string]: Key | null | undefined };

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import  { useState } from "react";
 import { useGetAllProductsQuery } from "../../redux/features/product/productApi";
 import { TQueryParam } from "../../types/global.type";
 import { Button, Card, Divider, Rate, Spin } from "antd";
@@ -7,40 +7,34 @@ import Meta from "antd/es/card/Meta";
 import { FaShapes } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-const BestSellingProduct = () => {
+const RelatedProducts = ({value})  => {
   const [params, setParams] = useState<TQueryParam[]>([]);
-  const [showAllProducts, setShowAllProducts] = useState(false);
+
 
   const {
     data: productsData,
     isLoading,
     isFetching,
-  } = useGetAllProductsQuery([
-    { name: "sort", value: "-price" },
-    { name: "category", value: "women" },
-    ...params,
-  ]);
+  } = useGetAllProductsQuery([{ name: "sort", value: "-price" },{name:'category', value: value}, ...params]);
 
-  const displayedProducts = showAllProducts
-    ? productsData?.data
-    : productsData?.data?.slice(0, 4);
 
-  const handleViewAll = () => {
-    setShowAllProducts(true);
-  };
+
+ 
 
   return (
     <div className="w-full">
       <Spin spinning={isLoading && isFetching}>
         <div className="container flex items-center justify-center mx-auto  ">
           <div className="grid sm:grid-cols-1 md:grid-cols-4 gap-4 rounded-lg shadow-sm">
-            {displayedProducts?.map((product) => (
+            {productsData?.data?.map((product) => (
               <Link to={`/product/${product._id}`}>
                 <Card
-                  hoverable
+                 
                   bordered
                   key={product?._id}
-                  className="group max-w-full"
+                 
+                  className="group max-w-full  border border-gray-200
+                  "
                   cover={
                     <img
                       alt="example"
@@ -85,16 +79,12 @@ const BestSellingProduct = () => {
             ))}
           </div>
         </div>
-        {!showAllProducts && (
-          <div className="flex justify-center items-center mt-10">
-            <button className="btn" onClick={handleViewAll}>
-              View All
-            </button>
-          </div>
-        )}
+      
       </Spin>
     </div>
   );
 };
 
-export default BestSellingProduct;
+export default RelatedProducts;
+
+
