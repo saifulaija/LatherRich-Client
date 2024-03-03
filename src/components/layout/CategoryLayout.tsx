@@ -5,6 +5,8 @@ import { Outlet } from "react-router-dom";
 import NewHeader from "../header/NewHeader";
 import Footer from "../footer/Footer";
 
+
+
 const CategoryLayout = () => {
   const { Header, Sider, Content } = Layout;
 
