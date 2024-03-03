@@ -8,7 +8,7 @@ import { baseApi } from "../../api/baseApi";
       query: (userInfo) => {
         console.log("auth", userInfo);
         return {
-          url: "/auth/login",
+          url: "/login",
           method: "POST",
           body: userInfo,
         };

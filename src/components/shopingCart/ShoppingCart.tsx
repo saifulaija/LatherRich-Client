@@ -1,16 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { LeftOutlined, ShoppingCartOutlined } from "@ant-design/icons";
-import {
-  Button,
-  Card,
-  Col,
-  Divider,
-  Drawer,
-  Flex,
-  Image,
-  Row,
-  Typography,
-} from "antd";
+import { LeftOutlined } from "@ant-design/icons";
+import { Button, Card, Col, Divider, Drawer, Row, Typography } from "antd";
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 
@@ -24,7 +14,8 @@ import {
 } from "../../redux/features/cart/cartSlice";
 import NoDataFoundPage from "../../pages/noDataFoundPage/NoDataFoundPage";
 import { HiUser } from "react-icons/hi";
-import { ShoppingBagIcon, ShoppingCartIcon } from "@heroicons/react/16/solid";
+import { ShoppingBagIcon } from "@heroicons/react/16/solid";
+import { useCurrentUser } from "../../redux/features/auth/authSlice";
 
 const ShoppingCart = () => {
   const [cartDrawerOpen, setCartDrawerOpen] = useState(false);
@@ -33,6 +24,8 @@ const ShoppingCart = () => {
   useEffect(() => {
     dispatch(getTotals());
   }, [cart]);
+
+  const user=useAppSelector(useCurrentUser)
 
   const handleDecreaseCart = (product: any) => {
     console.log(product);
@@ -53,12 +46,12 @@ const ShoppingCart = () => {
   return (
     <div>
       <div className="flex items-center gap-4 text-2xl bg-white  p-4 ">
-        <div className="flex items-center justify-cente border  w-10 h-10 py-0 ">
+        <div className="flex items-center justify-cente border  w-10 h-10 py-0 cursor-pointer">
           <ShoppingBagIcon
             onClick={() => {
               setCartDrawerOpen(true);
             }}
-            className="text-gray-600 cursor-pointer"
+            className="text-gray-600 "
           />
           <span className=" text-gray-800  w-5 h-5 flex items-center justify-center">
             {cart.cartItems.length}
@@ -106,7 +99,7 @@ const ShoppingCart = () => {
                     <Card key={cartItem.image} style={{ height: "20" }}>
                       <Row justify="space-between" align="middle">
                         <Col span={6}>
-                          <Image
+                          <img
                             src={cartItem.images[0]}
                             alt={cartItem.productName}
                             width={80}
@@ -116,7 +109,7 @@ const ShoppingCart = () => {
                             <Typography.Text strong>
                               {cartItem.productName}
                             </Typography.Text>
-                            <Typography.Text>{cartItem.desc}</Typography.Text>
+
                             <Button
                               type="link"
                               onClick={() => handleRemoveFromCart(cartItem)}
@@ -136,8 +129,6 @@ const ShoppingCart = () => {
                           </Typography.Text>
                         </Col>
                         <Col span={6}>
-                         
-
                           <div className="flex items-center justify-center gap-4">
                             <button
                               className="bg-gray-200 hover:bg-gray-300 text-gray-600 font-semibold px-3 py-1 rounded-md focus:outline-none"
@@ -166,35 +157,46 @@ const ShoppingCart = () => {
                   ))}
                 </Col>
               </Row>
-              <div className="cart-summary">
+             
+
+              <div className="p-10 flex flex-col items-center justify-center">
+        
                 <Button
                   onClick={() => handleClearCart()}
                   type="link"
                   icon={<LeftOutlined />}
+                  className="mb-6"
                 >
                   Clear Cart
                 </Button>
-                <div className="cart-checkout">
-                  <div className="subtotal">
-                    <Typography.Text strong>Subtotal:</Typography.Text>
-                    <Typography.Text strong>
+                <div className="cart-checkout w-full max-w-md bg-white shadow-md rounded-lg p-6">
+                  <div className="subtotal flex justify-center items-center mb-4">
+                    <Typography.Text strong>Subtotal: </Typography.Text>
+                    <Typography.Text strong className="text-lg">
                       ৳{cart?.cartTotalAmount}
                     </Typography.Text>
                   </div>
-                  <Typography.Text type="secondary">
+                  <Typography.Text type="secondary" className="mb-4">
                     Taxes and shipping calculated at checkout.
                   </Typography.Text>
-                  <Link to="/auth/user-checkout">
-                    <Button
-                      onClick={() => setCartDrawerOpen(false)}
-                      type="dashed"
-                    >
-                      Checkout
-                    </Button>
-                  </Link>
-                  <div className="continue-shopping">
-                    <Link to="/auth/shop">
-                      <Button type="default" icon={<LeftOutlined />}>
+                  <div>
+
+                    {
+                      user?  <Link to="/checkout" className="w-full">
+                      <Button onClick={() => setCartDrawerOpen(false)} block>
+                        Checkout
+                      </Button>
+                    </Link> : <Link to="/login" className="w-full">
+                      <Button onClick={() => setCartDrawerOpen(false)} block>
+                        Checkout
+                      </Button>
+                    </Link>
+                    }
+                   
+                  </div>
+                  <div className="mt-10 mb-10 w-full">
+                    <Link to="/auth/shop" className="w-full">
+                      <Button block icon={<LeftOutlined />}>
                         Continue Shopping
                       </Button>
                     </Link>

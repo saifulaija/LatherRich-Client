@@ -30,3 +30,11 @@ export type TQueryParam = {
   name: string;
   value: boolean | React.Key;
 };
+
+export type TUser = {
+  userName: string;
+  email: string;
+  password: string;
+  isDeleted: boolean;
+  role: string;
+};

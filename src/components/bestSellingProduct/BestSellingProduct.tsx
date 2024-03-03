@@ -6,6 +6,7 @@ import Meta from "antd/es/card/Meta";
 
 import { FaShapes } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { CiShoppingCart } from "react-icons/ci";
 
 const BestSellingProduct = () => {
   const [params, setParams] = useState<TQueryParam[]>([]);
@@ -33,11 +34,11 @@ const BestSellingProduct = () => {
             {displayedProducts?.map((product) => (
               <Link to={`/product/${product._id}`}>
                 <Card
-                  hoverable
-                  bordered
+               
+                 
                   key={product?._id}
                  
-                  className="group max-w-full"
+                  className="group max-w-full border border-gray-200"
                   cover={
                     <img
                       alt="example"
@@ -71,9 +72,9 @@ const BestSellingProduct = () => {
                     ))}
                   </div>
                   <Button
-                    className="mt-auto absolute bottom-0 left-0 right-0 text-white bg-[#453433]"
+                    className="mt-auto absolute bottom-0 left-0 right-0 text-gray-600 font-medium"
                     block
-                    icon={<FaShapes />}
+                    icon={<CiShoppingCart className="text-[15px]" />}
                   >
                     Shop Now
                   </Button>

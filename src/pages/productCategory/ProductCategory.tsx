@@ -11,6 +11,7 @@ import Meta from "antd/es/card/Meta";
 import { FaShop } from "react-icons/fa6";
 import { useTopBarLoader } from "../../utils/topBarLoader";
 import LoadingBar from "react-top-loading-bar";
+import { TProduct } from "../../types/product.type";
 
 
 const ProductCategory = () => {
@@ -57,7 +58,7 @@ const ProductCategory = () => {
       </div>
       <div className="container flex items-center justify-center mx-auto p-10">
         <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-4 rounded-lg shadow-sm">
-          {productsData?.data?.map((product, index) => (
+          {productsData?.data?.map((product:TProduct) => (
              <Link to={`/product/${product._id}`}>
              <Card
                

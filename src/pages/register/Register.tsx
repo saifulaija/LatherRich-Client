@@ -1,45 +1,55 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Button, Form, Input, } from "antd";
+import { Link, useNavigate } from "react-router-dom";
+
+import { toast } from "sonner";
 
 
-const Login = () => {
+import { TResponse, TUser } from "../../types/global.type";
+import { useCreateUserMutation } from "../../redux/features/user/userApi";
 
-    const [loading, setLoading] = useState(false);
-    const [form] = Form.useForm();
-  
-    const [login] = useLoginMutation();
-  
-    const dispatch = useAppDispatch();
-    const navigate = useNavigate();
-  
-    const onFinish = async (values: { email: string; password: string }) => {
-      setLoading(true);
-      // const toastId = toast.loading("Logging......");
-      try {
-        const userInfo = {
-          email: values.email,
-          password: values.password,
-        };
-        console.log("login page", userInfo);
-        login(userInfo);
-  
-        const res = await login(userInfo).unwrap();
-        // const user = verifyToken(res.data.accessToken);
-  
-        const user = verifyToken(res.data.accessToken) as TUser;
-        dispatch(setUser({ user: user, token: res.data.accessToken }));
-        toast.success("Logged In");
-        setLoading(false);
-        if(user.role === 'user'){
-          navigate('/auth/new-user-cart')
-        }else{
-  
-          navigate(`/${user?.role}/dashboard`);
-        }
-      } catch (error) {
-        toast.error((error as any)?.data?.message || "An error occurred");
-      }
+const Register = () => {
+ 
+
+  const [register,{isLoading}] = useCreateUserMutation();
+  const navigate = useNavigate();
+
+  const onFinish = async (values: {
+    userName: string;
+    email: string;
+    password: string;
+    image: string;
+    address: string;
+  }) => {
+    const userInfo = {
+      userName: values.userName,
+      email: values.email,
+      password: values.password,
+      role: "user",
     };
-    return (
-        <div className="w-full flex justify-center p-10">
+
+
+
+
+
+    try {
+      const res = (await register(userInfo)) as TResponse<TUser>;
+      console.log(res);
+      if (res?.error) {
+        toast.error(res?.error?.data?.message);
+      } else {
+        navigate("/login");
+        toast.success("user  created successfully");
+      }
+    } catch (err) {
+      toast.error("something went wrong");
+    }
+  };
+
+  return (
+   
+
+    <div className="w-full flex justify-center p-10">
       <div className="max-w-[500px] p-8 rounded-lg border border-gray-200">
         <h2 className="text-2xl font-bold mb-4 text-center">Register Now</h2>
         <Form
@@ -48,7 +58,16 @@ const Login = () => {
           layout="vertical"
           className="space-y-4"
         >
-          
+          <Form.Item
+            label="User Name"
+            name="userName"
+            rules={[
+              { required: true, message: "Please input your userName" },
+              { type: "string", message: "Please enter a valid email address" },
+            ]}
+          >
+            <Input placeholder="Enter user name" />
+          </Form.Item>
 
           <Form.Item
             label="Email"
@@ -92,7 +111,7 @@ const Login = () => {
         </Form>
       </div>
     </div>
-    );
+  );
 };
 
-export default Login;
+export default Register;

@@ -63,6 +63,8 @@ import CategoryLayout from "../components/layout/CategoryLayout";
 import HomeLayout from "../components/layout/HomeLayout";
 import ProductDetails from "../pages/productDetails/ProductDetails";
 import ExchangeAndComplain from "../pages/exchangeAndComplaince/ExchangeAndComplain";
+import CheckoutPage from "../pages/checkout/CheckoutPage";
+import Register from "../pages/register/Register";
 
 
 
@@ -74,7 +76,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home   />,
+        element: <Home />,
       },
       {
         path: "product/:id",
@@ -89,6 +91,14 @@ const router = createBrowserRouter([
         path: "complain",
         element: <ExchangeAndComplain />,
       },
+      {
+        path:'checkout',
+        element:<CheckoutPage/>
+      },
+      {
+        path:'register',
+        element:<Register/>
+      }
     ],
   },
   {

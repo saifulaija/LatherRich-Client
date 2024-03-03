@@ -123,7 +123,7 @@ const  RelatedProducts: React.FC<RelatedProductsProps> = ({ value }) => {
     return (
       <div
         className={className}
-        style={{ ...style, display: "block", background: "green" }}
+        style={{ ...style, display: "block", background: "gray" }}
         onClick={onClick}
       />
     );
@@ -134,7 +134,7 @@ const  RelatedProducts: React.FC<RelatedProductsProps> = ({ value }) => {
     return (
       <div
         className={className}
-        style={{ ...style, display: "block", background: "green" }}
+        style={{ ...style, display: "block", background: "gray" }}
         onClick={onClick}
       />
     );
