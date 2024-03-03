@@ -23,8 +23,12 @@ import chart from "../../assets/images/size-chart-for-women.jpg";
 
 
 import RelatedProducts from "../../components/relatedProducts/RelatedProducts";
+import { useTopBarLoader } from "../../utils/topBarLoader";
+import LoadingBar from "react-top-loading-bar";
 
 const ProductDetails = () => {
+  const [progress, setProgress] = useState(0);
+  useTopBarLoader(setProgress);
   
   const { id } = useParams();
   const [selectedSizeIndex, setSelectedSizeIndex] = useState(0);
@@ -91,6 +95,7 @@ const ProductDetails = () => {
 
   return (
     <div className="container px-6 py-12 rounded-lg">
+      <LoadingBar progress={progress} />
       <PageNavigation
         title={`products <RightOutlined /> category <RightOutlined /> ${product?.data?.subCategory} <RightOutlined />  ${product?.data?.name}`}
       />

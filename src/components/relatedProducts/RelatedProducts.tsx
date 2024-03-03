@@ -194,6 +194,7 @@ const  RelatedProducts: React.FC<RelatedProductsProps> = ({ value }) => {
               "
               cover={
                 <img
+                loading="lazy"
                   alt="example"
                   src={product?.images[0]}
                   className="w-full group-transition duration-300 transform group-hover:scale-75 rounded-t-md"

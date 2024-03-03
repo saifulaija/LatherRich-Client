@@ -9,9 +9,14 @@ import { useState } from "react";
 import PageNavigation from "../../components/pageNavigation/PageNavigation";
 import Meta from "antd/es/card/Meta";
 import { FaShop } from "react-icons/fa6";
+import { useTopBarLoader } from "../../utils/topBarLoader";
+import LoadingBar from "react-top-loading-bar";
 
 
 const ProductCategory = () => {
+
+  const [progress, setProgress] = useState(0);
+  useTopBarLoader(setProgress);
   const [drawerVisible, setDrawerVisible] = useState(false);
   const { category } = useParams();
   const {
@@ -30,6 +35,7 @@ const ProductCategory = () => {
 
   return (
     <div className="w-full mt-10">
+      <LoadingBar progress={progress} />
        <PageNavigation title={`products <RightOutlined /> category  <RightOutlined />  ${category}`} />
 
       <div className=" flex justify-center items-center">
