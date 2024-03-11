@@ -84,8 +84,6 @@
 
 // export default RelatedProducts;
 
-
-
 import { useState } from "react";
 import { useGetAllProductsQuery } from "../../redux/features/product/productApi";
 import { TQueryParam } from "../../types/global.type";
@@ -96,15 +94,15 @@ import { FaShapes } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import './RelatedProduct.css'
+import "./RelatedProduct.css";
 
 import Slider from "react-slick";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 interface RelatedProductsProps {
   value: any; // Replace 'any' with the appropriate type
 }
 
-const  RelatedProducts: React.FC<RelatedProductsProps> = ({ value }) => {
+const RelatedProducts: React.FC<RelatedProductsProps> = ({ value }) => {
   const [params, setParams] = useState<TQueryParam[]>([]);
 
   const {
@@ -117,19 +115,7 @@ const  RelatedProducts: React.FC<RelatedProductsProps> = ({ value }) => {
     ...params,
   ]);
 
-
-  function SampleNextArrow(props:any) {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{ ...style, display: "block", background: "gray" }}
-        onClick={onClick}
-      />
-    );
-  }
-  
-  function SamplePrevArrow(props:any) {
+  function SampleNextArrow(props: any) {
     const { className, style, onClick } = props;
     return (
       <div
@@ -140,7 +126,18 @@ const  RelatedProducts: React.FC<RelatedProductsProps> = ({ value }) => {
     );
   }
 
-  const  settings = {
+  function SamplePrevArrow(props: any) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{ ...style, display: "block", background: "gray" }}
+        onClick={onClick}
+      />
+    );
+  }
+
+  const settings = {
     dots: true,
     infinite: false,
     speed: 500,
@@ -157,95 +154,91 @@ const  RelatedProducts: React.FC<RelatedProductsProps> = ({ value }) => {
           slidesToShow: 2,
           slidesToScroll: 2,
           infinite: true,
-          dots: true
-        }
+          dots: true,
+        },
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          initialSlide: 2
-        }
+          initialSlide: 2,
+        },
       },
       {
         breakpoint: 480,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1
-        }
-      }
-    ]
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   return (
     <div className="w-full max-w-[80%] m-auto ">
-      <Spin spinning={isLoading && isFetching} >
-     <div>
-     <Slider {...settings}>
-        
-        
-        {productsData?.data?.map((product) => (
-          <Link to={`/product/${product._id}`}>
-            <Card
-              bordered
-              key={product?._id}
-              className="group max-w-full  border border-gray-200
+      <Spin spinning={isLoading && isFetching}>
+        <div>
+          <Slider {...settings}>
+            {productsData?.data?.map((product) => (
+              <Link to={`/product/${product._id}`}>
+                <Card
+                  bordered
+                  key={product?._id}
+                  className="group max-w-full  border border-gray-200
               "
-              cover={
-                <img
-                loading="lazy"
-                  alt="example"
-                  src={product?.images[0]}
-                  className="w-full group-transition duration-300 transform group-hover:scale-75 rounded-t-md"
-                />
-              }
-            >
-              <Meta title={product?.name} className="text-center" />
-              <Divider />
-              <div className="flex justify-between items-center mb-4">
-                <h5 className=" text-yellow-900 font-semibold">
-                  Price: ৳{product?.price}
-                </h5>
-                <Rate className="text-[14px]" value={product?.rating} />
-              </div>
-
-              <div className="flex justify-center items-center gap-2 mb-4">
-                {product?.sizeStok?.map((item) => (
-                  <div
-                    key={item.size}
-                    className={`flex justify-center items-center w-8 h-8 rounded-full border-2 border-gray-300 ${
-                      item?.stock === 0
-                        ? "text-red-500 line-through"
-                        : "text-gray-900"
-                    }`}
-                    style={{ textDecorationThickness: "2px" }}
-                  >
-                    {item.size}
+                  cover={
+                    <img
+                      loading="lazy"
+                      alt="example"
+                      src={product?.images[0]}
+                      className="w-full group-transition duration-300 transform group-hover:scale-75 rounded-t-md"
+                    />
+                  }
+                >
+                  <Meta title={product?.name} className="text-center" />
+                  <Divider />
+                  <div className="flex justify-between items-center mb-4">
+                    <h5 className=" text-yellow-900 font-semibold">
+                      Price: ৳{product?.price}
+                    </h5>
+                    <Rate className="text-[14px]" value={product?.rating} />
                   </div>
-                ))}
-              </div>
-              <Button
-                className="mt-auto absolute bottom-0 left-0 right-0 text-white bg-[#453433]"
-                block
-                icon={<FaShapes />}
-              >
-                Shop Now
-              </Button>
-            </Card>
-          </Link>
-        ))}
-     
-  
-  </Slider>
-     </div>
+
+                  <div className="flex justify-center items-center gap-2 mb-4">
+                    {product?.sizeStok?.map((item) => (
+                      <div
+                        key={item.size}
+                        className={`flex justify-center items-center w-8 h-8 rounded-full border-2 border-gray-300 ${
+                          item?.stock === 0
+                            ? "text-red-500 line-through"
+                            : "text-gray-900"
+                        }`}
+                        style={{ textDecorationThickness: "2px" }}
+                      >
+                        {item.size}
+                      </div>
+                    ))}
+                  </div>
+                  <Button
+                    className="mt-auto absolute bottom-0 left-0 right-0 text-gray-600"
+                    block
+                    icon={<FaShapes />}
+                  >
+                    Shop Now
+                  </Button>
+                </Card>
+              </Link>
+            ))}
+          </Slider>
+        </div>
       </Spin>
     </div>
   );
 };
 
-RelatedProducts.prototype={
-  props:PropTypes.any,
-  value:PropTypes.any
-}
+RelatedProducts.prototype = {
+  props: PropTypes.any,
+  value: PropTypes.any,
+};
 export default RelatedProducts;

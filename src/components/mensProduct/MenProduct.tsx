@@ -4,8 +4,9 @@ import { TQueryParam } from "../../types/global.type";
 import { Button, Card, Divider, Rate, Spin } from "antd";
 import Meta from "antd/es/card/Meta";
 
-import { FaShapes } from "react-icons/fa";
+
 import { Link } from "react-router-dom";
+import { CiShoppingCart } from "react-icons/ci";
 
 const BestSellingProduct = () => {
   const [params, setParams] = useState<TQueryParam[]>([]);
@@ -15,7 +16,11 @@ const BestSellingProduct = () => {
     data: productsData,
     isLoading,
     isFetching,
-  } = useGetAllProductsQuery([{ name: "sort", value: "-price" },{name:'category', value:'man'}, ...params]);
+  } = useGetAllProductsQuery([
+    { name: "sort", value: "-price" },
+    { name: "category", value: "man" },
+    ...params,
+  ]);
 
   const displayedProducts = showAllProducts
     ? productsData?.data
@@ -33,14 +38,12 @@ const BestSellingProduct = () => {
             {displayedProducts?.map((product) => (
               <Link to={`/product/${product._id}`}>
                 <Card
-                  
                   bordered
                   key={product?._id}
-                 
                   className="group max-w-full border border-gray-200"
                   cover={
                     <img
-                    loading="lazy"
+                      loading="lazy"
                       alt="example"
                       src={product?.images[0]}
                       className="w-full group-transition duration-300 transform group-hover:scale-75 rounded-t-md"
@@ -72,9 +75,10 @@ const BestSellingProduct = () => {
                     ))}
                   </div>
                   <Button
-                    className="mt-auto absolute bottom-0 left-0 right-0 text-white bg-[#453433]"
+                    className="mt-auto absolute bottom-0 left-0 right-0 text-gray-600"
                     block
-                    icon={<FaShapes />}
+                    icon={<CiShoppingCart
+                       />}
                   >
                     Shop Now
                   </Button>

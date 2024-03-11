@@ -33,11 +33,11 @@ const BestSellingProduct = () => {
             {displayedProducts?.map((product) => (
               <Link to={`/product/${product._id}`}>
                 <Card
-                  hoverable
-                  bordered
+                  
+                
                   key={product?._id}
                  
-                  className="group max-w-full"
+                  className="group max-w-full border border-gray-200"
                   cover={
                     <img
                     loading="lazy"
@@ -72,7 +72,7 @@ const BestSellingProduct = () => {
                     ))}
                   </div>
                   <Button
-                    className="mt-auto absolute bottom-0 left-0 right-0 text-white bg-[#453433]"
+                    className="mt-auto absolute bottom-0 left-0 right-0 text-gray-600"
                     block
                     icon={<FaShapes />}
                   >

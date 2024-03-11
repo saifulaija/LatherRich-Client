@@ -18,8 +18,8 @@ const Register = () => {
     userName: string;
     email: string;
     password: string;
-    image: string;
-    address: string;
+   
+   
   }) => {
     const userInfo = {
       userName: values.userName,
@@ -50,7 +50,7 @@ const Register = () => {
    
 
     <div className="w-full flex justify-center p-10">
-      <div className="max-w-[500px] p-8 rounded-lg border border-gray-200">
+      <div className="max-w-[500px] p-8 rounded-lg border border-gray-200 shadow-lg">
         <h2 className="text-2xl font-bold mb-4 text-center">Register Now</h2>
         <Form
           name="register"
@@ -59,7 +59,7 @@ const Register = () => {
           className="space-y-4"
         >
           <Form.Item
-            label="User Name"
+            label="Your Name"
             name="userName"
             rules={[
               { required: true, message: "Please input your userName" },
@@ -105,7 +105,7 @@ const Register = () => {
               Submit
             </Button>
             <div className="text-center mt-4">
-              Already registered? <Link to="/auth/login">Login</Link>
+              Already registered? <Link to="/login">Login</Link>
             </div>
           </Form.Item>
         </Form>
