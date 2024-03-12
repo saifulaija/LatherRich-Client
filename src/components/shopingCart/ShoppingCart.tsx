@@ -110,7 +110,6 @@ const ShoppingCart = () => {
           setCartDrawerOpen(false);
         }}
         title="Your Cart"
-        
         contentWrapperStyle={{ width: 600 }}
       >
         <div
@@ -231,7 +230,11 @@ const ShoppingCart = () => {
                       </Link>
                     ) : (
                       <Link to="/login" className="w-full">
-                        <Button onClick={() => setCartDrawerOpen(false)} block>
+                        <Button
+                          className="border border-red-400 bg-gray-600 text-white"
+                          onClick={() => setCartDrawerOpen(false)}
+                          
+                        >
                           Checkout
                         </Button>
                       </Link>
