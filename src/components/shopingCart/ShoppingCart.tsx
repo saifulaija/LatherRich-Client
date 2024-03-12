@@ -15,17 +15,27 @@ import {
 import NoDataFoundPage from "../../pages/noDataFoundPage/NoDataFoundPage";
 import { HiUser } from "react-icons/hi";
 import { ShoppingBagIcon } from "@heroicons/react/16/solid";
-import { useCurrentUser } from "../../redux/features/auth/authSlice";
+import { logout, useCurrentUser } from "../../redux/features/auth/authSlice";
 
 const ShoppingCart = () => {
   const [cartDrawerOpen, setCartDrawerOpen] = useState(false);
   const cart = useAppSelector((state) => state.cart);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const user = useAppSelector(useCurrentUser);
   const dispatch = useAppDispatch();
+
   useEffect(() => {
     dispatch(getTotals());
   }, [cart]);
 
-  const user=useAppSelector(useCurrentUser)
+  const handleLogout = () => {
+    dispatch(logout());
+    setDropdownOpen(false);
+  };
+
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
 
   const handleDecreaseCart = (product: any) => {
     console.log(product);
@@ -58,7 +68,41 @@ const ShoppingCart = () => {
           </span>
         </div>
 
-        <HiUser className="text-gray-600" />
+        {/* <HiUser className="text-gray-600" /> */}
+
+        <div className="relative">
+          {/* User dropdown */}
+          <div className="flex items-center">
+            <div className="relative">
+              <HiUser
+                className="text-gray-600 cursor-pointer"
+                onClick={toggleDropdown}
+              />
+              {/* Dropdown menu */}
+              {dropdownOpen && (
+                <div className="absolute right-0 mt-8 w-20 bg-white rounded-md shadow-lg z-30">
+                  <div className="py-1">
+                    {/* Show login/logout button based on login status */}
+                    {user?.email ? (
+                      <button
+                        onClick={handleLogout}
+                        className="block w-full text-left px-4 py-2 text-sm text-gray-800 hover:bg-gray-100"
+                      >
+                        Logout
+                      </button>
+                    ) : (
+                      <Link to="/login" onClick={() => setDropdownOpen(false)}>
+                        <button className="block w-full text-left px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">
+                          Login
+                        </button>
+                      </Link>
+                    )}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
       </div>
       <Drawer
         open={cartDrawerOpen}
@@ -66,10 +110,11 @@ const ShoppingCart = () => {
           setCartDrawerOpen(false);
         }}
         title="Your Cart"
+        
         contentWrapperStyle={{ width: 600 }}
       >
         <div
-          style={{ maxWidth: "1000px", margin: "auto", padding: "20px 0px" }}
+          style={{ maxWidth: "1000px", margin: "auto", padding: "10px 0px" }}
         >
           {cart.cartItems.length === 0 ? (
             <NoDataFoundPage />
@@ -96,13 +141,13 @@ const ShoppingCart = () => {
               <Row gutter={[4, 4]}>
                 <Col span={24}>
                   {cart?.cartItems.map((cartItem: any) => (
-                    <Card key={cartItem.image} style={{ height: "20" }}>
+                    <Card key={cartItem.image} style={{ height: "10" }}>
                       <Row justify="space-between" align="middle">
                         <Col span={6}>
                           <img
                             src={cartItem.images[0]}
                             alt={cartItem.productName}
-                            width={80}
+                            width={60}
                             loading="lazy"
                           />
                           <div>
@@ -125,7 +170,7 @@ const ShoppingCart = () => {
                         </Col>
                         <Col span={4}>
                           <Typography.Text strong>
-                            size {cart?.selectSize}
+                            size {cartItem?.size}
                           </Typography.Text>
                         </Col>
                         <Col span={6}>
@@ -157,10 +202,8 @@ const ShoppingCart = () => {
                   ))}
                 </Col>
               </Row>
-             
 
               <div className="p-10 flex flex-col items-center justify-center">
-        
                 <Button
                   onClick={() => handleClearCart()}
                   type="link"
@@ -180,19 +223,19 @@ const ShoppingCart = () => {
                     Taxes and shipping calculated at checkout.
                   </Typography.Text>
                   <div>
-
-                    {
-                      user?  <Link to="/checkout" className="w-full">
-                      <Button onClick={() => setCartDrawerOpen(false)} block>
-                        Checkout
-                      </Button>
-                    </Link> : <Link to="/login" className="w-full">
-                      <Button onClick={() => setCartDrawerOpen(false)} block>
-                        Checkout
-                      </Button>
-                    </Link>
-                    }
-                   
+                    {user ? (
+                      <Link to="/checkout" className="w-full">
+                        <Button onClick={() => setCartDrawerOpen(false)} block>
+                          Checkout
+                        </Button>
+                      </Link>
+                    ) : (
+                      <Link to="/login" className="w-full">
+                        <Button onClick={() => setCartDrawerOpen(false)} block>
+                          Checkout
+                        </Button>
+                      </Link>
+                    )}
                   </div>
                   <div className="mt-10 mb-10 w-full">
                     <Link to="/auth/shop" className="w-full">

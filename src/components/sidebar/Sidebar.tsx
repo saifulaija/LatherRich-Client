@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-
 import React from 'react';
 import { Menu } from 'antd';
 
@@ -60,11 +59,10 @@ const Sidebar: React.FC = () => {
   );
 };
 
-
 const SidebarWithExploreByCategory: React.FC = () => {
   return (
     <div className='p-120px'>
-      
+
       <Sidebar />
     </div>
   );

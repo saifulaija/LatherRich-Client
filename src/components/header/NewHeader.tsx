@@ -75,7 +75,7 @@ const NewHeader = () => {
                 onClick={() => handleMenuItemClick(item.key)}
               >
                 <button className="text-gray-600 hover:text-gray-300 focus:outline-none mr-4 flex items-center">
-                  {item.label}{" "}
+                  {item.label}
                   {item.children && (
                     <span>
                       {activeSubMenu === item.key ? (

@@ -56,6 +56,22 @@ const ProductDetails = () => {
     }
   }, [product, dispatch]);
 
+  // const handleSizeSelect = (index: any) => {
+  //   if (
+  //     product &&
+  //     product.data &&
+  //     product.data.sizeStok &&
+  //     product.data.sizeStok[index]
+  //   ) {
+  //     const selectedSizeValue = product.data.sizeStok[index].size || "";
+  //     setSelectedSize(selectedSizeValue);
+  //     setSelectedStok(product.data.sizeStok[index].stock || "");
+  //     dispatch(selectSizeForAddToCart(selectedSizeValue)); // Dispatch selected size
+  //     setSelectedSizeIndex(index);
+  //   }
+  // };
+
+
   const handleSizeSelect = (index: any) => {
     if (
       product &&
@@ -64,12 +80,14 @@ const ProductDetails = () => {
       product.data.sizeStok[index]
     ) {
       const selectedSizeValue = product.data.sizeStok[index].size || "";
+      const productId = product.data._id; // Assuming _id is stored in product.data._id
       setSelectedSize(selectedSizeValue);
       setSelectedStok(product.data.sizeStok[index].stock || "");
-      dispatch(selectSizeForAddToCart(selectedSizeValue)); // Dispatch selected size
+      dispatch(selectSizeForAddToCart({ productId, size: selectedSizeValue })); // Dispatch selected size and product ID
       setSelectedSizeIndex(index);
     }
   };
+  
 
   const getStokIcon = () => {
     const stokNumber = parseFloat(selectedStok);

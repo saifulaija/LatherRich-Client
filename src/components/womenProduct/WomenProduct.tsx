@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { useGetAllProductsQuery } from "../../redux/features/product/productApi";
 import { TQueryParam } from "../../types/global.type";
-import { Button, Card, Divider, Rate, Spin } from "antd";
+import { Badge, Button, Card, Divider,  Spin } from "antd";
 import Meta from "antd/es/card/Meta";
-
 
 import { Link } from "react-router-dom";
 import { CiShoppingCart } from "react-icons/ci";
@@ -36,51 +35,57 @@ const BestSellingProduct = () => {
         <div className="container flex items-center justify-center mx-auto  ">
           <div className="grid sm:grid-cols-1 md:grid-cols-4 gap-4 rounded-lg shadow-sm">
             {displayedProducts?.map((product) => (
-              <Link to={`/product/${product._id}`}>
-                <Card
-                  key={product?._id}
-                  className="group max-w-full border border-gray-200"
-                  cover={
-                    <img
-                      alt="example"
-                      src={product?.images[0]}
-                      className="w-full group-transition duration-300 transform group-hover:scale-75 rounded-t-md"
-                    />
-                  }
-                >
-                  <Meta title={product?.name} className="text-center" />
-                  <Divider />
-                  <div className="flex justify-between items-center mb-4">
-                    <h5 className=" text-gray-500 font-semibold">
-                      Price: ৳{product?.price}
-                    </h5>
-                    <Rate className="text-[14px]" value={product?.rating} />
-                  </div>
-
-                  <div className="flex justify-center items-center gap-2 mb-4">
-                    {product?.sizeStok?.map((item) => (
-                      <div
-                        key={item.size}
-                        className={`flex justify-center items-center w-8 h-8 rounded-full border-2 border-gray-300 ${
-                          item?.stock === 0
-                            ? "text-red-500 line-through"
-                            : "text-gray-900"
-                        }`}
-                        style={{ textDecorationThickness: "2px" }}
-                      >
-                        {item.size}
-                      </div>
-                    ))}
-                  </div>
-                  <Button
-                    className="mt-auto absolute bottom-0 left-0 right-0 text-gray-600 font-medium "
-                    block
-                    icon={<CiShoppingCart className="text-[15px]" />}
+              <Badge.Ribbon text={`${product.discount}%`} color="magenta">
+                <Link to={`/product/${product._id}`}>
+                  <Card
+                    key={product?._id}
+                    className="group max-w-full border border-gray-200"
+                    cover={
+                      <img
+                        alt="example"
+                        src={product?.images[0]}
+                        className="w-full group-transition duration-300 transform group-hover:scale-75 rounded-t-md"
+                      />
+                    }
                   >
-                    Shop Now
-                  </Button>
-                </Card>
-              </Link>
+                    <Meta title={product?.name} className="text-center" />
+                    <Divider />
+                    <div className="flex justify-between items-center mb-4">
+                      <h5 className=" text-gray-500 font-semibold line-through">
+                        Price: ৳{product?.price}
+                      </h5>
+                      {product?.discount && (
+                  <h5 className="text-gray-500 font-semibold">
+                    Price: ৳{product?.price - (product?.price * product?.discount) / 100} {/* Applying discount */}
+                  </h5>
+                )}
+                    </div>
+
+                    <div className="flex justify-center items-center gap-2 mb-4">
+                      {product?.sizeStok?.map((item) => (
+                        <div
+                          key={item.size}
+                          className={`flex justify-center items-center w-8 h-8 rounded-full border-2 border-gray-300 ${
+                            item?.stock === 0
+                              ? "text-red-500 line-through"
+                              : "text-gray-900"
+                          }`}
+                          style={{ textDecorationThickness: "2px" }}
+                        >
+                          {item.size}
+                        </div>
+                      ))}
+                    </div>
+                    <Button
+                      className="mt-auto absolute bottom-0 left-0 right-0 text-gray-600 font-medium "
+                      block
+                      icon={<CiShoppingCart className="text-[15px]" />}
+                    >
+                      Shop Now
+                    </Button>
+                  </Card>
+                </Link>
+              </Badge.Ribbon>
             ))}
           </div>
         </div>
