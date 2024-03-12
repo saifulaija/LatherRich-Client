@@ -1,3 +1,4 @@
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button, Divider, Form, Input, Table, Radio } from "antd";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
@@ -5,6 +6,7 @@ import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { Link } from "react-router-dom";
 import { removeFromCart } from "../../redux/features/cart/cartSlice";
 import { useState } from "react";
+
 interface FormValues {
   fullName: string;
   mobileNumber: string;
@@ -15,6 +17,10 @@ interface FormValues {
 const CheckoutPage = () => {
   const cart = useAppSelector((state) => state.cart);
   const [shippingCost, setShippingCost] = useState(0);
+  const [paymentMethod, setPaymentMethod] = useState('');
+
+  console.log(paymentMethod)
+
   const subtotal = cart?.cartTotalAmount || 0;
   const total = subtotal + shippingCost;
 
@@ -26,6 +32,10 @@ const CheckoutPage = () => {
 
   const handleShippingChange = (event: any) => {
     setShippingCost(event.target.value);
+  };
+
+  const handlePaymentMethodChange = (event: any) => {
+    setPaymentMethod(event.target.value);
   };
 
   const columns = [
@@ -61,7 +71,7 @@ const CheckoutPage = () => {
       title: "Update",
       dataIndex: "edit",
       key: "edit",
-      render: (_, record: any) => (
+      render: (... record: any) => (
         <Link to={`/product/${record.id}`}>
           <Button icon={<EditOutlined />} className="border border-red-400" />
         </Link>
@@ -71,7 +81,7 @@ const CheckoutPage = () => {
       title: "Remove",
       dataIndex: "remove",
       key: "remove",
-      render: (_, record: any) => (
+      render: (... record: any) => (
         <Button
           className="border border-red-400"
           icon={<DeleteOutlined />}
@@ -81,7 +91,7 @@ const CheckoutPage = () => {
     },
   ];
 
-  const data = cart?.cartItems?.map((item) => ({
+  const data = cart?.cartItems?.map((item:any) => ({
     key: item.id,
     image: item.images[0],
     quantity: item.cartQuantity,
@@ -119,7 +129,7 @@ const CheckoutPage = () => {
             <Divider className="mt-0 border border-gray-300" />
             <div>
               <div>
-                {cart.cartItems.map((item) => (
+                {cart.cartItems.map((item:any) => (
                   <div
                     key={item._id}
                     className="flex justify-between items-center"
@@ -160,7 +170,22 @@ const CheckoutPage = () => {
               <p className="uppercase font-semibold">{total}৳</p>
             </div>
 
-            <p>Cash On Delivery</p>
+            <Radio.Group
+              className="flex flex-col gap-2"
+              onChange={handlePaymentMethodChange}
+              value={paymentMethod}
+            >
+              <div className="bg-indigo-50 p-2 rounded-sm">
+                <Radio value="cash-on-delivery">
+                  Cash On Delivery
+                </Radio>
+              </div>
+              <div className="bg-indigo-50 p-2 rounded-sm">
+                <Radio value="cash-on-payment">
+                  Cash On Payment
+                </Radio>
+              </div>
+            </Radio.Group>
           </div>
         </div>
         <div className="md:w-1/2">
@@ -217,11 +242,22 @@ const CheckoutPage = () => {
               />
             </Form.Item>
 
-            <Form.Item>
-              <Button type="primary" htmlType="submit">
-                Submit
-              </Button>
-            </Form.Item>
+            {paymentMethod === 'cash-on-delivery' && (
+              <Form.Item>
+                <Button block htmlType="submit" className="border border-red-600 uppercase tracking-wider">
+                  Order Place Now
+                </Button>
+              </Form.Item>
+            )}
+
+            {paymentMethod === 'cash-on-payment' && (
+              <Form.Item>
+                <Button block htmlType="submit" className="border border-red-600 uppercase tracking-wider">
+                  Pay Now
+                </Button>
+              </Form.Item>
+            )}
+
           </Form>
         </div>
       </div>
