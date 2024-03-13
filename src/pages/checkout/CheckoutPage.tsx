@@ -1,4 +1,3 @@
-
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button, Divider, Form, Input, Table, Radio } from "antd";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
@@ -6,6 +5,8 @@ import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { Link } from "react-router-dom";
 import { removeFromCart } from "../../redux/features/cart/cartSlice";
 import { useState } from "react";
+import { TbCoinTaka } from "react-icons/tb";
+import { IoPlaySkipBackOutline } from "react-icons/io5";
 
 interface FormValues {
   fullName: string;
@@ -17,9 +18,9 @@ interface FormValues {
 const CheckoutPage = () => {
   const cart = useAppSelector((state) => state.cart);
   const [shippingCost, setShippingCost] = useState(0);
-  const [paymentMethod, setPaymentMethod] = useState('');
+  const [paymentMethod, setPaymentMethod] = useState("");
 
-  console.log(paymentMethod)
+  console.log(paymentMethod);
 
   const subtotal = cart?.cartTotalAmount || 0;
   const total = subtotal + shippingCost;
@@ -71,7 +72,7 @@ const CheckoutPage = () => {
       title: "Update",
       dataIndex: "edit",
       key: "edit",
-      render: (... record: any) => (
+      render: (...record: any) => (
         <Link to={`/product/${record.id}`}>
           <Button icon={<EditOutlined />} className="border border-red-400" />
         </Link>
@@ -81,7 +82,7 @@ const CheckoutPage = () => {
       title: "Remove",
       dataIndex: "remove",
       key: "remove",
-      render: (... record: any) => (
+      render: (...record: any) => (
         <Button
           className="border border-red-400"
           icon={<DeleteOutlined />}
@@ -91,7 +92,7 @@ const CheckoutPage = () => {
     },
   ];
 
-  const data = cart?.cartItems?.map((item:any) => ({
+  const data = cart?.cartItems?.map((item: any) => ({
     key: item.id,
     image: item.images[0],
     quantity: item.cartQuantity,
@@ -118,8 +119,8 @@ const CheckoutPage = () => {
       </div>
       <div className="md:flex justify-between items-center container mx-auto p-10 gap-4">
         <div className="md:w-1/2">
-          <div className=" border-gray-400 border rounded-lg p-10">
-            <p className="font-semibold text-xl text-center uppercase tracking-wide">
+          <div className=" border-teal-300 border rounded-lg p-5">
+            <p className="font-semibold text-teal-600 text-xl text-center uppercase tracking-wide">
               Your Order
             </p>
             <div className="flex justify-between items-center uppercase tracking-wide font-semibold">
@@ -129,7 +130,7 @@ const CheckoutPage = () => {
             <Divider className="mt-0 border border-gray-300" />
             <div>
               <div>
-                {cart.cartItems.map((item:any) => (
+                {cart.cartItems.map((item: any) => (
                   <div
                     key={item._id}
                     className="flex justify-between items-center"
@@ -154,13 +155,13 @@ const CheckoutPage = () => {
               onChange={handleShippingChange}
               value={shippingCost}
             >
-              <div className="bg-indigo-50 p-2 rounded-sm">
+              <div className="bg-neutral-200 p-2 rounded-sm">
                 <Radio value={60}>
                   Inside Dhaka City: <span className="font-semibold">60৳</span>
                 </Radio>
               </div>
-              <div className="bg-indigo-50 p-2 rounded-sm">
-                <Radio value={100}>
+              <div className="bg-neutral-200  p-2 rounded-sm">
+                <Radio  value={100}>
                   Inside Dhaka City: <span className="font-semibold">100৳</span>
                 </Radio>
               </div>
@@ -171,25 +172,21 @@ const CheckoutPage = () => {
             </div>
 
             <Radio.Group
-              className="flex flex-col gap-2"
+              className="flex flex-col gap-2 mt-2"
               onChange={handlePaymentMethodChange}
               value={paymentMethod}
             >
-              <div className="bg-indigo-50 p-2 rounded-sm">
-                <Radio value="cash-on-delivery">
-                  Cash On Delivery
-                </Radio>
+              <div className="bg-neutral-200 p-2 rounded-sm">
+                <Radio value="cash-on-delivery">Cash On Delivery</Radio>
               </div>
-              <div className="bg-indigo-50 p-2 rounded-sm">
-                <Radio value="cash-on-payment">
-                  Cash On Payment
-                </Radio>
+              <div className="bg-neutral-200 p-2 rounded-sm">
+                <Radio value="cash-on-payment">Cash On Payment</Radio>
               </div>
             </Radio.Group>
           </div>
         </div>
         <div className="md:w-1/2">
-          <h3 className="text-lg text-gray-600 tracking-wider font-semibold mb-4 uppercase text-balance text-center">
+          <h3 className="text-lg text-teal-600 tracking-wider font-semibold mb-4 uppercase text-balance text-center">
             BILLING & SHIPPING
           </h3>
           <Form
@@ -242,22 +239,31 @@ const CheckoutPage = () => {
               />
             </Form.Item>
 
-            {paymentMethod === 'cash-on-delivery' && (
+            {paymentMethod === "cash-on-delivery" && (
               <Form.Item>
-                <Button block htmlType="submit" className="border border-red-600 uppercase tracking-wider">
+                <Button
+                  block
+                  htmlType="submit"
+                  className="border border-teal-600 text-gray-500 uppercase tracking-wider font-semibold"
+                  icon={<IoPlaySkipBackOutline />}
+                >
                   Order Place Now
                 </Button>
               </Form.Item>
             )}
 
-            {paymentMethod === 'cash-on-payment' && (
+            {paymentMethod === "cash-on-payment" && (
               <Form.Item>
-                <Button block htmlType="submit" className="border border-red-600 uppercase tracking-wider">
+                <Button
+                  block
+                  htmlType="submit"
+                  className="border border-teal-600 uppercase tracking-wider font-semibold text-gray-500"
+                  icon={<TbCoinTaka  className="text-sm"/>}
+                >
                   Pay Now
                 </Button>
               </Form.Item>
             )}
-
           </Form>
         </div>
       </div>

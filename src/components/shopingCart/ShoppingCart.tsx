@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { LeftOutlined } from "@ant-design/icons";
-import { Button, Card, Col, Divider, Drawer, Row, Typography } from "antd";
+import { Button, Card, Col, Drawer, Row, Typography } from "antd";
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 
@@ -68,7 +68,7 @@ const ShoppingCart = () => {
           </span>
         </div>
 
-        {/* <HiUser className="text-gray-600" /> */}
+       
 
         <div className="relative">
           {/* User dropdown */}
@@ -119,56 +119,88 @@ const ShoppingCart = () => {
             <NoDataFoundPage />
           ) : (
             <>
-              <Row justify="space-between" align="middle">
+              <Row
+                justify="space-between"
+                align="middle"
+                className="text-gray-600"
+              >
                 <Col span={6}>
-                  <Typography.Text strong>PRODUCT</Typography.Text>
+                  <Typography.Text strong className="text-gray-600 text-sm">
+                    PRODUCT
+                  </Typography.Text>
                 </Col>
                 <Col span={4}>
-                  <Typography.Text strong>PRICE</Typography.Text>
+                  <Typography.Text strong className="text-gray-600 text-sm">
+                    PRICE
+                  </Typography.Text>
                 </Col>
                 <Col span={4}>
-                  <Typography.Text strong>SIZE</Typography.Text>
+                  <Typography.Text strong className="text-gray-600 text-sm">
+                    SIZE
+                  </Typography.Text>
                 </Col>
                 <Col span={6}>
-                  <Typography.Text strong>QUANTITY</Typography.Text>
+                  <Typography.Text strong className="text-gray-600 text-sm">
+                    QUANTITY
+                  </Typography.Text>
                 </Col>
                 <Col span={4}>
-                  <Typography.Text strong>TOTAL</Typography.Text>
+                  <Typography.Text strong className="text-gray-600 text-sm">
+                    TOTAL
+                  </Typography.Text>
                 </Col>
               </Row>
-              <Divider style={{ borderColor: "#e3dfde" }} />
-              <Row gutter={[4, 4]}>
-                <Col span={24}>
-                  {cart?.cartItems.map((cartItem: any) => (
-                    <Card key={cartItem.image} style={{ height: "10" }}>
-                      <Row justify="space-between" align="middle">
-                        <Col span={6}>
-                          <img
-                            src={cartItem.images[0]}
-                            alt={cartItem.productName}
-                            width={60}
-                            loading="lazy"
-                          />
-                          <div>
-                            <Typography.Text strong>
-                              {cartItem.productName}
-                            </Typography.Text>
 
-                            <Button
-                              type="link"
-                              onClick={() => handleRemoveFromCart(cartItem)}
+              <Row gutter={[4, 4]}>
+                <Col span={24} className="space-y-2">
+                  {cart?.cartItems.map((cartItem: any) => (
+                    <Card
+                      key={cartItem.image}
+                      style={{ height: "10" }}
+                      className="border"
+                    >
+                      <Row justify="space-between" align="stretch">
+                        <Col span={6}>
+                          <div className="flex justify-center items-center gap-1">
+                            <img
+                              src={cartItem.images[0]}
+                              alt={cartItem.productName}
+                              width={30}
+                              height={30}
+                              loading="lazy"
+                            />
+
+                            <Typography.Text
+                              strong
+                              className="text-gray-500 text-sm overflow-hidden"
                             >
-                              Remove
-                            </Button>
+                              {cartItem.name.length > 10
+                                ? cartItem.name.substring(0, 10) + "..."
+                                : cartItem.name}
+                            </Typography.Text>
                           </div>
+
+                          <Button
+                            type="link"
+                            onClick={() => handleRemoveFromCart(cartItem)}
+                          >
+                            {" "}
+                            Remove
+                          </Button>
                         </Col>
                         <Col span={4}>
-                          <Typography.Text strong>
+                          <Typography.Text
+                            strong
+                            className="text-gray-500 text-sm"
+                          >
                             ৳{cartItem?.price}
                           </Typography.Text>
                         </Col>
                         <Col span={4}>
-                          <Typography.Text strong>
+                          <Typography.Text
+                            strong
+                            className="text-gray-500 text-sm"
+                          >
                             size {cartItem?.size}
                           </Typography.Text>
                         </Col>
@@ -192,7 +224,10 @@ const ShoppingCart = () => {
                           </div>
                         </Col>
                         <Col span={4}>
-                          <Typography.Text strong>
+                          <Typography.Text
+                            strong
+                            className="text-gray-500 text-sm"
+                          >
                             ৳{cartItem?.price * cartItem.cartQuantity}
                           </Typography.Text>
                         </Col>
@@ -202,47 +237,58 @@ const ShoppingCart = () => {
                 </Col>
               </Row>
 
-              <div className="p-10 flex flex-col items-center justify-center">
+              <div className="flex justify-around items-center">
                 <Button
                   onClick={() => handleClearCart()}
                   type="link"
                   icon={<LeftOutlined />}
-                  className="mb-6"
+                  className=""
                 >
                   Clear Cart
                 </Button>
-                <div className="cart-checkout w-full max-w-md bg-white shadow-md rounded-lg p-6">
-                  <div className="subtotal flex justify-center items-center mb-4">
-                    <Typography.Text strong>Subtotal: </Typography.Text>
-                    <Typography.Text strong className="text-lg">
-                      ৳{cart?.cartTotalAmount}
-                    </Typography.Text>
-                  </div>
-                  <Typography.Text type="secondary" className="mb-4">
+                <p className="text-gray-500 font-semibold">
+                  Sub Total: ৳{cart?.cartTotalAmount}
+                </p>
+              </div>
+
+              <div className="p-4 flex flex-col items-center justify-center space-x-4">
+                <div className=" w-full max-w-md   p-6">
+                  <Typography.Text type="secondary" className="mb-8">
                     Taxes and shipping calculated at checkout.
                   </Typography.Text>
                   <div>
                     {user ? (
                       <Link to="/checkout" className="w-full">
-                        <Button onClick={() => setCartDrawerOpen(false)} block>
+                        <Button
+                          className="border border-teal-600 uppercase tracking-wider font-semibold text-gray-500"
+                          onClick={() => setCartDrawerOpen(false)}
+                          block
+                          icon={<LeftOutlined />}
+                        >
                           Checkout
                         </Button>
                       </Link>
                     ) : (
                       <Link to="/login" className="w-full">
                         <Button
-                          className="border border-red-400 bg-gray-600 text-white"
+                          className="border border-teal-600 uppercase tracking-wider font-semibold text-gray-500"
                           onClick={() => setCartDrawerOpen(false)}
-                          
+                          block
+                          icon={<LeftOutlined />}
                         >
                           Checkout
                         </Button>
                       </Link>
                     )}
                   </div>
-                  <div className="mt-10 mb-10 w-full">
-                    <Link to="/auth/shop" className="w-full">
-                      <Button block icon={<LeftOutlined />}>
+                  <div className="mt-5 mb-5 w-full">
+                    <Link to="/" className="w-full">
+                      <Button
+                        onClick={() => setCartDrawerOpen(false)}
+                        className="border border-teal-600 uppercase tracking-wider font-semibold text-gray-500"
+                        block
+                        icon={<LeftOutlined />}
+                      >
                         Continue Shopping
                       </Button>
                     </Link>

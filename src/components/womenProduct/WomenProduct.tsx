@@ -117,6 +117,7 @@ const { Meta } = Card;
 const BestSellingProduct = () => {
   const [params, setParams] = useState<TQueryParam[]>([]);
   const [showAllProducts, setShowAllProducts] = useState(false);
+  console.log(setParams)
 
   const { data: productsData, isLoading, isFetching } = useGetAllProductsQuery([
     { name: "sort", value: "-price" },

@@ -67,7 +67,7 @@ const NewHeader = () => {
          </Link>
         </div>
         <div className="hidden sm:block">
-          <div className="flex justify-center items-center gap-2">
+          <div className="flex justify-center items-center  gap-2">
             {items?.map((item) => (
               <div
                 key={item.key}
