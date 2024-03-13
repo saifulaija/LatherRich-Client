@@ -72,7 +72,7 @@ const CheckoutPage = () => {
       title: "Update",
       dataIndex: "edit",
       key: "edit",
-      render: (...record: any) => (
+      render: (_,record: any) => (
         <Link to={`/product/${record.id}`}>
           <Button icon={<EditOutlined />} className="border border-red-400" />
         </Link>
@@ -82,7 +82,7 @@ const CheckoutPage = () => {
       title: "Remove",
       dataIndex: "remove",
       key: "remove",
-      render: (...record: any) => (
+      render: (_,record: any) => (
         <Button
           className="border border-red-400"
           icon={<DeleteOutlined />}
@@ -102,6 +102,8 @@ const CheckoutPage = () => {
     id: item._id,
     product: item,
   }));
+
+ 
 
   const onFinish = (values: FormValues) => {
     console.log("Received values:", values);
@@ -177,10 +179,10 @@ const CheckoutPage = () => {
               value={paymentMethod}
             >
               <div className="bg-neutral-200 p-2 rounded-sm">
-                <Radio value="cash-on-delivery">Cash On Delivery</Radio>
+                <Radio disabled={shippingCost === 0} value="cash-on-delivery">Cash On Delivery</Radio>
               </div>
               <div className="bg-neutral-200 p-2 rounded-sm">
-                <Radio value="cash-on-payment">Cash On Payment</Radio>
+                <Radio  disabled={shippingCost === 0} value="cash-on-payment">Cash On Payment</Radio>
               </div>
             </Radio.Group>
           </div>
