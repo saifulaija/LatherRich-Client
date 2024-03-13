@@ -214,9 +214,9 @@ const BestSellingProduct = () => {
         </div>
         {!showAllProducts && (
           <div className="flex justify-center items-center mt-10">
-            <Button className="btn" onClick={handleViewAll}>
-              View All
-            </Button>
+            <Button block className="max-w-[120px] border text-gray-500 border-teal-600 font-semibold uppercase tracking-wider" onClick={handleViewAll}>
+            View All
+           </Button>
           </div>
         )}
       </Spin>

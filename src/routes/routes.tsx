@@ -50,7 +50,6 @@
 
 // export default router;
 
-
 import { createBrowserRouter } from "react-router-dom";
 
 import NotFound from "../pages/notFound/NotFound";
@@ -65,8 +64,7 @@ import ProductDetails from "../pages/productDetails/ProductDetails";
 import ExchangeAndComplain from "../pages/exchangeAndComplaince/ExchangeAndComplain";
 import CheckoutPage from "../pages/checkout/CheckoutPage";
 import Register from "../pages/register/Register";
-
-
+import OrderSuccess from "../pages/orderSucces/OrderSuccess";
 
 const router = createBrowserRouter([
   {
@@ -92,13 +90,17 @@ const router = createBrowserRouter([
         element: <ExchangeAndComplain />,
       },
       {
-        path:'checkout',
-        element:<CheckoutPage/>
+        path: "checkout",
+        element: <CheckoutPage />,
       },
       {
-        path:'register',
-        element:<Register/>
-      }
+        path: "register",
+        element: <Register />,
+      },
+      {
+        path: "order/:id",
+        element: <OrderSuccess />,
+      },
     ],
   },
   {

@@ -4,13 +4,14 @@ import { TQueryParam } from "../../types/global.type";
 import { Button, Card, Divider, Rate, Spin } from "antd";
 import Meta from "antd/es/card/Meta";
 
-import { FaShapes } from "react-icons/fa";
+
 import { Link } from "react-router-dom";
 import { CiShoppingCart } from "react-icons/ci";
 
 const BestSellingProduct = () => {
   const [params, setParams] = useState<TQueryParam[]>([]);
   const [showAllProducts, setShowAllProducts] = useState(false);
+  console.log(setParams)
 
   const {
     data: productsData,
@@ -85,9 +86,9 @@ const BestSellingProduct = () => {
         </div>
         {!showAllProducts && (
           <div className="flex justify-center items-center mt-10">
-            <button className="btn" onClick={handleViewAll}>
-              View All
-            </button>
+             <Button block className="max-w-[120px] border text-gray-500 border-teal-600 font-semibold uppercase tracking-wider" onClick={handleViewAll}>
+            View All
+           </Button>
           </div>
         )}
       </Spin>
