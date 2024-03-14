@@ -67,8 +67,32 @@ import Register from "../pages/register/Register";
 import OrderSuccess from "../pages/orderSucces/OrderSuccess";
 
 import SearchResultProduct from "../components/searchResult/SearchResultProduct";
+import ProtectedRoute from "../components/protectedRoute/ProtectedRoute";
+import NewApp from "../NewApp";
+import { routeGenerator } from "../utils/routeGenerator";
+import { adminPaths } from "./admin.route";
+import { userPaths } from "./user.route";
 
 const router = createBrowserRouter([
+
+  {
+    path: "/superAdmin",
+    element: (
+      <ProtectedRoute role="superAdmin">
+        <NewApp />
+      </ProtectedRoute>
+    ),
+    children: routeGenerator(adminPaths),
+  },
+  {
+    path: "/user",
+    element: (
+      <ProtectedRoute role="user">
+        <NewApp />
+      </ProtectedRoute>
+    ),
+    children: routeGenerator(userPaths),
+  },
   {
     path: "/",
     element: <HomeLayout />,

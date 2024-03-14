@@ -52,6 +52,7 @@ const ShoppingCart = () => {
   const handleClearCart = () => {
     dispatch(clearCart());
   };
+  console.log(user?.role)
 
   return (
     <div>
@@ -61,7 +62,7 @@ const ShoppingCart = () => {
         </div>
         <div>
           {user && (
-            <Link>
+            <Link to={`/${user?.role}/dashboard`}>
               {" "}
               <MdDashboard className="text-xl text-teal-600" />
             </Link>
