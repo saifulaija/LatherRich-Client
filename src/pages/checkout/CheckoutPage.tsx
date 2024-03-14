@@ -3,7 +3,7 @@ import { Button, Divider, Form, Input, Table, Radio } from "antd";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { Link, useNavigate } from "react-router-dom";
-import { clearCart, removeFromCart } from "../../redux/features/cart/cartSlice";
+import {  removeFromCart } from "../../redux/features/cart/cartSlice";
 import { useState } from "react";
 import { TbCoinTaka } from "react-icons/tb";
 import { IoPlaySkipBackOutline } from "react-icons/io5";

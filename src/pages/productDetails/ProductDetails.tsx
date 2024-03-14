@@ -6,7 +6,6 @@ import { Button, Divider, Image, Spin } from "antd";
 import {
   CheckCircleOutlined,
   ExclamationCircleOutlined,
- 
   PlusOutlined,
 } from "@ant-design/icons";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
@@ -194,12 +193,13 @@ const ProductDetails = () => {
                 <div className="flex justify-center items-center gap-4">
                   {product?.data?.sizeStok?.map((item: any, index: number) => (
                     <button
+                    disabled={item.stock === 0}
                       key={index}
                       className={`border px-4 py-0 rounded ${
                         selectedSizeIndex === index
                           ? " bg-teal-500 text-white px-4 py-0 rounded-md flex justify-center items-center"
                           : " bg-neutral-500 text-white px-4 py-0 rounded-md flex justify-center items-center"
-                      } ${item?.stock === 0 ? "line-through color-red" : ""}`}
+                      } ${item?.stock === 0 ? "line-through text-red-500 " : ""}`}
                       onClick={() => handleSizeSelect(index)}
                     >
                       size/{item?.size}
@@ -256,7 +256,7 @@ const ProductDetails = () => {
 
             <div className="mt-[30px]">
               <Button
-                className="border border-teal-600 text-gray-500 uppercase tracking-wider font-semibold"
+                className="border border-teal-600 text-teal-700 uppercase tracking-wider font-semibold"
                 onClick={() => dispatch(addToCart(product?.data))}
                 block
                 icon={<PlusOutlined />}

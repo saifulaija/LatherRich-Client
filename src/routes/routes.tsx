@@ -66,6 +66,8 @@ import CheckoutPage from "../pages/checkout/CheckoutPage";
 import Register from "../pages/register/Register";
 import OrderSuccess from "../pages/orderSucces/OrderSuccess";
 
+import SearchResultProduct from "../components/searchResult/SearchResultProduct";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -111,6 +113,10 @@ const router = createBrowserRouter([
         path: ":category",
         element: <ProductCategory />,
       },
+      {
+        path:"search",
+        element:<SearchResultProduct/>
+      }
     ],
   },
 ]);

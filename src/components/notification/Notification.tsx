@@ -13,6 +13,7 @@ const Notification = () => {
   const dispatch = useDispatch();
   const [showNotification, setShowNotification] = useState(false);
   const [loading, setLoading] = useState(false);
+  console.log(showNotification)
 
   useEffect(() => {
     const notificationTimer = setTimeout(() => {
@@ -41,7 +42,7 @@ const Notification = () => {
           }
         );
       }
-    }, 10000); 
+    }, 20000); 
 
     return () => clearTimeout(notificationTimer);
   }, [cartItems, loading, dispatch]);

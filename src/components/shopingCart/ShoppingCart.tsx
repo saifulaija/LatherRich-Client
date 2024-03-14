@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { LeftOutlined } from "@ant-design/icons";
-import { Button, Card, Col, Drawer, Row, Typography } from "antd";
+import { LeftOutlined, UserOutlined } from "@ant-design/icons";
+import { Badge, Button, Card, Col, Drawer, Row, Typography } from "antd";
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 
@@ -13,9 +13,13 @@ import {
   removeFromCart,
 } from "../../redux/features/cart/cartSlice";
 import NoDataFoundPage from "../../pages/noDataFoundPage/NoDataFoundPage";
-import { HiUser } from "react-icons/hi";
-import { ShoppingBagIcon } from "@heroicons/react/16/solid";
+
 import { logout, useCurrentUser } from "../../redux/features/auth/authSlice";
+import { IoBagAddOutline } from "react-icons/io5";
+import { MdDashboard } from "react-icons/md";
+
+
+
 
 const ShoppingCart = () => {
   const [cartDrawerOpen, setCartDrawerOpen] = useState(false);
@@ -31,10 +35,6 @@ const ShoppingCart = () => {
   const handleLogout = () => {
     dispatch(logout());
     setDropdownOpen(false);
-  };
-
-  const toggleDropdown = () => {
-    setDropdownOpen(!dropdownOpen);
   };
 
   const handleDecreaseCart = (product: any) => {
@@ -55,53 +55,56 @@ const ShoppingCart = () => {
 
   return (
     <div>
-      <div className="flex items-center gap-4 text-2xl bg-white  p-4 ">
-        <div className="flex items-center justify-cente border  w-10 h-10 py-0 cursor-pointer">
-          <ShoppingBagIcon
-            onClick={() => {
-              setCartDrawerOpen(true);
-            }}
-            className="text-gray-600 "
-          />
-          <span className=" text-gray-800  w-5 h-5 flex items-center justify-center">
-            {cart.cartItems.length}
-          </span>
+      <div className="flex items-center justify-center gap-4 text-sm bg-white  p-4 ">
+        <div>
+     
+        </div>
+        <div>
+          {user && (
+            <Link>
+              {" "}
+              <MdDashboard className="text-xl text-teal-600" />
+            </Link>
+          )}
+        </div>
+        <div>
+          <Badge count={cart.cartItems.length}>
+            <Button
+              onClick={() => {
+                setCartDrawerOpen(true);
+              }}
+              className=" text-teal-800 flex items-center justify-center gap-1"
+            >
+              <IoBagAddOutline
+                className="text-teal-800 font-semibold"
+                size={20}
+              />
+              <span className="font-semibold text-[14px]">
+                ৳{cart.cartTotalAmount}
+              </span>
+            </Button>
+          </Badge>
         </div>
 
-       
-
-        <div className="relative">
-          {/* User dropdown */}
-          <div className="flex items-center">
-            <div className="relative">
-              <HiUser
-                className="text-gray-600 cursor-pointer"
-                onClick={toggleDropdown}
-              />
-              {/* Dropdown menu */}
-              {dropdownOpen && (
-                <div className="absolute right-0 mt-8 w-20 bg-white rounded-md shadow-lg z-30">
-                  <div className="py-1">
-                    {/* Show login/logout button based on login status */}
-                    {user?.email ? (
-                      <button
-                        onClick={handleLogout}
-                        className="block w-full text-left px-4 py-2 text-sm text-gray-800 hover:bg-gray-100"
-                      >
-                        Logout
-                      </button>
-                    ) : (
-                      <Link to="/login" onClick={() => setDropdownOpen(false)}>
-                        <button className="block w-full text-left px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">
-                          Login
-                        </button>
-                      </Link>
-                    )}
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
+        <div>
+          {user ? (
+            <Button
+              icon={<UserOutlined />}
+              className="uppercase tracking-wide font-semibold text-teal-700"
+              onClick={handleLogout}
+            >
+              Logout
+            </Button>
+          ) : (
+            <Link to="/login">
+              <Button
+                icon={<UserOutlined />}
+                className="uppercase tracking-wide font-semibold text-teal-700"
+              >
+                Login
+              </Button>
+            </Link>
+          )}
         </div>
       </div>
       <Drawer
