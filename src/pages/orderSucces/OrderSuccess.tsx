@@ -1,60 +1,80 @@
-import { useParams } from "react-router-dom";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Link, useParams } from "react-router-dom";
 import { useGetSingleOrderQuery } from "../../redux/features/order/orderApi";
-import { Button, Spin } from "antd";
-import { PDFDownloadLink } from '@react-pdf/renderer';
-import OrderPdf from "../../components/orderPdf/OrderPdf";
+import { Button, Col, Divider, Result, Row, Spin } from "antd";
+
 
 
 const OrderSuccess = () => {
-    const { id } = useParams();
-    const { data: orderData, isLoading } = useGetSingleOrderQuery(id);
+  const { id } = useParams();
+  const { data, isLoading } = useGetSingleOrderQuery(id);
 
-    if (isLoading) {
-        return <Spin />;
-    }
+  // Format date if available
+  const formatDate = (date:any) => {
+    return date ? new Date(date).toLocaleDateString() : "";
+  };
 
-    return (
-        <div className="container mx-auto px-4 py-8">
-            <h1 className="text-3xl font-semibold mb-4">Congratulations! Your Order is Successful</h1>
-            <div className="bg-white shadow-md rounded-lg p-6">
-                <div className="grid grid-cols-2 gap-4">
-                    <div>
-                        <h2 className="text-xl font-semibold mb-2">Order Number:</h2>
-                        <p className="text-gray-800">{orderData.orderNumber}</p>
-                    </div>
-                    <div>
-                        <h2 className="text-xl font-semibold mb-2">Order Date:</h2>
-                        <p className="text-gray-800">{new Date(orderData.orderDate).toLocaleString()}</p>
-                    </div>
-                </div>
-                <div className="mt-4">
-                    <h2 className="text-xl font-semibold mb-2">Buyer Information:</h2>
-                    <p className="text-gray-800">
-                        <span className="font-semibold">Name:</span> {orderData.buyerName}<br />
-                        <span className="font-semibold">Email:</span> {orderData.buyerEmail}<br />
-                        <span className="font-semibold">Mobile:</span> {orderData.mobile}
+  return (
+    <div style={{ maxWidth: "800px", margin: "auto" }}>
+      <Spin spinning={isLoading}>
+        <Result
+          status="success"
+          title="Your order placed successfully"
+          subTitle={`Thank you, ${data?.data?.buyerName}, for your order!`}
+        
+         
+          extra={[
+            <div key="paymentDetails" >
+                <div className="max-w-md border shadow-sm  rounded-md p-2 mx-auto">
+                    <h4 className="text-lg underline-offset-4 mb-2 underline font-semibold text-gray-600 uppercase">Order Details</h4>
+                <div className="flex justify-between items-center px-10 ">
+                    <p className="font-medium text-gray-500">
+                    Total Due Amount:
                     </p>
+                    <p className="font-semibold text-gray-600"> ৳{data?.data?.totalPrice}</p>
                 </div>
-                <div className="mt-4">
-                    <h2 className="text-xl font-semibold mb-2">Delivery Address:</h2>
-                    <p className="text-gray-800">{orderData.address}</p>
+                <Divider className="mt-0"/>
+                <div className="flex justify-between items-center px-10 ">
+                    <p className="font-medium text-gray-500">
+                    Payment Method:
+                    </p>
+                    <p className="font-semibold text-gray-600"> {data?.data?.paymentSystem}</p>
                 </div>
-                <div className="mt-4">
-                    <h2 className="text-xl font-semibold mb-2">Delivery Status:</h2>
-                    <p className="text-gray-800">{orderData.deliveryStatus}</p>
+                <Divider className="mt-0"/>
+                <div className="flex justify-between items-center px-10 ">
+                    <p className="font-medium text-gray-500">
+                    Order Number:
+                    </p>
+                    <p className="font-semibold text-gray-600"> {data?.data?.orderNumber}</p>
                 </div>
-            </div>
-            <div className="mt-8 text-center">
-                <PDFDownloadLink document={<OrderPdf orderData={orderData} />} fileName={`order_${orderData.orderNumber}.pdf`}>
-                    {({ blob, url, loading, error }) => (
-                        <Button  loading={loading}>
-                            {loading ? 'Generating PDF...' : 'Download PDF'}
-                        </Button>
-                    )}
-                </PDFDownloadLink>
-            </div>
-        </div>
-    );
+                <Divider className="mt-0"/>
+                <div className="flex justify-between items-center px-10 ">
+                    <p className="font-medium text-gray-500">
+                    Order Date:
+                    </p>
+                    <p className="font-semibold text-gray-600"> {formatDate(data?.data?.orderDate)}</p>
+                </div>
+                <Divider className="mt-0"/>
+                </div>
+             
+            </div>,
+            <Divider key="divider" />,
+            <Row key="buttons" justify="center" gutter={[16, 16]}>
+              <Col>
+                <Link to="/">
+                  <Button
+                      className=" border-teal-700 border uppercase tracking-wider font-semibold text-gray-500"
+                  >
+                    Back to Shop
+                  </Button>
+                </Link>
+              </Col>
+            </Row>,
+          ]}
+        />
+      </Spin>
+    </div>
+  );
 };
 
 export default OrderSuccess;

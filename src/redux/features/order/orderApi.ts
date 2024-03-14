@@ -27,13 +27,17 @@ import { baseApi } from "../../api/baseApi";
 
       providesTags: ["order"],
     }),
-    getSingleOrder: builder.query({
-      query: (id) => ({
-        url: `/order/get-single-order/${id}`,
-        method: "GET",
-      }),
+   
 
-      providesTags: ["order"],
+
+    getSingleOrder: builder.query({
+      query: (id) => {
+        console.log("success", id);
+        return {
+          url: `/order/get-single-order/${id}`,
+          method: "GET",
+        };
+      },
     }),
    
 

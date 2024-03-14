@@ -40,9 +40,9 @@ const CheckoutPage = () => {
     setShippingCost(event.target.value);
   };
 
-  const handleClearCart=()=>{
-    dispatch(clearCart())
-  }
+  // const handleClearCart=()=>{
+  //   dispatch(clearCart())
+  // }
 
   const handlePaymentMethodChange = (event: any) => {
     setPaymentMethod(event.target.value);
@@ -134,6 +134,8 @@ const CheckoutPage = () => {
       orderNumber,
       orderDate: new Date(),
     };
+console.log(orderData)
+   
     try {
       const res = await createOrder(orderData);
       if ('error' in res) {
@@ -296,7 +298,7 @@ const CheckoutPage = () => {
                   className="border border-teal-600 text-gray-500 uppercase tracking-wider font-semibold"
                   icon={<IoPlaySkipBackOutline />}
                   loading={isLoading}
-                  onClick={()=>handleClearCart()}
+                  // onClick={()=>handleClearCart()}
                 >
                   Order Place Now
                 </Button>
