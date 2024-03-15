@@ -38,3 +38,20 @@ export type TUser = {
   isDeleted: boolean;
   role: string;
 };
+
+export const categoryOptions = [
+  { label: "Man", value: "man" },
+  { label: "Women", value: "women" },
+  { label: "Kid", value: "kid" },
+];
+export const subCategoryOptions = [
+  { label: "Man-Causal", value: "man-causal" },
+  { label: "Man-Formal", value: "man-formal" },
+  { label: "Man-Sport", value: "man-sport" },
+  { label: "Women-Causal", value: "Women-causal" },
+  { label: "Women-Formal", value: "women-formal" },
+  { label: "Women-Sport", value: "women-sport" },
+  { label: "Kid-Causal", value: "kid-causal" },
+  { label: "kid-Formal", value: "kid-formal" },
+  { label: "kid-Sport", value: "kid-sport" },
+];

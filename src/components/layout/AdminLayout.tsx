@@ -15,10 +15,10 @@ const AdminLayout = () => {
 
  
   return (
-    <Layout style={{ height: "100%" }}>
+    <Layout  style={{ height: "100%" }}>
       <SideBar />
       <Layout>
-        <Header className="header-new">
+        <Header  className="header-new bg-gray-200">
           <CustomeHeader />
         </Header>
         <Content style={{ margin: "64px 16px 0", overflow: "initial" }}>

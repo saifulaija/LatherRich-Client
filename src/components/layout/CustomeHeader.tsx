@@ -1,63 +1,46 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-
-import { AppstoreOutlined, CrownOutlined, UserOutlined } from "@ant-design/icons";
-import { Avatar, Dropdown, Flex, Menu } from "antd";
+import image from "./..//../assets/images/PNG-Richkid-Logo.png";
 
 
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { logout, useCurrentUser } from "../../redux/features/auth/authSlice";
 import { toast } from "sonner";
-import { useState } from "react";
+
+import { FaLandMineOn } from "react-icons/fa6";
+import { UserOutlined } from "@ant-design/icons";
+import { Link } from "react-router-dom";
+import { Button } from "antd";
 
 const CustomeHeader = () => {
   const user = useAppSelector(useCurrentUser);
   const dispatch = useAppDispatch();
 
-  const [logoutVisible, setLogoutVisible] = useState(false);
-  console.log(logoutVisible)
-
   const handleLogout = () => {
     dispatch(logout());
     toast.success("Logout successfully");
-    setLogoutVisible(false); 
   };
 
-  const logoutMenu = (
-    <Menu onClick={handleLogout}>
-      <Menu.Item key="logout">Logout</Menu.Item>
-    </Menu>
-  );
   return (
-    <Flex align="center" justify="space-between">
+    <div className="flex justify-center  md:justify-between items-center bg-white md:p-2 px-1 md:px-8 fixed top-0 left-0 right-0 z-10 border border-b-2 border-b-teal-600 shadow ">
+       <Link to="/">
+        <img loading="lazy" src={image} alt="" className="bg-cover bg-center" />
+      </Link>
+      <div>
+        <Button  className="uppercase tracking-wider font-semibold text-teal-700" icon={<FaLandMineOn />}>{user?.role}</Button>
+      </div>
+
      
-     <Flex align="center" justify="center" gap={2}>
-     <Avatar  icon={<AppstoreOutlined />} style={{ color: "#ffcc00", fontSize:'15px' }}/>
-      <p style={{ color: "#ffcc00", fontSize:'14px' }}>GameGearTracker</p>
-     </Flex>
 
-      <Flex justify="center" align="center" gap={3}>
-        <Avatar icon={<CrownOutlined style={{ color: "#ffcc00" }} />} />
-        <p style={{ fontSize: '16px', fontWeight: 'bold', color: 'gold' }}>{user?.role}</p>
-      </Flex>
-
-      <Flex align="center" gap="3rem">
-        <Flex align="center" gap="10px">
-          <div className="header-right-content">
-            <Dropdown overlay={logoutMenu} trigger={["click"]}>
-             {user && user?.email ? ( <Avatar
-         src={user?.email}
-          size={32}
-          className="avatar-dropdown"
-        />):( <Avatar
+      <div>
+        <Button
           icon={<UserOutlined />}
-          size={32}
-          className="avatar-dropdown"
-        />)}
-            </Dropdown>
-          </div>
-        </Flex>
-      </Flex>
-    </Flex>
+          className="uppercase tracking-wide font-semibold text-teal-700"
+          onClick={handleLogout}
+        >
+          Logout
+        </Button>
+      </div>
+    </div>
   );
 };
 
