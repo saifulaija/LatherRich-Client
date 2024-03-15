@@ -11,6 +11,7 @@ import { generateOrder } from "../../utils/order";
 import { useCurrentUser } from "../../redux/features/auth/authSlice";
 import { useCreateOrderMutation } from "../../redux/features/order/orderApi";
 import { toast } from "react-toastify";
+import SslCommerceImg from "../../components/sslCommerceImage/SslCommerceImg";
 
 interface FormValues {
   fullName: string;
@@ -40,9 +41,7 @@ const CheckoutPage = () => {
     setShippingCost(event.target.value);
   };
 
-  // const handleClearCart=()=>{
-  //   dispatch(clearCart())
-  // }
+  
 
   const handlePaymentMethodChange = (event: any) => {
     setPaymentMethod(event.target.value);
@@ -320,6 +319,7 @@ console.log(orderData)
           </Form>
         </div>
       </div>
+      <SslCommerceImg/>
     </div>
   );
 };

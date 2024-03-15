@@ -7,9 +7,8 @@ import { Drawer } from "antd";
 import { motion } from "framer-motion";
 import logo from "../../assets/images/PNG-Richkid-Logo.png";
 import { items } from "../../utils/item";
-import { Link, useNavigate, useLocation } from "react-router-dom";
-import { useAppSelector } from "../../redux/hooks";
-import { useCurrentUser } from "../../redux/features/auth/authSlice";
+import { Link, useNavigate } from "react-router-dom";
+
 import ShoppingCart from "../shopingCart/ShoppingCart";
 import { AiOutlineCaretDown, AiOutlineCaretUp } from "react-icons/ai";
 import Search from "antd/es/input/Search";
@@ -19,9 +18,9 @@ const NewHeader = () => {
   const [activeSubMenu, setActiveSubMenu] = useState("");
   const [isMobile, setIsMobile] = useState(false);
   const navigate = useNavigate();
-  const location = useLocation();
-  const user = useAppSelector(useCurrentUser);
-  const cart = useAppSelector((state) => state.cart);
+ 
+
+
 
   useEffect(() => {
     const handleResize = () => {
@@ -73,7 +72,7 @@ const NewHeader = () => {
           <Search
             placeholder="Search your product ..."
             allowClear
-            size="small"
+            size="middle"
             onSearch={handleSearch} // Call handleSearch when the search button is clicked
           />
         </div>
