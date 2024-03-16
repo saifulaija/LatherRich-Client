@@ -8,7 +8,7 @@ import {
 const SubBanner = () => {
   return (
     <div className=" ">
-      <div className=" max-w-[1200px] md:flex md:justify-center m-auto md:items-center -mt-4 border shadow-transparent shadow-2xl  p-4">
+      <div className=" max-w-[1200px] md:flex md:justify-center m-auto md:items-center -mt-4  shadow-transparent shadow-2xl  p-4">
         <div className="flex items-center  rounded-md border border-l-4 border-l-teal-600 p-4">
           <FaShippingFast className="text-4xl text-blue-500 mr-4" />
           <div>
