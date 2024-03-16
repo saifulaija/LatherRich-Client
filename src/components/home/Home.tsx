@@ -10,6 +10,7 @@ import SubBanner from "../subBanner/SubBanner";
 import LoadingBar from "react-top-loading-bar";
 import { useState } from "react";
 import { useTopBarLoader } from "../../utils/topBarLoader";
+import CustomeDivider from "../customeDivider/CustomeDivider";
 
 const Home = () => {
   const [progress, setProgress] = useState(0);
@@ -22,59 +23,23 @@ const Home = () => {
       <Banner />
       <SubBanner />
       <div className="mt-12 mb-12 ">
-        <Divider
-          dashed
-          orientation="right"
-          style={{
-            borderColor: "gray",
-            color: "#453433",
-            fontSize: "18px",
-            fontWeight: 400,
-          }}
-        >
-          Best Selling Products
-        </Divider>
+       <CustomeDivider title={'best selling products'}/>
       </div>
       <BestSellingProduct />
       <div className="mt-12 mb-12 ">
-        <Divider
-          style={{
-            borderColor: "gray",
-            color: "red",
-            fontSize: "18px",
-            fontWeight: 400,
-          }}
-        >
-          Men's Collection
-        </Divider>
+
+      <CustomeDivider title={" Men's Collection"}/>
+        
       </div>
       <MenProduct />
 
       <div className="mt-12 mb-12 ">
-        <Divider
-          style={{
-            borderColor: "gray",
-            color: "#453433",
-            fontSize: "18px",
-            fontWeight: 400,
-          }}
-        >
-          Women's Collection
-        </Divider>
+      <CustomeDivider title={" Women's Collection"}/>
       </div>
 
       <WomenProduct />
       <div className="mt-12 mb-12">
-        <Divider
-          style={{
-            borderColor: "gray",
-            color: "red",
-            fontSize: "18px",
-            fontWeight: 400,
-          }}
-        >
-          Kid's Collection
-        </Divider>
+      <CustomeDivider title={" Kid's Collection"}/>
       </div>
       <KidProducts />
     </div>

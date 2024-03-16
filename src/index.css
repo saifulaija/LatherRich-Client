@@ -4,6 +4,18 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base{
+  body{
+    background-color: white
+  }
+}
+.slick-slide > div {
+  margin: 0 10px;
+}
+.slick-list {
+  margin: 0 -10px;
+}
+
 
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;700&display=swap");
 
@@ -14,9 +26,9 @@
   font-family: "Nunito", sans-serif;
  
 } 
-body {
+/* body {
   background-color:  #ffff; 
-}
+} */
 
 .btn{
   @apply bg-[#453433] hover:bg-opacity-55 focus:outline-none focus:ring-2 focus:ring-orange-600 text-white px-6 py-2 rounded-md font-semibold tracking-wide shadow-md transition duration-300
