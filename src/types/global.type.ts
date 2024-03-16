@@ -40,11 +40,13 @@ export type TUser = {
 };
 
 export const categoryOptions = [
+  { label: "Clear Filter", value: null },
   { label: "Man", value: "man" },
   { label: "Women", value: "women" },
   { label: "Kid", value: "kid" },
 ];
 export const subCategoryOptions = [
+  { label: "Clear Filter", value: null },
   { label: "Man-Causal", value: "man-causal" },
   { label: "Man-Formal", value: "man-formal" },
   { label: "Man-Sport", value: "man-sport" },
@@ -54,4 +56,8 @@ export const subCategoryOptions = [
   { label: "Kid-Causal", value: "kid-causal" },
   { label: "kid-Formal", value: "kid-formal" },
   { label: "kid-Sport", value: "kid-sport" },
+];
+export const sortOptions = [
+  { label: "High To Low", value: "price" },
+  { label: "Low To High", value: "-price" },
 ];
