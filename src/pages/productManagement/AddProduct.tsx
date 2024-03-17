@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   Button,
-  Col,
+
   Divider,
   Form,
   Input,
   InputNumber,
   Select,
-  Space,
+ 
   Upload,
   message,
 } from "antd";
@@ -51,6 +51,7 @@ const AddProduct = () => {
     }));
     return formattedSizeStok;
   };
+  console.log(user?.role)
 
   const onFinish = async (values) => {
     try {
@@ -85,7 +86,7 @@ const AddProduct = () => {
           toast.error(res?.error?.data?.message);
         } else {
           toast.success("product  created successfully");
-          navigate(`/${user?.role}/show-product`);
+          navigate('/superAdmin/show-product');
         }
       } catch (error) {
         toast.error("something went wrong");

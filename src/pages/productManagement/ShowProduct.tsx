@@ -62,6 +62,7 @@ const ShowProduct = () => {
   const [editedProduct, setEditedProduct] = useState<Product | null>(null);
 
   const handleDelete = async (id: string) => {
+    console.log(id)
     try {
       await deleteProduct(id);
       message.success("Product deleted successfully");
@@ -104,15 +105,7 @@ const ShowProduct = () => {
     }));
   };
 
-  //   const handleCategoryFilter = (value: string) => {
-  //     setSelectedCategory(value);
-  //     setParams((prevParams) => {
-  //       const filteredParams = prevParams.filter(
-  //         (param) => param.name !== "category"
-  //       );
-  //       return [...filteredParams, { name: "category", value }];
-  //     });
-  //   };
+ 
 
   const handleCategoryFilter = (value: string | null) => {
     setSelectedCategory(value || "");
@@ -170,15 +163,7 @@ const ShowProduct = () => {
       return [...filteredParams, { name: "sort", value }];
     });
   };
-//   const handleSubCategoryFilter = (value: string) => {
-//     setSelectedSubCategory(value);
-//     setParams((prevParams) => {
-//       const filteredParams = prevParams.filter(
-//         (param) => param.name !== "subCategory"
-//       );
-//       return [...filteredParams, { name: "subCategory", value }];
-//     });
-//   };
+
 
   const columns = [
     {
