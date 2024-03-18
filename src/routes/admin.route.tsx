@@ -5,6 +5,7 @@ import SellsHistory from "../pages/orderManagement/SellsHistory";
 import ShowOrder from "../pages/orderManagement/ShowOrder";
 import AddProduct from "../pages/productManagement/AddProduct";
 import ShowProduct from "../pages/productManagement/ShowProduct";
+import TestVarient from "../pages/productManagement/TestVarient";
 
 
 export const adminPaths = [
@@ -27,6 +28,12 @@ export const adminPaths = [
         path: "show-product",
         element: <ShowProduct/>,
       },
+      {
+        
+        path: "/superAdmin/duplicate-product/:id",
+        element: <TestVarient/>,
+      },
+    
      
     ],
   },

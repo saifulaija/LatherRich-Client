@@ -45,7 +45,7 @@ const Login = () => {
       if (user.role === "user") {
         navigate(from, { replace: true });
       } else {
-        // navigate(`/${user?.role}/dashboard`);
+        navigate('/');
       }
     } catch (error) {
       toast.error((error as any)?.data?.message || "An error occurred");

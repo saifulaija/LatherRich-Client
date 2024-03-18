@@ -18,9 +18,6 @@ import { logout, useCurrentUser } from "../../redux/features/auth/authSlice";
 import { IoBagAddOutline } from "react-icons/io5";
 import { MdDashboard } from "react-icons/md";
 
-
-
-
 const ShoppingCart = () => {
   const [cartDrawerOpen, setCartDrawerOpen] = useState(false);
   const cart = useAppSelector((state) => state.cart);
@@ -52,14 +49,11 @@ const ShoppingCart = () => {
   const handleClearCart = () => {
     dispatch(clearCart());
   };
-  console.log(user?.role)
 
   return (
     <div>
       <div className="flex items-center justify-center gap-4 text-sm bg-white  p-4 ">
-        <div>
-     
-        </div>
+        <div></div>
         <div>
           {user && (
             <Link to={`/${user?.role}/dashboard`}>
@@ -69,7 +63,7 @@ const ShoppingCart = () => {
           )}
         </div>
         <div>
-          <Badge count={cart.cartItems.length}>
+          <Badge count={cart.cartItems.length ? cart.cartItems.length : 0}>
             <Button
               onClick={() => {
                 setCartDrawerOpen(true);
@@ -81,7 +75,7 @@ const ShoppingCart = () => {
                 size={20}
               />
               <span className="font-semibold text-[14px]">
-                ৳{cart.cartTotalAmount}
+                ৳ {cart.cartTotalAmount}
               </span>
             </Button>
           </Badge>

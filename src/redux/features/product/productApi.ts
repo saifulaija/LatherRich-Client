@@ -5,6 +5,19 @@ import { baseApi } from "../../api/baseApi";
 
 const productApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
+
+    updateProduct: builder.mutation({
+      query: (options) => {
+        console.log({options})
+        return {
+          url: `/products/update-product/${options.productId}`,
+          method: "PATCH",
+          body: options.data,
+        };
+      },
+      invalidatesTags: ["product"],
+    }),
+
     getAllProducts: builder.query({
       query: (args) => {
         const params = new URLSearchParams();
@@ -30,6 +43,8 @@ const productApi = baseApi.injectEndpoints({
       },
     }),
 
+ 
+
     createProduct: builder.mutation({
       query: (productInfo) => ({
         url: "/products/create-product",
@@ -42,12 +57,13 @@ const productApi = baseApi.injectEndpoints({
     getAllProductsByCategory: builder.query({
       query: (category) => {
         return {
-          url: `/products/${category}`,
+          url: `/products/category/${category}`,
           method: "GET",
         };
       },
       providesTags: ["branch"],
     }),
+   
     deleteProduct: builder.mutation({
       query: (id) => ({
         url: `/products/delete-product/${id}`,
@@ -56,16 +72,9 @@ const productApi = baseApi.injectEndpoints({
       invalidatesTags: ["product"],
     }),
 
-    updateProductNew: builder.mutation({
-      query: (options) => {
-        return {
-          url: `/product/${options.productId}`,
-          method: "PUT",
-          body: options.data,
-        };
-      },
-      invalidatesTags: ["product"],
-    }),
+   
+
+   
     getSingleProduct: builder.query({
       query: (productId) => {
         return {
@@ -92,8 +101,9 @@ export const {
   useGetAllProductsQuery,
   useCreateProductMutation,
   useDeleteProductMutation,
-  useUpdateProductNewMutation,
+  useUpdateProductMutation,
   useGetSingleProductQuery,
   useGetSingleProductForDetailsQuery,
   useGetAllProductsByCategoryQuery,
+
 } = productApi;

@@ -58,6 +58,6 @@ export const subCategoryOptions = [
   { label: "kid-Sport", value: "kid-sport" },
 ];
 export const sortOptions = [
-  { label: "High To Low", value: "price" },
-  { label: "Low To High", value: "-price" },
+  { label: "High To Low", value: "-price" },
+  { label: "Low To High", value: "price" },
 ];

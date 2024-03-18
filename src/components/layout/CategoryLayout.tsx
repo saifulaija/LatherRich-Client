@@ -5,16 +5,15 @@ import { Outlet } from "react-router-dom";
 import NewHeader from "../header/NewHeader";
 import Footer from "../footer/Footer";
 
-
-
 const CategoryLayout = () => {
   const { Header, Sider, Content } = Layout;
 
   const siderStyle: React.CSSProperties = {
     textAlign: "center",
-    marginTop: "68px",
-    lineHeight: "120px",
-    height: "100vh",
+    marginTop: "34px",
+    lineHeight: "35px",
+    height:"100vh",
+    maxHeight:"100%",
     color: "#fff",
     backgroundColor: "#fff",
   };
@@ -31,9 +30,10 @@ const CategoryLayout = () => {
         <NewHeader />
       </Header>
       <Layout>
-        <Sider width="19%" style={siderStyle} className="hidden md:block">
+        <Sider width="20%"  style={siderStyle} className="hidden md:block">
           <Sidebar />
         </Sider>
+
         <Content>
           <Outlet />
         </Content>

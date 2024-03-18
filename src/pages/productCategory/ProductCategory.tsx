@@ -1,10 +1,9 @@
-import { useGetAllProductsByCategoryQuery } from "../../redux/features/product/productApi";
+import {useGetAllProductsByCategoryQuery} from "../../redux/features/product/productApi";
 import { Button, Card, Divider, Drawer, Rate, Spin } from "antd";
 import { Link, useParams } from "react-router-dom";
 import NoDataFoundPage from "../noDataFoundPage/NoDataFoundPage";
 import Sidebar from "../../components/sidebar/Sidebar";
-
-import { FaFighterJet,  } from "react-icons/fa";
+import { IoFilterSharp } from "react-icons/io5";
 import { useState } from "react";
 import PageNavigation from "../../components/pageNavigation/PageNavigation";
 import Meta from "antd/es/card/Meta";
@@ -19,12 +18,12 @@ const ProductCategory = () => {
   const [progress, setProgress] = useState(0);
   useTopBarLoader(setProgress);
   const [drawerVisible, setDrawerVisible] = useState(false);
-  const { category } = useParams();
+  const { category} = useParams();
   const {
     data: productsData,
     isLoading,
     isFetching,
-  } = useGetAllProductsByCategoryQuery(category);
+  } =useGetAllProductsByCategoryQuery(category);
 
   if (isLoading || isFetching) {
     return <Spin spinning={isLoading || isFetching} />;
@@ -41,10 +40,10 @@ const ProductCategory = () => {
 
       <div className=" flex justify-center items-center">
         <button
-          className="  text-red-500 md:hidden hover:text-gray-300 focus:outline-none"
+          className="  text-red-500 font-semibold text-xl md:hidden hover:text-gray-300 focus:outline-none"
           onClick={() => setDrawerVisible(true)}
         >
-          <FaFighterJet />
+         <IoFilterSharp />
         </button>
         <Drawer
           title="Menu"

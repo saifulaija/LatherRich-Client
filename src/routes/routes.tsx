@@ -1,12 +1,7 @@
-
-
 import { createBrowserRouter } from "react-router-dom";
-
 import NotFound from "../pages/notFound/NotFound";
-
 import ProductCategory from "../pages/productCategory/ProductCategory";
 import Login from "../pages/login/Login";
-
 import Home from "../components/home/Home";
 import CategoryLayout from "../components/layout/CategoryLayout";
 import HomeLayout from "../components/layout/HomeLayout";
@@ -15,7 +10,6 @@ import ExchangeAndComplain from "../pages/exchangeAndComplaince/ExchangeAndCompl
 import CheckoutPage from "../pages/checkout/CheckoutPage";
 import Register from "../pages/register/Register";
 import OrderSuccess from "../pages/orderSucces/OrderSuccess";
-
 import SearchResultProduct from "../components/searchResult/SearchResultProduct";
 import ProtectedRoute from "../components/protectedRoute/ProtectedRoute";
 import NewApp from "../NewApp";
@@ -23,8 +17,9 @@ import { routeGenerator } from "../utils/routeGenerator";
 import { adminPaths } from "./admin.route";
 import { userPaths } from "./user.route";
 
-const router = createBrowserRouter([
 
+
+const router = createBrowserRouter([
   {
     path: "/superAdmin",
     element: (
@@ -87,10 +82,11 @@ const router = createBrowserRouter([
         path: ":category",
         element: <ProductCategory />,
       },
+    
       {
-        path:"search",
-        element:<SearchResultProduct/>
-      }
+        path: "search",
+        element: <SearchResultProduct />,
+      },
     ],
   },
 ]);

@@ -1,10 +1,13 @@
 import React from 'react';
-import { Button, Empty } from 'antd';
+import {  Empty } from 'antd';
+import { Link } from 'react-router-dom';
 
 const NoDataFoundPage: React.FC = () => (
   <div className='flex justify-center items-center h-full'>
     <Empty  >
-    <Button >Back to Shop</Button>
+    <Link to='/'>
+    <button >Back to Shop</button>
+    </Link>
     </Empty>
     
   </div>

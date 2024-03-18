@@ -12,7 +12,7 @@ import {
   message,
 } from "antd";
 
-import { PlusOutlined, UploadOutlined } from "@ant-design/icons";
+import {  PlusOutlined, UploadOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { useState } from "react";
 import { TResponse, categoryOptions, subCategoryOptions } from "../../types/global.type";
@@ -22,6 +22,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../redux/hooks";
 import { useCurrentUser } from "../../redux/features/auth/authSlice";
+import { IoCloseOutline } from "react-icons/io5";
 
 const AddProduct = () => {
   const [fileList, setFileList] = useState<any[]>([]);
@@ -31,7 +32,7 @@ const AddProduct = () => {
     { size: "", stock: "" },
   ]);
   const navigate= useNavigate();
-  const user=useAppSelector(useCurrentUser)
+ 
 
   const [productCreate, { isLoading }] = useCreateProductMutation();
   const handleSizeStockChange = (index, fieldName, value) => {
@@ -51,7 +52,7 @@ const AddProduct = () => {
     }));
     return formattedSizeStok;
   };
-  console.log(user?.role)
+ 
 
   const onFinish = async (values) => {
     try {
@@ -149,6 +150,7 @@ const AddProduct = () => {
           <Input
             placeholder="Product name...."
             className="font-bold p-1 text-gray-600"
+            disabled={isLoading}
             style={{ width: "100%" }}
           />
         </Form.Item>
@@ -217,10 +219,11 @@ const AddProduct = () => {
         <Form.Item>
           <Divider>Size & Stok</Divider>
           {sizeStockFields.map((field, index) => (
-            <div key={index} style={{ display: "flex", marginBottom: 8 }}>
+            <div className="max-w-full" key={index} style={{ display: "flex", marginBottom: 8 }}>
               <Form.Item style={{ marginRight: 8 }}>
                 <Input
                   style={{ width: "100%" }}
+                  className="font-bold p-1 text-gray-600"
                   placeholder="Size"
                   value={field.size}
                   onChange={(e) =>
@@ -231,6 +234,7 @@ const AddProduct = () => {
               <Form.Item style={{ marginRight: 8 }}>
                 <InputNumber
                   style={{ width: "100%" }}
+                  className="font-bold p-1 text-gray-600"
                   placeholder="Stock"
                   value={field.stock}
                   onChange={(value) =>
@@ -240,6 +244,7 @@ const AddProduct = () => {
               </Form.Item>
               <Button
                 type="link"
+                icon={<IoCloseOutline className="text-[18px] font-semibold" />}
                 danger
                 onClick={() =>
                   setSizeStockFields(
@@ -247,11 +252,11 @@ const AddProduct = () => {
                   )
                 }
               >
-                Remove
+               
               </Button>
             </div>
           ))}
-          <Button block onClick={handleAddSizeStock}>
+          <Button block  className="border border-neutral-500 text-neutral-600 uppercase tracking-wider font-semibold" type="dashed"  icon={<PlusOutlined />} onClick={handleAddSizeStock}>
             Add Size & Stock
           </Button>
         </Form.Item>

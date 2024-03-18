@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-
 import { useState, useEffect } from "react";
-import { Drawer } from "antd";
+import { Drawer, Menu } from "antd";
 
 import { motion } from "framer-motion";
 import logo from "../../assets/images/PNG-Richkid-Logo.png";
@@ -12,15 +11,13 @@ import { Link, useNavigate } from "react-router-dom";
 import ShoppingCart from "../shopingCart/ShoppingCart";
 import { AiOutlineCaretDown, AiOutlineCaretUp } from "react-icons/ai";
 import Search from "antd/es/input/Search";
+import SubMenu from "antd/es/menu/SubMenu";
 
 const NewHeader = () => {
   const [drawerVisible, setDrawerVisible] = useState(false);
   const [activeSubMenu, setActiveSubMenu] = useState("");
   const [isMobile, setIsMobile] = useState(false);
   const navigate = useNavigate();
- 
-
-
 
   useEffect(() => {
     const handleResize = () => {
@@ -41,6 +38,7 @@ const NewHeader = () => {
 
   const handleSubMenuClick = (item: any) => {
     const key = item.key;
+    console.log({key})
     navigate(`/products/${key}`);
     setActiveSubMenu("");
     setDrawerVisible(false);
@@ -49,6 +47,7 @@ const NewHeader = () => {
   const handleOutsideClick = () => {
     setActiveSubMenu("");
   };
+ 
 
   const handleSearch = (value: string) => {
     // Navigate to the SearchResultProduct page with the search query as URL parameter
@@ -73,7 +72,7 @@ const NewHeader = () => {
             placeholder="Search your product ..."
             allowClear
             size="middle"
-            onSearch={handleSearch} // Call handleSearch when the search button is clicked
+            onSearch={handleSearch}
           />
         </div>
         <div className="hidden sm:block">
@@ -151,39 +150,33 @@ const NewHeader = () => {
         onClose={() => setDrawerVisible(false)}
         visible={drawerVisible}
       >
+        {/* for mobile device */}
+
         <div className="flex flex-col">
           <div className="max-w-md flex justify-center items-center">
             <Search
               placeholder="Search your product ..."
               allowClear
               size="small"
-              onSearch={handleSearch} // Call handleSearch when the search button is clicked
+              onSearch={handleSearch}
             />
           </div>
-          {items.map((item) => (
-            <div key={item.key}>
-              <button
-                onClick={() => handleMenuItemClick(item.key)}
-                className="text-gray-800 border-b  py-1 px-4 mb-2 flex  items-center text-end"
-              >
-                {item.label}
-                {item.children && <AiOutlineCaretDown className="ml-4" />}
-              </button>
-              {item.children && activeSubMenu === item.key && (
-                <div className="ml-4">
-                  {item.children.map((child) => (
-                    <button
+          <Menu mode="inline" theme="light">
+            {items.map((item) => (
+              <SubMenu key={item.key} title={item.label}>
+                {item.children &&
+                  item.children.map((child) => (
+                    <Menu.Item
+                      className=""
                       key={child.key}
                       onClick={() => handleSubMenuClick(child)}
-                      className="block text-gray-800 hover:bg-gray-200  py-1 px-4 mb-2  border-l-transparent hover:border-l-gray-500 border-l-4"
                     >
                       {child.label}
-                    </button>
+                    </Menu.Item>
                   ))}
-                </div>
-              )}
-            </div>
-          ))}
+              </SubMenu>
+            ))}
+          </Menu>
         </div>
       </Drawer>
       {drawerVisible && (

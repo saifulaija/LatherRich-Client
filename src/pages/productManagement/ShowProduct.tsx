@@ -4,9 +4,7 @@ import { useState } from "react";
 import {
   Button,
   Table,
-  Modal,
-  Form,
-  Input,
+  
   Space,
   message,
   Pagination,
@@ -17,7 +15,8 @@ import {
 import {
   useGetAllProductsQuery,
   useDeleteProductMutation,
-  useUpdateProductNewMutation,
+  
+  
 } from "../../redux/features/product/productApi";
 
 import { Link } from "react-router-dom";
@@ -28,16 +27,10 @@ import {
   subCategoryOptions,
 } from "../../types/global.type";
 import CustomeDivider from "../../components/customeDivider/CustomeDivider";
+import { IoMdClose } from "react-icons/io";
+import { FaRegEdit } from "react-icons/fa";
 
 
-interface Product {
-  productName: string;
-  brand: string;
-  model: string;
-  productQuantity: number;
-  productPrice: number;
-  _id: string;
-}
 
 const ShowProduct = () => {
   const [params, setParams] = useState<TQueryParam[]>([]);
@@ -55,11 +48,11 @@ const ShowProduct = () => {
   const metaData = productData?.meta;
 
   const [deleteProduct] = useDeleteProductMutation();
-  const [updateProduct] = useUpdateProductNewMutation();
 
-  const [isModalVisible, setIsModalVisible] = useState(false);
 
-  const [editedProduct, setEditedProduct] = useState<Product | null>(null);
+
+
+
 
   const handleDelete = async (id: string) => {
     console.log(id)
@@ -71,39 +64,13 @@ const ShowProduct = () => {
     }
   };
 
-  const handleEdit = (record: any) => {
-    setEditedProduct(record);
-    setIsModalVisible(true);
-  };
+  
 
-  const handleCancel = () => {
-    setIsModalVisible(false);
-  };
 
-  const handleUpdate = async () => {
-    console.log("edited product", editedProduct);
 
-    const productPrice = Number(editedProduct?.productPrice);
-    const productQuantity = Number(editedProduct?.productQuantity);
-    try {
-      const options = {
-        productId: editedProduct?._id,
-        data: { ...editedProduct, productPrice, productQuantity },
-      };
-      await updateProduct(options);
-      setIsModalVisible(false);
-      message.success("Product updated successfully");
-    } catch (error) {
-      message.error("Failed to update product");
-    }
-  };
+ 
 
-  const handleInputChange = (fieldName: string, value: any) => {
-    setEditedProduct((prevProduct: any) => ({
-      ...prevProduct,
-      [fieldName]: value,
-    }));
-  };
+
 
  
 
@@ -212,10 +179,10 @@ const ShowProduct = () => {
       render: (_: any, record: any) => (
         <Space size="small">
           <Link to={`/superAdmin/duplicate-product/${record?._id}`}>
-            <Button>Create Variant</Button>
+            <Button icon={<FaRegEdit />}></Button>
           </Link>
-          <Button onClick={() => handleEdit(record)}>Edit</Button>
-          <Button onClick={() => handleDelete(record._id)}>Delete</Button>
+         
+          <Button icon={<IoMdClose />} onClick={() => handleDelete(record._id)}></Button>
         </Space>
       ),
     },
@@ -291,49 +258,7 @@ const ShowProduct = () => {
           bordered
         />
       )}
-      <Modal
-        title="Edit Product"
-        visible={isModalVisible}
-        onCancel={handleCancel}
-        onOk={handleUpdate}
-      >
-        <Form layout="vertical">
-          <Form.Item label="Product Name">
-            <Input
-              value={editedProduct?.productName}
-              onChange={(e) => handleInputChange("productName", e.target.value)}
-            />
-          </Form.Item>
-          <Form.Item label="Brand">
-            <Input
-              value={editedProduct?.brand}
-              onChange={(e) => handleInputChange("brand", e.target.value)}
-            />
-          </Form.Item>
-          <Form.Item label="Model">
-            <Input
-              value={editedProduct?.model}
-              onChange={(e) => handleInputChange("model", e.target.value)}
-            />
-          </Form.Item>
-          <Form.Item label="Quantity">
-            <Input
-              value={editedProduct?.productQuantity}
-              onChange={(e) =>
-                handleInputChange("productQuantity", e.target.value)
-              }
-            />
-          </Form.Item>
-          <Form.Item label="Price">
-            <Input
-              value={editedProduct?.productPrice}
-              onChange={(e) =>
-                handleInputChange("productPrice", e.target.value)
-              }
-            />
-          </Form.Item>
-        </Form>
-      </Modal>
+      
       <Flex justify="center" align="center" style={{ marginTop: "30px" }}>
         <Pagination
           current={page}
