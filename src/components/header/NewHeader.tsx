@@ -38,7 +38,7 @@ const NewHeader = () => {
 
   const handleSubMenuClick = (item: any) => {
     const key = item.key;
-    console.log({key})
+   
     navigate(`/products/${key}`);
     setActiveSubMenu("");
     setDrawerVisible(false);

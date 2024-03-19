@@ -24,6 +24,7 @@ import { useTopBarLoader } from "../../utils/topBarLoader";
 import LoadingBar from "react-top-loading-bar";
 
 const ProductDetails = () => {
+  
   const [progress, setProgress] = useState(0);
   useTopBarLoader(setProgress);
 

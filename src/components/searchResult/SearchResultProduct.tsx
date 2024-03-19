@@ -16,12 +16,11 @@ const SearchResultProduct = () => {
   const location = useLocation();
 
   useEffect(() => {
-    // Extract search query from URL parameter
+    
     const searchParams = new URLSearchParams(location.search);
     const searchQuery = searchParams.get("q");
     console.log(searchQuery);
 
-    // Set the search query as a parameter
     if (searchQuery) {
       setParams([{ name: "searchTerm", value: searchQuery }]);
     }

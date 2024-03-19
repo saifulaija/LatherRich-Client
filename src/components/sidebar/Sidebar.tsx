@@ -8,10 +8,13 @@ import SubMenu from "antd/es/menu/SubMenu";
 import {  useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { sortOptions } from "../../types/global.type";
+import { useAppDispatch } from "../../redux/hooks";
+import { changSort } from "../../redux/features/sort/sortSlice";
 
 
 
 const Sidebar = () => {
+  const dispatch=useAppDispatch()
   const navigate = useNavigate();
   const [selectedSort, setSelectedSort] = useState("");
 
@@ -24,10 +27,11 @@ const Sidebar = () => {
 
 
   const handleSort = (value: string) => {
-
-    console.log({value})
-    // Navigate to the SearchResultProduct page with the search query as URL parameter
-    navigate(`/products/${value}`);
+dispatch(changSort(value))
+    // console.log({value})
+    // // Navigate to the SearchResultProduct page with the search query as URL parameter
+    // navigate(`/products/${value}`);
+    // navigate(`/products/search?q=${encodeURIComponent(value)}`);
   };
 
   

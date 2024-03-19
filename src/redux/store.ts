@@ -13,6 +13,7 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import cartReducer from "./features/cart/cartSlice";
+import sortReducer from "./features/sort/sortSlice";
 
 
 
@@ -27,7 +28,8 @@ export const store = configureStore({
   reducer: {
     [baseApi.reducerPath]: baseApi.reducer,
     auth: persistedAuthReducer,
-    cart:cartReducer
+    cart:cartReducer,
+    sort:sortReducer
    
   },
 

@@ -61,3 +61,15 @@ export const sortOptions = [
   { label: "High To Low", value: "-price" },
   { label: "Low To High", value: "price" },
 ];
+
+
+export const roleColors = {
+  superAdmin: "geekblue",
+  manager: "green",
+  seller: "volcano",
+  user: "gold",
+};
+export const deliveryColors = {
+  processiong: "red",
+  completed: "green",
+};

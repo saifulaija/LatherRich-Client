@@ -18,10 +18,20 @@ import { baseApi } from "../../api/baseApi";
       }),
       invalidatesTags: ["order"],
     }),
+    updateOrderDelivery: builder.mutation({
+      query: (orderData) => {
+        console.log("order", orderData);
+        return {
+          url: `/orders/update-delivery/${orderData.id}`,
+          method: "PATCH",
+          body: orderData.data,
+        };
+      },
+    }),
 
     getAllOrders: builder.query({
       query: () => ({
-        url: '/order/get-all-orders/',
+        url: '/orders',
         method: "GET",
       }),
 
@@ -56,5 +66,6 @@ export const {
   useGetAllOrdersQuery,
   useDeleteOrderMutation,
   useGetSingleOrderQuery,
-  useCreatePaymentSSLMutation
+  useCreatePaymentSSLMutation,
+  useUpdateOrderDeliveryMutation
 } = orderApi;
