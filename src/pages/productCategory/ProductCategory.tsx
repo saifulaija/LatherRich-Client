@@ -25,6 +25,8 @@ const ProductCategory = () => {
     isFetching,
   } =useGetAllProductsByCategoryQuery(category);
 
+ 
+
   if (isLoading || isFetching) {
     return <Spin spinning={isLoading || isFetching} />;
   }
@@ -57,7 +59,7 @@ const ProductCategory = () => {
       </div>
       <div className="container flex items-center justify-center mx-auto p-10">
         <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-4 rounded-lg shadow-sm">
-          {productsData?.data?.map((product:TProduct) => (
+          {productsData?.data?.result?.map((product:TProduct) => (
              <Link to={`/product/${product._id}`}>
              <Card
                
