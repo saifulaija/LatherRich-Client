@@ -18,16 +18,6 @@ const CategoryLayout = () => {
     backgroundColor: "#fff",
   };
 
-  // const siderStyle: React.CSSProperties = {
-  //   textAlign: "center",
-  //   marginTop: "34px",
-  //   lineHeight: "35px",
-  //   height: "full",
-  //   maxHeight: "100vh",
-  //   color: "#fff",
-  //   backgroundColor: "#fff",
-  //   display: "block", // Default display
-  // };
 
   const layoutStyle = {
     borderRadius: 8,

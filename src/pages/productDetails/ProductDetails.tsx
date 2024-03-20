@@ -22,9 +22,9 @@ import chart from "../../assets/images/size-chart-for-women.jpg";
 import RelatedProducts from "../../components/relatedProducts/RelatedProducts";
 import { useTopBarLoader } from "../../utils/topBarLoader";
 import LoadingBar from "react-top-loading-bar";
+import ImageSlide from "./ImageSlide";
 
 const ProductDetails = () => {
-  
   const [progress, setProgress] = useState(0);
   useTopBarLoader(setProgress);
 
@@ -91,42 +91,24 @@ const ProductDetails = () => {
     dispatch(addToCart(product));
   };
 
+  const images = product?.data?.images;
+  console.log({ images });
+
   return (
-    <div className="container px-6 py-12 rounded-lg">
+    <div className="container py-14 md:py-12 rounded-lg">
       <LoadingBar progress={progress} />
       <PageNavigation
         title={`products <RightOutlined /> ${product?.data?.subCategory} <RightOutlined />  ${product?.data?.name}`}
       />
 
       <Spin spinning={isLoading}>
-        <div className="md:flex md:justify-center md:items-center md:gap-8 rounded">
-          <div className="md:w-1/3 bg-white p-7">
-            <div className=" flex justify-center items-center ">
-              <Image
-                src={product?.data?.images[currentSlide]}
-                className="rounded-md w-full max-w-[300px] max-h-[200px] shadow-2xl"
-                alt={`Image ${currentSlide + 1}`}
-              />
-            </div>
-            <Divider />
-            <div className="mt-2 flex justify-center items-center gap-3 overflow-x-auto flex-grow">
-              {product?.data?.images.map((image: any, index: number) => (
-                <img
-                  width={50}
-                  key={index}
-                  src={image}
-                  className={`rounded-md cursor-pointer ${
-                    index === currentSlide ? "border-2 border-blue-500" : ""
-                  }`}
-                  alt={`Thumbnail ${index + 1}`}
-                  onClick={() => handleImageClick(index)}
-                />
-              ))}
-            </div>
+        <div className="md:flex md:justify-center md:items-center md:gap-2 rounded">
+          <div className="md:max-w-[40%] bg-white p-0">
+            <ImageSlide images={images} />
           </div>
 
-          <div className="md:w-1/2 border border-gray-200 rounded-md  md:p-2">
-            <h4 className="text-2xl text-center font-semibold text-gray-500 mb-0">
+          <div className="md:max-w-[60%] border border-gray-200 rounded-md  md:p-1">
+            <h4 className="text-2xl text-center font-semibold text-primary capitalize mb-0">
               {product?.data?.name}
             </h4>
             <Divider className="m-0" />
@@ -194,13 +176,15 @@ const ProductDetails = () => {
                 <div className="flex justify-center items-center gap-4">
                   {product?.data?.sizeStok?.map((item: any, index: number) => (
                     <button
-                    disabled={item.stock === 0}
+                      disabled={item.stock === 0}
                       key={index}
                       className={`border px-4 py-0 rounded ${
                         selectedSizeIndex === index
                           ? " bg-teal-500 text-white px-4 py-0 rounded-md flex justify-center items-center"
                           : " bg-neutral-500 text-white px-4 py-0 rounded-md flex justify-center items-center"
-                      } ${item?.stock === 0 ? "line-through text-red-500 " : ""}`}
+                      } ${
+                        item?.stock === 0 ? "line-through text-red-500 " : ""
+                      }`}
                       onClick={() => handleSizeSelect(index)}
                     >
                       size/{item?.size}
@@ -257,7 +241,7 @@ const ProductDetails = () => {
 
             <div className="mt-[30px]">
               <Button
-                className="border border-teal-600 text-teal-700 uppercase tracking-wider font-semibold"
+                className=" bg-primary text-white uppercase tracking-wider font-semibold"
                 onClick={() => dispatch(addToCart(product?.data))}
                 block
                 icon={<PlusOutlined />}

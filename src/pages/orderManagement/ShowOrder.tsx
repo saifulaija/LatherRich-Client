@@ -151,6 +151,7 @@ import { useGetAllOrdersQuery, useUpdateOrderDeliveryMutation } from "../../redu
 import moment from "moment";
 import { Link } from "react-router-dom";
 import { toast } from "sonner";
+import CustomeDivider from "../../components/customeDivider/CustomeDivider";
 
 const items = [
   {
@@ -275,7 +276,10 @@ const ShowOrder = () => {
   );
 
   return (
-    <Table loading={isFetching || isLoading} columns={columns} dataSource={tableData} />
+    <div className="p-10">
+      <CustomeDivider title="all order's"/>
+      <Table loading={isFetching || isLoading} columns={columns} dataSource={tableData} />
+    </div>
   );
 };
 

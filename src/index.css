@@ -26,12 +26,9 @@
   font-family: "Nunito", sans-serif;
  
 } 
-/* body {
-  background-color:  #ffff; 
-} */
+
 
 .btn{
-  @apply bg-[#453433] hover:bg-opacity-55 focus:outline-none focus:ring-2 focus:ring-orange-600 text-white px-6 py-2 rounded-md font-semibold tracking-wide shadow-md transition duration-300
-}
+  @apply bg-primary text-white uppercase tracking-wider font-semibold}
 
 

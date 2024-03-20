@@ -4,7 +4,7 @@ import { baseApi } from "../../api/baseApi";
   endpoints: (builder) => ({
     createOrder: builder.mutation({
       query: (orderInfo) => ({
-        url: "/order/create-order",
+        url: "/orders/create-order",
         method: "POST",
         body: orderInfo,
       }),
@@ -44,7 +44,16 @@ import { baseApi } from "../../api/baseApi";
       query: (id) => {
         console.log("success", id);
         return {
-          url: `/order/get-single-order/${id}`,
+          url: `/orders/get-single-order/${id}`,
+          method: "GET",
+        };
+      },
+    }),
+    getSingleOrderByOrderNumber: builder.query({
+      query: (id) => {
+        console.log("success", id);
+        return {
+          url: `/orders/success-order/${id}`,
           method: "GET",
         };
       },
@@ -53,7 +62,7 @@ import { baseApi } from "../../api/baseApi";
 
     deleteOrder: builder.mutation({
       query: (id) => ({
-        url: `/order/${id}`,
+        url: `/orders/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["order"],
@@ -67,5 +76,6 @@ export const {
   useDeleteOrderMutation,
   useGetSingleOrderQuery,
   useCreatePaymentSSLMutation,
-  useUpdateOrderDeliveryMutation
+  useUpdateOrderDeliveryMutation,
+ useGetSingleOrderByOrderNumberQuery
 } = orderApi;

@@ -34,7 +34,7 @@ const CustomeHeader = () => {
       <div>
         <Button
           icon={<UserOutlined />}
-          className="uppercase tracking-wide font-semibold text-teal-700"
+          className="uppercase tracking-wide font-semibold text-[#7d3f98]"
           onClick={handleLogout}
         >
           Logout

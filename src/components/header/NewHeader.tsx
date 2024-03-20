@@ -1,3 +1,4 @@
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { useState, useEffect } from "react";
@@ -153,12 +154,13 @@ const NewHeader = () => {
         {/* for mobile device */}
 
         <div className="flex flex-col">
-          <div className="max-w-md flex justify-center items-center">
+          <div className="max-w-md flex  justify-center items-center">
             <Search
               placeholder="Search your product ..."
               allowClear
               size="small"
               onSearch={handleSearch}
+             
             />
           </div>
           <Menu mode="inline" theme="light">

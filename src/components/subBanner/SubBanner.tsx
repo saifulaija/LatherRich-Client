@@ -9,7 +9,7 @@ const SubBanner = () => {
   return (
     <div className=" ">
       <div className=" max-w-[1200px] md:flex md:justify-center m-auto md:items-center -mt-4  shadow-transparent shadow-2xl  p-4">
-        <div className="flex items-center  rounded-md border border-l-4 border-l-teal-600 p-4">
+        <div className="flex items-center  rounded-md border border-l-[3px] border-l-primary p-4">
           <FaShippingFast className="text-4xl text-blue-500 mr-4" />
           <div>
             <h4 className="text-lg font-semibold text-gray-800">
@@ -20,7 +20,7 @@ const SubBanner = () => {
             </p>
           </div>
         </div>
-        <div className="flex items-center  rounded-md border border-l-4 border-l-teal-600 p-4">
+        <div className="flex items-center  rounded-md border border-l-[3px] border-l-primary p-4">
           <FaLock className="text-4xl text-green-500 mr-4" />
           <div>
             <h4 className="text-lg font-semibold text-gray-800">
@@ -31,7 +31,7 @@ const SubBanner = () => {
             </p>
           </div>
         </div>
-        <div className="flex items-center  rounded-md border border-l-4 border-l-teal-600 p-4">
+        <div className="flex items-center  rounded-md border border-l-[3px] border-l-primary p-4">
           <FaCertificate className="text-4xl text-yellow-500 mr-4" />
           <div>
             <h4 className="text-lg font-semibold text-gray-800">
@@ -42,7 +42,7 @@ const SubBanner = () => {
             </p>
           </div>
         </div>
-        <div className="flex items-center  rounded-md border border-l-4 border-l-teal-600 p-4">
+        <div className="flex items-center  rounded-md border border-l-[3px] border-l-primary p-4">
           <FaHeadset className="text-4xl text-purple-500 mr-4" />
           <div>
             <h4 className="text-lg font-semibold text-gray-800">

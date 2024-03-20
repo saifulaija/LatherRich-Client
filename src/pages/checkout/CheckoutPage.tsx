@@ -116,6 +116,9 @@ const CheckoutPage = () => {
     selectedQuantity: item.cartQuantity,
     image: item.images[0],
     price: item.price,
+    name:item.name,
+    size:item.size,
+    discount:item.discount 
   }));
 
   const orderNumber = generateOrder();
@@ -163,10 +166,10 @@ console.log(orderData)
       </div>
       <div className="md:flex justify-between items-center container mx-auto p-10 gap-4">
         <div className="md:w-1/2">
-          <div className=" border-teal-300 border rounded-lg p-5">
-            <p className="font-semibold text-teal-600 text-xl text-center uppercase tracking-wide">
-              Your Order
-            </p>
+          <div className=" border-primary border-4 rounded-lg p-5">
+          <h3 className="text-lg text-primary tracking-wider font-semibold mb-4 uppercase text-balance text-center">
+            YOUR'S ORDER
+          </h3>
             <div className="flex justify-between items-center uppercase tracking-wide font-semibold">
               <p>Product</p>
               <p>Sub Total</p>
@@ -236,7 +239,7 @@ console.log(orderData)
           </div>
         </div>
         <div className="md:w-1/2">
-          <h3 className="text-lg text-teal-600 tracking-wider font-semibold mb-4 uppercase text-balance text-center">
+          <h3 className="text-lg text-primary tracking-wider font-semibold mb-4 uppercase text-balance text-center">
             BILLING & SHIPPING
           </h3>
           <Form
@@ -294,7 +297,7 @@ console.log(orderData)
                 <Button
                   block
                   htmlType="submit"
-                  className="border border-teal-600 text-gray-500 uppercase tracking-wider font-semibold"
+                  className="btn"
                   icon={<IoPlaySkipBackOutline />}
                   loading={isLoading}
                   // onClick={()=>handleClearCart()}
@@ -309,7 +312,7 @@ console.log(orderData)
                 <Button
                   block
                   htmlType="submit"
-                  className=" border-teal-700 border uppercase tracking-wider font-semibold text-gray-500"
+                  className="btn"
                   icon={<TbCoinTaka className="text-sm" />}
                 >
                   Pay Now

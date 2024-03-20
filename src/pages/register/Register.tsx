@@ -101,7 +101,7 @@ const Register = () => {
           </p>
 
           <Form.Item>
-            <Button loading={isLoading} htmlType="submit" block>
+            <Button className="btn" loading={isLoading} htmlType="submit" block>
               Submit
             </Button>
             <div className="text-center mt-4">

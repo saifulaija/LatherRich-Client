@@ -58,7 +58,7 @@ const ShoppingCart = () => {
           {user && (
             <Link to={`/${user?.role}/dashboard`}>
               {" "}
-              <MdDashboard className="text-xl text-teal-600" />
+              <MdDashboard className="text-xl text-[#7d3f98]" />
             </Link>
           )}
         </div>
@@ -68,10 +68,10 @@ const ShoppingCart = () => {
               onClick={() => {
                 setCartDrawerOpen(true);
               }}
-              className=" text-teal-800 flex items-center justify-center gap-1"
+              className=" text-[#7d3f98] flex items-center justify-center gap-1"
             >
               <IoBagAddOutline
-                className="text-teal-800 font-semibold"
+                className="text-[#7d3f98] font-semibold"
                 size={20}
               />
               <span className="font-semibold text-[14px]">
@@ -85,7 +85,7 @@ const ShoppingCart = () => {
           {user ? (
             <Button
               icon={<UserOutlined />}
-              className="uppercase tracking-wide font-semibold text-teal-700"
+              className="uppercase tracking-wide font-semibold text-[#7d3f98]"
               onClick={handleLogout}
             >
               Logout
@@ -94,7 +94,7 @@ const ShoppingCart = () => {
             <Link to="/login">
               <Button
                 icon={<UserOutlined />}
-                className="uppercase tracking-wide font-semibold text-teal-700"
+                className="uppercase tracking-wide font-semibold text-[#7d3f98]"
               >
                 Login
               </Button>
@@ -108,6 +108,7 @@ const ShoppingCart = () => {
           setCartDrawerOpen(false);
         }}
         title="Your Cart"
+        
         contentWrapperStyle={{ width: 600 }}
       >
         <div
@@ -258,7 +259,7 @@ const ShoppingCart = () => {
                     {user ? (
                       <Link to="/checkout" className="w-full">
                         <Button
-                          className="border border-teal-600 uppercase tracking-wider font-semibold text-gray-500"
+                          className="btn"
                           onClick={() => setCartDrawerOpen(false)}
                           block
                           icon={<LeftOutlined />}
@@ -269,7 +270,7 @@ const ShoppingCart = () => {
                     ) : (
                       <Link to="/login" className="w-full">
                         <Button
-                          className="border border-teal-600 uppercase tracking-wider font-semibold text-gray-500"
+                          className="btn"
                           onClick={() => setCartDrawerOpen(false)}
                           block
                           icon={<LeftOutlined />}
@@ -283,7 +284,7 @@ const ShoppingCart = () => {
                     <Link to="/" className="w-full">
                       <Button
                         onClick={() => setCartDrawerOpen(false)}
-                        className="border border-teal-600 uppercase tracking-wider font-semibold text-gray-500"
+                        className=" bg-primary text-white uppercase tracking-wider font-semibold"
                         block
                         icon={<LeftOutlined />}
                       >

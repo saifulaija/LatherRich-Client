@@ -168,3 +168,19 @@ export const sidebarItems = [
     ],
   },
 ];
+export const itemsSearch = [
+  { label: "Clear Filter", value: null },
+  { label: "Man-Causal", value: "man-causal" },
+  { label: "Man-Formal", value: "man-formal" },
+  { label: "Man-Sport", value: "man-sport" },
+  { label: "Women-Causal", value: "Women-causal" },
+  { label: "Women-Formal", value: "women-formal" },
+  { label: "Women-Sport", value: "women-sport" },
+  { label: "Kid-Causal", value: "kid-causal" },
+  { label: "kid-Formal", value: "kid-formal" },
+  { label: "kid-Sport", value: "kid-sport" },
+];
+
+
+
+

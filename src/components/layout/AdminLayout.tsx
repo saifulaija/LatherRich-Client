@@ -18,10 +18,10 @@ const AdminLayout = () => {
     <Layout  style={{ height: "100%" }}>
       <SideBar />
       <Layout>
-        <Header  className="header-new bg-gray-200">
+        <Header  className="header-new bg-white">
           <CustomeHeader />
         </Header>
-        <Content style={{ margin: "64px 16px 0", overflow: "initial" }}>
+        <Content style={{ margin: 0, overflow: "initial", backgroundColor:"white" }}>
           <div style={{ padding: 24, minHeight: "calc(100vh - 160px)" }}>
             <Outlet />
           </div>

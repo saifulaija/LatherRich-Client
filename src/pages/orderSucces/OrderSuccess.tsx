@@ -1,13 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Link, useParams } from "react-router-dom";
-import { useGetSingleOrderQuery } from "../../redux/features/order/orderApi";
+
 import { Button, Col, Divider, Result, Row, Spin } from "antd";
+import { useGetSingleOrderByOrderNumberQuery } from "../../redux/features/order/orderApi";
 
 
 
 const OrderSuccess = () => {
   const { id } = useParams();
-  const { data, isLoading } = useGetSingleOrderQuery(id);
+  console.log(id)
+  const { data, isLoading } = useGetSingleOrderByOrderNumberQuery(id);
 
   // Format date if available
   const formatDate = (date:any) => {

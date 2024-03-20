@@ -13,7 +13,7 @@ const SslCommerceImg = () => {
           className="bg-cover bg-center "
         />
       </div>
-      <div className="flex items-center  rounded-md border border-l-4 border-l-teal-600 p-4">
+      <div className="flex items-center  rounded-md border border-l-4 border-l-primary p-4">
         <FaLock className="text-4xl text-green-500 mr-4" />
         <div>
           <h4 className="text-lg font-semibold text-gray-800">
@@ -24,7 +24,7 @@ const SslCommerceImg = () => {
           </p>
         </div>
       </div>
-      <div className="flex items-center  rounded-md border border-l-4 border-l-teal-600 p-4">
+      <div className="flex items-center  rounded-md border border-l-4 border-l-primary p-4">
         <AlipaySquareFilled className="text-4xl text-yellow-500 mr-4" />
         <div>
           <h4 className="text-lg font-semibold text-gray-600">
