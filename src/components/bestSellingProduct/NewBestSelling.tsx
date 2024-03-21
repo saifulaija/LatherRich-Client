@@ -1,4 +1,4 @@
-import { Card, Spin, Badge, Button } from "antd";
+import { Card, Spin, Badge } from "antd";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -13,9 +13,10 @@ import { motion } from "framer-motion";
 
 import { Link } from "react-router-dom";
 import Meta from "antd/es/card/Meta";
+import ButtonPrimary from "../button/ButtonPrimary";
+import { PlusOutlined } from "@ant-design/icons";
 
 const NewBestSelling = () => {
- 
   const [params, setParams] = useState<TQueryParam[]>([]);
   const { data: productsData, isLoading } = useGetAllProductsQuery([
     { name: "sort", value: "-price" },
@@ -49,28 +50,28 @@ const NewBestSelling = () => {
         >
           {productsData?.data?.map((product, index) => (
             <SwiperSlide key={index}>
-              <Badge.Ribbon
-                text={
-                  product.discount !== 0 ? `discount${product.discount}%` : ""
-                }
-                color="#7d3f98"
-              >
-                <Link to={`/product/${product._id}`}>
+             
+                <Badge.Ribbon
+                  text={
+                    product.discount !== 0 ? `discount${product.discount}%` : ""
+                  }
+                  color="#7d3f98"
+                >
                   <Card
                     key={product?._id}
-                    className="group w-[300px] h-[400px] shadow-lg"
+                    className=" w-[300px] h-[400px]"
                     cover={
                       <motion.div
-                        initial={{ opacity: 0, scale: 0.5 }}
+                        initial={{ opacity: 0, scale: -.5 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.5 }}
                         whileHover={{ scale: 1.1 }}
-                        className=" rounded-t-md h-[200px] group-hover:scale-95 overflow-hidden hover:duration-75 "
+                        className=" rounded-t-md h-[200px]  overflow-hidden "
                       >
                         <img
                           alt="example"
                           src={product?.images[0]}
-                          className="max-w-full max-h-80% group-hover:transition-transform duration-300 rounded-t-md"
+                          className="max-w-full max-h-80% rounded-t-md"
                         />
                       </motion.div>
                     }
@@ -119,15 +120,13 @@ const NewBestSelling = () => {
                         </div>
                       )}
                     </div>
-                    <Button
-                      className="absolute bottom-0 left-0 right-0 border capitalize tracking-wider font-semibold"
-                      block
-                    >
-                      Shop Now
-                    </Button>
+                    <Link to={`/product/${product._id}`}>
+                
+                      <ButtonPrimary icon={<PlusOutlined/>} title={"order"} />
+                    </Link>
                   </Card>
-                </Link>
-              </Badge.Ribbon>
+                </Badge.Ribbon>
+              
             </SwiperSlide>
           ))}
         </Swiper>

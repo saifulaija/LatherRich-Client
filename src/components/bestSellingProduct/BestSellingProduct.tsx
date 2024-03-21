@@ -106,7 +106,6 @@ const BestSellingProduct = () => {
                         />
                       }
                     >
-
                       <div className="flex flex-wrap justify-center items-center gap-2 ">
                         {product?.sizeStok?.map((item) => (
                           <div
