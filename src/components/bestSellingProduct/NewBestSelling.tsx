@@ -1,93 +1,5 @@
-// import { Card, Avatar } from "antd";
-// import {
-//   EditOutlined,
-//   EllipsisOutlined,
-//   SettingOutlined,
-// } from "@ant-design/icons";
-// import { Swiper, SwiperSlide } from "swiper/react";
-// import "swiper/css";
-// import "swiper/css/navigation";
-// import "swiper/css/pagination";
-// import { Navigation, Pagination, Autoplay } from "swiper/modules";
-// import { useState } from "react";
-// import { useGetAllProductsQuery } from "../../redux/features/product/productApi";
-// import { TQueryParam } from "../../types/global.type";
-// import "./NewBestSelling.css";
+import { Card, Spin, Badge, Button } from "antd";
 
-
-// const { Meta } = Card;
-
-// const NewBestSelling = () => {
-//   const [params, setParams] = useState<TQueryParam[]>([]);
-//   const {
-//     data: productsData,
-//     isLoading,
-//     isFetching,
-//   } = useGetAllProductsQuery([{ name: "sort", value: "-price" }, ...params]);
-
-//   return (
-//     <div className="container mx-auto bg-white">
-//       <Swiper
-//         modules={[Navigation, Pagination, Autoplay]}
-//         spaceBetween={10}
-//         slidesPerView={4}
-//         navigation={true}
-//         autoplay={{ delay: 5000 }}
-        
-//         pagination={{
-//             clickable: true,
-//           }}
-//         breakpoints={{
-//             640: {
-//               slidesPerView: 2,
-//               spaceBetween: 20,
-//             },
-//             768: {
-//               slidesPerView: 4,
-//               spaceBetween: 40,
-//             },
-//             1024: {
-//               slidesPerView: 5,
-//               spaceBetween: 50,
-//             },
-//           }}
-//       >
-//         {productsData?.data?.map((product, index) => (
-//           <SwiperSlide key={index}>
-//             <Card
-//               className="card"
-//               cover={<img alt="example" src={product.images[0]} />}
-//               actions={[
-//                 <SettingOutlined key="setting" />,
-//                 <EditOutlined key="edit" />,
-//                 <EllipsisOutlined key="ellipsis" />,
-//               ]}
-//             >
-//               <Meta
-//                 avatar={<Avatar src={product?.data?.images[1]} />}
-//                 title={product?.data?.name}
-//                 description={product?.data?.description}
-//               />
-//             </Card>
-//           </SwiperSlide>
-//         ))}
-//       </Swiper>
-
-     
-//     </div>
-//   );
-// };
-
-// export default NewBestSelling;
-
-
-
-import { Card, Avatar } from "antd";
-import {
-  EditOutlined,
-  EllipsisOutlined,
-  SettingOutlined,
-} from "@ant-design/icons";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -97,27 +9,30 @@ import { useState } from "react";
 import { useGetAllProductsQuery } from "../../redux/features/product/productApi";
 import { TQueryParam } from "../../types/global.type";
 import "./NewBestSelling.css";
+import { motion } from "framer-motion";
 
-const { Meta } = Card;
+import { Link } from "react-router-dom";
+import Meta from "antd/es/card/Meta";
 
 const NewBestSelling = () => {
+ 
   const [params, setParams] = useState<TQueryParam[]>([]);
-  const {
-    data: productsData,
-    isLoading,
-    isFetching,
-  } = useGetAllProductsQuery([{ name: "sort", value: "-price" }, ...params]);
+  const { data: productsData, isLoading } = useGetAllProductsQuery([
+    { name: "sort", value: "-price" },
+    ...params,
+  ]);
 
   return (
     <div className="container mx-auto bg-white">
-      <Swiper
-        modules={[Navigation, Autoplay]}
-        spaceBetween={10}
-        slidesPerView={4}
-        autoplay={{ delay: 5000 }}
-        navigation={true}
-        pagination={{ clickable: true, el: ".swiper-pagination" }}
-        breakpoints={{
+      <Spin spinning={isLoading}>
+        <Swiper
+          modules={[Navigation, Autoplay]}
+          spaceBetween={10}
+          slidesPerView={4}
+          autoplay={{ delay: 5000 }}
+          navigation={true}
+          pagination={{ clickable: true, el: ".swiper-pagination" }}
+          breakpoints={{
             640: {
               slidesPerView: 1,
               spaceBetween: 20,
@@ -131,31 +46,94 @@ const NewBestSelling = () => {
               spaceBetween: 50,
             },
           }}
-        
-      >
-        {productsData?.data?.map((product, index) => (
-          <SwiperSlide key={index}>
-            <Card
-              className="card"
-              cover={<img alt="example" src={product.images[0]} />}
-              actions={[
-                <SettingOutlined key="setting" />,
-                <EditOutlined key="edit" />,
-                <EllipsisOutlined key="ellipsis" />,
-              ]}
-            >
-              <Meta
-                avatar={<Avatar src={product?.data?.images[1]} />}
-                title={product?.data?.name}
-                description={product?.data?.description}
-              />
-            </Card>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+        >
+          {productsData?.data?.map((product, index) => (
+            <SwiperSlide key={index}>
+              <Badge.Ribbon
+                text={
+                  product.discount !== 0 ? `discount${product.discount}%` : ""
+                }
+                color="#7d3f98"
+              >
+                <Link to={`/product/${product._id}`}>
+                  <Card
+                    key={product?._id}
+                    className="group w-[300px] h-[400px] shadow-lg"
+                    cover={
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.5 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.5 }}
+                        whileHover={{ scale: 1.1 }}
+                        className=" rounded-t-md h-[200px] group-hover:scale-95 overflow-hidden hover:duration-75 "
+                      >
+                        <img
+                          alt="example"
+                          src={product?.images[0]}
+                          className="max-w-full max-h-80% group-hover:transition-transform duration-300 rounded-t-md"
+                        />
+                      </motion.div>
+                    }
+                  >
+                    <Meta
+                      title={
+                        <h4 className="text-blace capitalize text-textprimary text-center">
+                          {product.name}
+                        </h4>
+                      }
+                    />
+                    <div className="flex flex-wrap justify-center items-center mt-2 gap-1">
+                      {product?.sizeStok?.map((item) => (
+                        <div
+                          key={item.size}
+                          className={`flex justify-center items-center px-3 py-0.5 border divide-x-4 border-gray-300 ${
+                            item?.stock === 0
+                              ? "text-textprimary rounded-[4px] font-semibold line-through "
+                              : "text-textsecoundary rounded-[4px] font-semibold"
+                          }`}
+                          style={{ textDecorationThickness: "2px" }}
+                        >
+                          size/{item.size}
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="my-5">
+                      {product.discount === 0 ? (
+                        <p className="text-secondry text-[18px] font-semibold">
+                          Price: {product.price}৳
+                        </p>
+                      ) : (
+                        <div className="flex container mx-auto justify-center items-center gap-4 max-w-[100px]">
+                          <h5 className="text-textprimary text-[20px] font-semibold line-through">
+                            {product?.price}৳
+                          </h5>
+
+                          {product?.discount && (
+                            <h5 className="text-secondry text-[18px] font-semibold">
+                              {product?.price -
+                                (product?.price * product?.discount) / 100}
+                              ৳
+                            </h5>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                    <Button
+                      className="absolute bottom-0 left-0 right-0 border capitalize tracking-wider font-semibold"
+                      block
+                    >
+                      Shop Now
+                    </Button>
+                  </Card>
+                </Link>
+              </Badge.Ribbon>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </Spin>
     </div>
   );
 };
 
 export default NewBestSelling;
-

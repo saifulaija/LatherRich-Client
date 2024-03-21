@@ -1,4 +1,4 @@
-import { Divider } from "antd";
+
 
 import Banner from "../banner/Banner";
 // import BestSellingProduct from "../bestSellingProduct/BestSellingProduct";
