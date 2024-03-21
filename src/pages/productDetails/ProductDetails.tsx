@@ -23,6 +23,7 @@ import RelatedProducts from "../../components/relatedProducts/RelatedProducts";
 import { useTopBarLoader } from "../../utils/topBarLoader";
 import LoadingBar from "react-top-loading-bar";
 import ImageSlide from "./ImageSlide";
+import CustomeDivider from "../../components/customeDivider/CustomeDivider";
 
 const ProductDetails = () => {
   const [progress, setProgress] = useState(0);
@@ -254,16 +255,7 @@ const ProductDetails = () => {
       </Spin>
 
       <div className="mt-12 mb-12 ">
-        <Divider
-          style={{
-            borderColor: "gray",
-            color: "#453433",
-            fontSize: "18px",
-            fontWeight: 400,
-          }}
-        >
-          Related Products
-        </Divider>
+       <CustomeDivider title="Related Product's"/>
       </div>
 
       <RelatedProducts value={product?.data?.category} />

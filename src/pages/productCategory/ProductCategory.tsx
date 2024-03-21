@@ -2,7 +2,8 @@
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useGetAllProductsByCategoryQuery } from "../../redux/features/product/productApi";
-import { Button, Card, Divider, Drawer, Rate, Spin } from "antd";
+
+import { Card, Spin, Badge, Drawer } from "antd";
 import { Link, useParams } from "react-router-dom";
 import NoDataFoundPage from "../noDataFoundPage/NoDataFoundPage";
 import Sidebar from "../../components/sidebar/Sidebar";
@@ -10,12 +11,14 @@ import { IoFilterSharp } from "react-icons/io5";
 import { useEffect, useState } from "react";
 import PageNavigation from "../../components/pageNavigation/PageNavigation";
 import Meta from "antd/es/card/Meta";
-import { FaShop } from "react-icons/fa6";
 
 import LoadingBar from "react-top-loading-bar";
 import { TProduct } from "../../types/product.type";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { getSort } from "../../redux/features/sort/sortSlice";
+import ButtonPrimary from "../../components/button/ButtonPrimary";
+import { PlusOutlined } from "@ant-design/icons";
+import { motion } from "framer-motion";
 
 const ProductCategory = () => {
   const sort = useAppSelector((state) => state.sort);
@@ -28,7 +31,7 @@ const ProductCategory = () => {
     isLoading,
     isFetching,
   } = useGetAllProductsByCategoryQuery(category);
-  console.log(setProgress)
+  console.log(setProgress);
 
   useEffect(() => {
     dispatch(getSort());
@@ -80,59 +83,96 @@ const ProductCategory = () => {
           <Sidebar />
         </Drawer>
       </div>
-      <div className="container flex items-center justify-center mx-auto p-10">
-        <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-4 rounded-lg shadow-sm">
-          {sortedProducts.map((product: TProduct) => (
-            <Link key={product._id} to={`/product/${product._id}`}>
-              <Card
-                bordered
-                className="group max-w-full border border-gray-200"
-                cover={
-                  <img
-                    alt="example"
-                    src={product?.images[0]}
-                    className="w-full group-transition duration-300 transform group-hover:scale-75 rounded-t-md"
-                  />
-                }
-              >
-                <Meta title={product?.name} className="text-center" />
-                <Divider />
-                <div className="flex justify-between items-center mb-4">
-                  <h5 className=" text-yellow-900 font-semibold">
-                    Price: ৳{product?.price}
-                  </h5>
-                  <Rate className="text-[14px]" value={product?.rating} />
-                </div>
-
-                <div className="flex justify-center items-center gap-2 mb-4">
-                  {product?.sizeStok?.map((item) => (
-                    <div
-                      key={item.size}
-                      className={`flex justify-center items-center w-8 h-8 rounded-full border-2 border-gray-300 ${
-                        item?.stock === 0
-                          ? "text-red-500 line-through"
-                          : "text-gray-900"
-                      }`}
-                      style={{ textDecorationThickness: "2px" }}
-                    >
-                      {item.size}
-                    </div>
-                  ))}
-                </div>
-                <Button
-                  className="mt-auto absolute bottom-0 left-0 right-0 text-white bg-[#453433]"
-                  block
-                  icon={<FaShop />}
+      <div className="md:container mx-auto md:px-20 py-10 bg-white">
+      <Spin spinning={isLoading}>
+        <div className="grid md:grid-col2 lg:grid-cols-3 gap-2">
+          {sortedProducts?.map((product: TProduct, index: number) => (
+           
+              <div key={index}>
+                <Badge.Ribbon
+                placement="start"
+                  text={
+                    product.discount !== 0 ? `discount${product.discount}%` : ""
+                  }
+                  color="#7d3f98"
                 >
-                  Shop Now
-                </Button>
-              </Card>
-            </Link>
+                  <Card
+                    key={product?._id}
+                    className=" w-[300px] h-[400px]"
+                    cover={
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.5, delay: 0.5 }}
+                        whileHover={{ scale: 1.1 }}
+                        className=" rounded-t-md h-[200px] cursor-wait border border-neutral-100 shadow-lg overflow-hidden "
+                      >
+                        <img
+                          alt="example"
+                          src={product?.images[0]}
+                          loading="lazy"
+                          className="max-w-full max-h-80% rounded-t-md"
+                        />
+                      </motion.div>
+                    }
+                  >
+                    <Meta
+                      title={
+                        <h4 className="text-blace capitalize text-textprimary text-center">
+                          {product.name}
+                        </h4>
+                      }
+                    />
+                    <div className="flex flex-wrap justify-center items-center mt-2 gap-1">
+                      {product?.sizeStok?.map((item) => (
+                        <div
+                          key={item.size}
+                          className={`flex justify-center items-center px-3 py-0.5 border divide-x-4 border-gray-300 ${
+                            item?.stock === 0
+                              ? "text-textprimary rounded-[4px] font-semibold line-through "
+                              : "text-textsecoundary rounded-[4px] font-semibold"
+                          }`}
+                          style={{ textDecorationThickness: "2px" }}
+                        >
+                          size/{item.size}
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="my-5">
+                      {product.discount === 0 ? (
+                        <p className="text-secondry text-[18px] font-semibold">
+                          Price: {product.price}৳
+                        </p>
+                      ) : (
+                        <div className="flex container mx-auto justify-center items-center gap-4 max-w-[100px]">
+                          <h5 className="text-textprimary text-[20px] font-semibold line-through">
+                            {product?.price}৳
+                          </h5>
+
+                          {product?.discount && (
+                            <h5 className="text-secondry text-[18px] font-semibold">
+                              {product?.price -
+                                (product?.price * product?.discount) / 100}
+                              ৳
+                            </h5>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                    <Link key={product._id} to={`/product/${product._id}`}>
+                      <ButtonPrimary icon={<PlusOutlined />} title={"order"} />
+                    </Link>
+                  </Card>
+                </Badge.Ribbon>
+              </div>
           ))}
         </div>
+          </Spin>
       </div>
     </div>
   );
 };
 
 export default ProductCategory;
+

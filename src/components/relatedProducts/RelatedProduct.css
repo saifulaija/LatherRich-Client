@@ -1,6 +1,51 @@
-.slick-slide > div {
-    margin: 0 10px;
-  }
-  .slick-list {
-    margin: 0 -10px;
-  }
+#app {
+  height: 100%;
+}
+html,
+body {
+  position: relative;
+  height: 100%;
+}
+
+
+.swiper-pagination {
+  display: none;
+}
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.swiper-button-next:after,
+.swiper-button-prev:after{
+font-size: 10px;
+background: #333;
+padding: 10px;
+border-radius: 5px;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+color:#7d3f98;
+background: none;
+opacity: 1;
+}
+.swiper-button-next,
+.swiper-button-prev {
+  color:#7d3f98;;
+background: none;
+opacity: 0.25;
+}
+

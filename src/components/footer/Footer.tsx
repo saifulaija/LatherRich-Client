@@ -5,7 +5,7 @@ import SocialIcons from "./SocialIcons";
 
 const Footer = () => {
   return (
-    <div className="w-full bg-[#dbd5d5]">
+    <div className="w-full bg-[#dbd5d5] mt-10">
       <div className="container m-auto md:flex justify-between items-center p-20 gap-x-20">
         <div className="leading-7">
           <h5 className="text-xl text-gray-600 font-semibold tracking-wide border-b-2 border-[#bb6e6e]">

@@ -1,4 +1,3 @@
-
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { useState, useEffect } from "react";
@@ -39,7 +38,7 @@ const NewHeader = () => {
 
   const handleSubMenuClick = (item: any) => {
     const key = item.key;
-   
+
     navigate(`/products/${key}`);
     setActiveSubMenu("");
     setDrawerVisible(false);
@@ -48,7 +47,6 @@ const NewHeader = () => {
   const handleOutsideClick = () => {
     setActiveSubMenu("");
   };
- 
 
   const handleSearch = (value: string) => {
     // Navigate to the SearchResultProduct page with the search query as URL parameter
@@ -58,16 +56,20 @@ const NewHeader = () => {
   return (
     <motion.nav
       className="bg-white p-4 fixed top-0 left-0 right-0 z-10 border border-b-2 shadow "
-      initial={{ y:-150 }}
+      initial={{ y: -150 }}
       animate={{ y: -0 }}
-      transition={{ delay:0.5, type:'tween', stiffness:50 }}
+      transition={{ delay: 0.5, type: "tween", stiffness: 50 }}
     >
       <div className="container h-[60px] mx-auto flex justify-between items-center">
-        <div className="flex items-center">
+        <motion.div
+          whileHover={{ x: 10 }} // Move 10 pixels to the right on hover
+          transition={{ type: "spring", stiffness: 200, damping: 20 }} // Smooth spring animation
+          className="flex items-center"
+        >
           <Link to="/">
             <img src={logo} alt="Richkid" className="h-10 w-auto mr-4" />
           </Link>
-        </div>
+        </motion.div>
         <div className="max-w-md justify-center items-center hidden sm:inline-flex">
           <Search
             placeholder="Search your product ..."
@@ -160,7 +162,6 @@ const NewHeader = () => {
               allowClear
               size="small"
               onSearch={handleSearch}
-             
             />
           </div>
           <Menu mode="inline" theme="light">

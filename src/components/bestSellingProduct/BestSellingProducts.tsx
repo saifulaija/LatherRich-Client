@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Card, Spin, Badge } from "antd";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -9,7 +8,7 @@ import { Navigation, Autoplay } from "swiper/modules";
 import { useState } from "react";
 import { useGetAllProductsQuery } from "../../redux/features/product/productApi";
 import { TQueryParam } from "../../types/global.type";
-import './RelatedProduct.css'
+import "./NewBestSelling.css";
 import { motion } from "framer-motion";
 
 import { Link } from "react-router-dom";
@@ -17,10 +16,10 @@ import Meta from "antd/es/card/Meta";
 import ButtonPrimary from "../button/ButtonPrimary";
 import { PlusOutlined } from "@ant-design/icons";
 
-const RelatedProducts = ({value}:{value:any[]}) => {
+const BestSellingProducts = () => {
   const [params, setParams] = useState<TQueryParam[]>([]);
   const { data: productsData, isLoading } = useGetAllProductsQuery([
-    { name: "sort", value: "-price" },{name:"category",value:value },
+    { name: "sort", value: "-price" },
     ...params,
   ]);
   console.log(setParams);
@@ -56,7 +55,6 @@ const RelatedProducts = ({value}:{value:any[]}) => {
           {productsData?.data?.map((product, index) => (
             <SwiperSlide key={index}>
               <Badge.Ribbon
-              placement="start"
                 text={
                   product.discount !== 0 ? `discount${product.discount}%` : ""
                 }
@@ -139,4 +137,4 @@ const RelatedProducts = ({value}:{value:any[]}) => {
   );
 };
 
-export default RelatedProducts;
+export default BestSellingProducts;
