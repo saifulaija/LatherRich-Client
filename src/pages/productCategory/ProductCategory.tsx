@@ -83,8 +83,8 @@ const ProductCategory = () => {
           <Sidebar />
         </Drawer>
       </div>
-      <div className="md:container mx-auto md:px-20 py-10 bg-white">
       <Spin spinning={isLoading}>
+      <div className="md:container mx-auto md:px-20 py-10 bg-white">
         <div className="grid md:grid-col2 lg:grid-cols-3 gap-2">
           {sortedProducts?.map((product: TProduct, index: number) => (
            
@@ -168,8 +168,8 @@ const ProductCategory = () => {
               </div>
           ))}
         </div>
-          </Spin>
       </div>
+          </Spin>
     </div>
   );
 };

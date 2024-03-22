@@ -18,6 +18,7 @@ const NewHeader = () => {
   const [activeSubMenu, setActiveSubMenu] = useState("");
   const [isMobile, setIsMobile] = useState(false);
   const navigate = useNavigate();
+  console.log(isMobile);
 
   useEffect(() => {
     const handleResize = () => {
@@ -78,6 +79,7 @@ const NewHeader = () => {
             onSearch={handleSearch}
           />
         </div>
+
         <div className="hidden sm:block">
           <div className="flex justify-center items-center  gap-2">
             {items?.map((item) => (

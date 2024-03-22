@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useGetSingleProductForDetailsQuery } from "../../redux/features/product/productApi";
-import { Button, Divider, Image, Spin } from "antd";
+import { Button, Divider, Spin } from "antd";
 import {
   CheckCircleOutlined,
   ExclamationCircleOutlined,
@@ -25,6 +25,7 @@ import LoadingBar from "react-top-loading-bar";
 import ImageSlide from "./ImageSlide";
 import CustomeDivider from "../../components/customeDivider/CustomeDivider";
 
+
 const ProductDetails = () => {
   const [progress, setProgress] = useState(0);
   useTopBarLoader(setProgress);
@@ -33,7 +34,7 @@ const ProductDetails = () => {
   const [selectedSizeIndex, setSelectedSizeIndex] = useState(0);
   const [selectedSize, setSelectedSize] = useState("");
   const [selectedStok, setSelectedStok] = useState("");
-  const [currentSlide, setCurrentSlide] = useState(0);
+
   const dispatch = useAppDispatch();
   const cart = useAppSelector((state) => state.cart);
   cart.cartItems;
@@ -79,9 +80,7 @@ const ProductDetails = () => {
     }
   };
 
-  const handleImageClick = (index: any) => {
-    setCurrentSlide(index);
-  };
+ 
 
   const handleDecreaseCart = (product: any) => {
     console.log(product);

@@ -13,7 +13,8 @@ import { useState } from "react";
 import { Image } from "antd";
 import './ImageSlide.css'
 
-const ImageSlide = ({ images }) => {
+
+const ImageSlide = ({ images }:{images:[string]}) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   return (
@@ -38,7 +39,7 @@ const ImageSlide = ({ images }) => {
       <Swiper
         onSwiper={setThumbsSwiper}
         spaceBetween={10}
-        slidesPerView={3}
+        slidesPerView='auto'
         watchSlidesProgress={true}
         className="mySwiper"
       >

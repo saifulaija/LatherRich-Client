@@ -30,10 +30,11 @@ const RelatedProducts = ({value}:{value:any[]}) => {
         <Swiper
           modules={[Navigation, Autoplay]}
           spaceBetween={10}
-          slidesPerView={4}
+          slidesPerView='auto'
           autoplay={{ delay: 5000 }}
           navigation={true}
           pagination={{ clickable: true, el: ".swiper-pagination" }}
+          loopAddBlankSlides={true}
           breakpoints={{
             '@0.00': {
               slidesPerView: 1,
@@ -48,10 +49,12 @@ const RelatedProducts = ({value}:{value:any[]}) => {
               spaceBetween: 40,
             },
             '@1.50': {
-              slidesPerView: 4,
+              slidesPerView: 3,
               spaceBetween: 50,
             },
-          }}
+            
+          }
+       }
         >
           {productsData?.data?.map((product, index) => (
             <SwiperSlide key={index}>
@@ -71,7 +74,7 @@ const RelatedProducts = ({value}:{value:any[]}) => {
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.5, delay: 0.5 }}
                       whileHover={{ scale: 1.1 }}
-                      className=" rounded-t-md h-[200px] cursor-wait border border-neutral-100 shadow-lg overflow-hidden "
+                      className=" rounded-t-md h-[200px] cursor-cursor border border-neutral-100 shadow-lg overflow-hidden "
                     >
                       <img
                         alt="example"

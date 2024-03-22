@@ -1,13 +1,15 @@
-
-
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useGetAllProductsQuery } from "../../redux/features/product/productApi";
 import { TQueryParam } from "../../types/global.type";
-import { Badge, Button, Card, Divider, Spin } from "antd";
+import { Badge, Card, Spin } from "antd";
 import { Link } from "react-router-dom";
-import { CiShoppingCart } from "react-icons/ci";
+
 import { motion } from "framer-motion";
+import { TProduct } from "../../types/product.type";
+import ButtonPrimary from "../button/ButtonPrimary";
+import { PlusOutlined } from "@ant-design/icons";
+import CustomeDivider from "../customeDivider/CustomeDivider";
 
 const { Meta } = Card;
 
@@ -16,7 +18,6 @@ const SearchResultProduct = () => {
   const location = useLocation();
 
   useEffect(() => {
-    
     const searchParams = new URLSearchParams(location.search);
     const searchQuery = searchParams.get("q");
     console.log(searchQuery);
@@ -33,69 +34,94 @@ const SearchResultProduct = () => {
   } = useGetAllProductsQuery([...params]);
 
   return (
-    <div className="w-full px-10 py-20">
-      <Spin spinning={isLoading && isFetching}>
-        <div className="container flex items-center justify-center mx-auto">
-          <div className="grid sm:grid-cols-1 md:grid-cols-4 gap-2 rounded-lg shadow-sm">
-            {productsData?.data?.map((product) => (
-              <Badge.Ribbon
-                text={`${product.discount}%`}
-                color="magenta"
-                key={product?._id}
-              >
-                <Link to={`/product/${product._id}`}>
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <Card
-                      className="group max-w-full border border-gray-200"
-                      cover={<img alt="example" src={product?.images[0]} />}
-                    >
-                      <Meta title={product?.name} className="text-center" />
-                      <Divider />
-                      <div className="flex justify-between items-center mb-4">
-                        <h5 className="text-gray-500 font-semibold line-through">
-                          Price: ৳{product?.price}
-                        </h5>
-                        {product?.discount && (
-                          <h5 className="text-gray-500 font-semibold">
-                            Price: ৳
-                            {product?.price -
-                              (product?.price * product?.discount) / 100}
-                          </h5>
-                        )}
-                      </div>
-                      <div className="flex justify-center items-center gap-2 mb-4">
-                        {product?.sizeStok?.map((item) => (
-                          <div
-                            key={item.size}
-                            className={`flex justify-center items-center w-8 h-8 rounded-full border-2 border-gray-300 ${
-                              item?.stock === 0
-                                ? "text-red-500 line-through"
-                                : "text-gray-900"
-                            }`}
-                            style={{ textDecorationThickness: "2px" }}
-                          >
-                            {item.size}
-                          </div>
-                        ))}
-                      </div>
-                      <Button
-                        className="mt-auto absolute bottom-0 left-0 right-0 text-gray-600 font-medium"
-                        block
-                        icon={<CiShoppingCart className="text-[15px]" />}
+    <div className="w-full pt-10">
+      <CustomeDivider title="Search Products--" />
+      <div className="container mx-auto mt-5 flex items-center justify-center ">
+        <Spin spinning={isLoading && isFetching}>
+          <div className="grid md:grid-col2 lg:grid-cols-3 gap-8">
+            {productsData?.data?.map((product: TProduct, index: number) => (
+              <div key={index}>
+                <Badge.Ribbon
+                  placement="start"
+                  text={
+                    product.discount !== 0 ? `discount${product.discount}%` : ""
+                  }
+                  color="#7d3f98"
+                >
+                  <Card
+                    key={product?._id}
+                    className=" w-[300px] h-[400px]"
+                    cover={
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.5, delay: 0.5 }}
+                        whileHover={{ scale: 1.1 }}
+                        className=" rounded-t-md h-[200px] cursor-wait border border-neutral-100 shadow-lg overflow-hidden "
                       >
-                        Shop Now
-                      </Button>
-                    </Card>
-                  </motion.div>
-                </Link>
-              </Badge.Ribbon>
+                        <img
+                          alt="example"
+                          src={product?.images[0]}
+                          loading="lazy"
+                          className="max-w-full bg-cover max-h-80% rounded-t-md bg-center object-center"
+                        />
+                      </motion.div>
+                    }
+                  >
+                    <Meta
+                      title={
+                        <h4 className="text-blace capitalize text-textprimary text-center">
+                          {product.name}
+                        </h4>
+                      }
+                    />
+                    <div className="flex flex-wrap justify-center items-center mt-2 gap-1">
+                      {product?.sizeStok?.map((item) => (
+                        <div
+                          key={item.size}
+                          className={`flex justify-center items-center px-3 py-0.5 border divide-x-4 border-gray-300 ${
+                            item?.stock === 0
+                              ? "text-textprimary rounded-[4px] font-semibold line-through "
+                              : "text-textsecoundary rounded-[4px] font-semibold"
+                          }`}
+                          style={{ textDecorationThickness: "2px" }}
+                        >
+                          size/{item.size}
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="my-5">
+                      {product.discount === 0 ? (
+                        <p className="text-secondry text-[18px] font-semibold">
+                          Price: {product.price}৳
+                        </p>
+                      ) : (
+                        <div className="flex container mx-auto justify-center items-center gap-4 max-w-[100px]">
+                          <h5 className="text-textprimary text-[20px] font-semibold line-through">
+                            {product?.price}৳
+                          </h5>
+
+                          {product?.discount && (
+                            <h5 className="text-secondry text-[18px] font-semibold">
+                              {product?.price -
+                                (product?.price * product?.discount) / 100}
+                              ৳
+                            </h5>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                    <Link key={product._id} to={`/product/${product._id}`}>
+                      <ButtonPrimary icon={<PlusOutlined />} title={"order"} />
+                    </Link>
+                  </Card>
+                </Badge.Ribbon>
+              </div>
             ))}
           </div>
-        </div>
-      </Spin>
+        </Spin>
+      </div>
     </div>
   );
 };
