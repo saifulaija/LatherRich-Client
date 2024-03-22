@@ -3,7 +3,7 @@ import { Button, Divider, Form, Input, Table, Radio } from "antd";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { Link, useNavigate } from "react-router-dom";
-import {  removeFromCart } from "../../redux/features/cart/cartSlice";
+import { removeFromCart } from "../../redux/features/cart/cartSlice";
 import { useState } from "react";
 import { TbCoinTaka } from "react-icons/tb";
 import { IoPlaySkipBackOutline } from "react-icons/io5";
@@ -12,6 +12,7 @@ import { useCurrentUser } from "../../redux/features/auth/authSlice";
 import { useCreateOrderMutation } from "../../redux/features/order/orderApi";
 import { toast } from "react-toastify";
 import SslCommerceImg from "../../components/sslCommerceImage/SslCommerceImg";
+import axios from "axios";
 
 interface FormValues {
   fullName: string;
@@ -40,8 +41,6 @@ const CheckoutPage = () => {
   const handleShippingChange = (event: any) => {
     setShippingCost(event.target.value);
   };
-
-  
 
   const handlePaymentMethodChange = (event: any) => {
     setPaymentMethod(event.target.value);
@@ -116,9 +115,9 @@ const CheckoutPage = () => {
     selectedQuantity: item.cartQuantity,
     image: item.images[0],
     price: item.price,
-    name:item.name,
-    size:item.size,
-    discount:item.discount 
+    name: item.name,
+    size: item.size,
+    discount: item.discount,
   }));
 
   const orderNumber = generateOrder();
@@ -136,11 +135,11 @@ const CheckoutPage = () => {
       orderNumber,
       orderDate: new Date(),
     };
-console.log(orderData)
-   
+    console.log(orderData);
+
     try {
       const res = await createOrder(orderData);
-      if ('error' in res) {
+      if ("error" in res) {
         toast.error(res?.error?.data?.message);
       } else {
         navigate(`/order/${orderNumber}`);
@@ -152,6 +151,25 @@ console.log(orderData)
     }
 
     console.log("Received values:", orderData);
+  };
+
+  // for bkash payment ---
+
+  const pay = async () => {
+    try {
+      const { data } = await axios.post(
+        "http://localhost:5000/bkash-payment-create",
+        {
+          amount: 50,
+          orderId: 2,
+        },
+        {
+          withCredentials:true
+        }
+      );
+    } catch (err) {
+      console.log(err)
+    }
   };
 
   return (
@@ -167,9 +185,9 @@ console.log(orderData)
       <div className="md:flex justify-between items-center container mx-auto p-10 gap-4">
         <div className="md:w-1/2">
           <div className=" border-primary border-4 rounded-lg p-5">
-          <h3 className="text-lg text-primary tracking-wider font-semibold mb-4 uppercase text-balance text-center">
-            YOUR'S ORDER
-          </h3>
+            <h3 className="text-lg text-primary tracking-wider font-semibold mb-4 uppercase text-balance text-center">
+              YOUR'S ORDER
+            </h3>
             <div className="flex justify-between items-center uppercase tracking-wide font-semibold">
               <p>Product</p>
               <p>Sub Total</p>
@@ -315,14 +333,14 @@ console.log(orderData)
                   className="btn"
                   icon={<TbCoinTaka className="text-sm" />}
                 >
-                  Pay Now
+                  Pay By Bkash
                 </Button>
               </Form.Item>
             )}
           </Form>
         </div>
       </div>
-      <SslCommerceImg/>
+      <SslCommerceImg />
     </div>
   );
 };

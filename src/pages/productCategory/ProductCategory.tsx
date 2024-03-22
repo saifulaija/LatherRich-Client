@@ -84,7 +84,7 @@ const ProductCategory = () => {
         </Drawer>
       </div>
       <Spin spinning={isLoading}>
-      <div className="md:container mx-auto md:px-20 py-10 bg-white">
+      <div className="md:container mx-auto md:px-20 py-10">
         <div className="grid md:grid-col2 lg:grid-cols-3 gap-2">
           {sortedProducts?.map((product: TProduct, index: number) => (
            
@@ -105,7 +105,7 @@ const ProductCategory = () => {
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.5, delay: 0.5 }}
                         whileHover={{ scale: 1.1 }}
-                        className=" rounded-t-md h-[200px] cursor-wait border border-neutral-100 shadow-lg overflow-hidden "
+                        className=" rounded-t-md h-[200px] cursor-pointer border border-neutral-100 shadow-lg overflow-hidden "
                       >
                         <img
                           alt="example"

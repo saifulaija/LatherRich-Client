@@ -17,14 +17,14 @@ import {
 import PageNavigation from "../../components/pageNavigation/PageNavigation";
 
 import { FaMinus, FaPlus } from "react-icons/fa";
-import chart from "../../assets/images/size-chart-for-women.jpg";
+
 
 import RelatedProducts from "../../components/relatedProducts/RelatedProducts";
 import { useTopBarLoader } from "../../utils/topBarLoader";
 import LoadingBar from "react-top-loading-bar";
 import ImageSlide from "./ImageSlide";
 import CustomeDivider from "../../components/customeDivider/CustomeDivider";
-
+import ProductTab from "../../components/tab/ProductTab";
 
 const ProductDetails = () => {
   const [progress, setProgress] = useState(0);
@@ -80,8 +80,6 @@ const ProductDetails = () => {
     }
   };
 
- 
-
   const handleDecreaseCart = (product: any) => {
     console.log(product);
     dispatch(decreaseCart(product));
@@ -92,7 +90,11 @@ const ProductDetails = () => {
   };
 
   const images = product?.data?.images;
-  console.log({ images });
+
+  const ProductReviewData = product?.data
+
+  const descriptions= product?.data?.description
+  console.log({ descriptions });
 
   return (
     <div className="container py-14 md:py-12 rounded-lg">
@@ -102,10 +104,16 @@ const ProductDetails = () => {
       />
 
       <Spin spinning={isLoading}>
-        <div className="md:flex md:justify-center md:items-center md:gap-2 rounded">
-          <div className="md:max-w-[40%] bg-white p-0">
+        <div className="md:flex md:justify-center md:items-center md:gap-2 space-x-5 rounded">
+         <div className="md:max-w-[40%] bg-white p-0">
+         <div className="w-[80%]">
             <ImageSlide images={images} />
           </div>
+          <div>
+          <ProductTab description={descriptions} product={ProductReviewData} />
+
+          </div>
+         </div>
 
           <div className="md:max-w-[60%] border border-gray-200 rounded-md  md:p-1">
             <h4 className="text-2xl text-center font-semibold text-primary capitalize mb-0">
@@ -157,23 +165,16 @@ const ProductDetails = () => {
                 {product?.data?.tag}
               </p>
             </div>
-            <Divider className="m-0" />
-            <div className="flex justify-center gap-4 items-center px-5 py-1">
-              <p className="text-gray-600 font-semibold text-sm">
-                Description:
-              </p>
-              <p className="text-end text-balance text-sm text-gray-500">
-                {product?.data?.description}
-              </p>
-            </div>
+          
 
-            <Divider className="m-0" />
+         
             <div className="md:flex justify-between items-center border p-5 rounded-md my-5">
               <div className=" flex-1">
-                <p className="text-center text-gray-600 font-semibold underline-offset-2 underline ">
+                <p className="text-center mb-3 text-gray-600 font-semibold underline-offset-2 underline ">
                   Select Size
                 </p>
                 <div className="flex justify-center items-center gap-4">
+                  <div className="flex flex-wrap md:w-[65%] gap-3">
                   {product?.data?.sizeStok?.map((item: any, index: number) => (
                     <button
                       disabled={item.stock === 0}
@@ -190,6 +191,7 @@ const ProductDetails = () => {
                       size/{item?.size}
                     </button>
                   ))}
+                  </div>
                 </div>
 
                 <div className="flex justify-center items-center gap-2 mt-3 bg-neutral-100 p-1 text-balance rounded-md">
@@ -202,7 +204,7 @@ const ProductDetails = () => {
                 </div>
               </div>
 
-              <div className="">
+              <div className="md:w-1/3">
                 <p className="text-balance text-center font-semibold text-gray-600  underline-offset-2 underline">
                   Add Quantity
                 </p>
@@ -231,13 +233,13 @@ const ProductDetails = () => {
               ডেলিভারি চার্জ একই থাকবে । প্রয়োজনে কল করুনঃ
               <span className="font-semibold">01324250470</span>
             </p>
-            <div className="flex justify-center items-center">
+            {/* <div className="flex justify-center items-center">
               <img
                 src={chart}
                 alt="Delivery chart"
                 className="w-full max-w-md"
               />
-            </div>
+            </div> */}
 
             <div className="mt-[30px]">
               <Button
@@ -254,7 +256,7 @@ const ProductDetails = () => {
       </Spin>
 
       <div className="mt-12 mb-12 ">
-       <CustomeDivider title="Related Product's"/>
+        <CustomeDivider title="Related Product's" />
       </div>
 
       <RelatedProducts value={product?.data?.category} />

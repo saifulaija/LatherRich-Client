@@ -8,7 +8,7 @@ import HomeLayout from "../components/layout/HomeLayout";
 import ProductDetails from "../pages/productDetails/ProductDetails";
 import ExchangeAndComplain from "../pages/exchangeAndComplaince/ExchangeAndComplain";
 import CheckoutPage from "../pages/checkout/CheckoutPage";
-import Register from "../pages/register/Register";
+
 import OrderSuccess from "../pages/orderSucces/OrderSuccess";
 import SearchResultProduct from "../components/searchResult/SearchResultProduct";
 import ProtectedRoute from "../components/protectedRoute/ProtectedRoute";
@@ -16,8 +16,9 @@ import NewApp from "../NewApp";
 import { routeGenerator } from "../utils/routeGenerator";
 import { adminPaths } from "./admin.route";
 import { userPaths } from "./user.route";
-
-
+import Success from "../pages/bkashPayment/Success";
+import Error from "../pages/bkashPayment/Error";
+import Register from "../pages/register/Register";
 
 const router = createBrowserRouter([
   {
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
         element: <Login />,
       },
       {
+        path: "register",
+        element: <Register />,
+      },
+      {
         path: "complain",
         element: <ExchangeAndComplain />,
       },
@@ -65,8 +70,16 @@ const router = createBrowserRouter([
         element: <CheckoutPage />,
       },
       {
-        path: "register",
-        element: <Register />,
+        path: "success",
+        element: <Success />,
+      },
+      {
+        path: "checkout",
+        element: <CheckoutPage />,
+      },
+      {
+        path: "error",
+        element: <Error />,
       },
       {
         path: "order/:id",
@@ -82,7 +95,7 @@ const router = createBrowserRouter([
         path: ":category",
         element: <ProductCategory />,
       },
-    
+
       {
         path: "search",
         element: <SearchResultProduct />,

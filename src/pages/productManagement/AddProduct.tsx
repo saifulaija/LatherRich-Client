@@ -75,6 +75,7 @@ const AddProduct = () => {
         tag: values.tag,
         discount: values.discount,
         description: values.description,
+        productCode:values.productCode
       };
      
 
@@ -149,6 +150,14 @@ const AddProduct = () => {
         <Form.Item name="name" rules={[{ required: true }]}>
           <Input
             placeholder="Product name...."
+            className="font-bold p-1 text-gray-600"
+            disabled={isLoading}
+            style={{ width: "100%" }}
+          />
+        </Form.Item>
+        <Form.Item name="productCode" rules={[{ required: true }]}>
+          <Input
+            placeholder="Product code...."
             className="font-bold p-1 text-gray-600"
             disabled={isLoading}
             style={{ width: "100%" }}

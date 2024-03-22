@@ -4,6 +4,13 @@ export type TProductSizeStok = {
     size: string;
     stock: number;
 };
+
+export type TReviewSchema = {
+    name: string;
+    rating: number;
+    description: string;
+    isDeleted: boolean;
+  };
   
 export type TProduct = {
     name: string;
@@ -11,7 +18,7 @@ export type TProduct = {
     price: number;
     description: string;
     images:[ string];
-    reviews?: string;
+    reviews?: TReviewSchema[];
     tag?: string;
     isDeleted: boolean;
     rating?: number;
