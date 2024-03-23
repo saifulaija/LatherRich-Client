@@ -4,33 +4,46 @@ import { TProduct } from "../../types/product.type";
 import CustomeDivider from "../customeDivider/CustomeDivider";
 import { UserAddOutlined } from "@ant-design/icons";
 import { TReview } from "../../types/review.types";
+import { useCreateReviewMutation } from "../../redux/features/review/reviewApi";
+import { toast } from "sonner";
 
 export type TReviewSchema = {
-    name: string;
-    rating: number;
-    description: string;
-    isDeleted: boolean;
-  };
+  name: string;
+  rating: number;
+  description: string;
+  isDeleted: boolean;
+};
 
 const Reviews = ({ product }: { product: TProduct }) => {
   const [showForm, setShowForm] = useState(false);
   const [form] = Form.useForm();
+  const [crateReview, { isLoading }] = useCreateReviewMutation();
 
   const toggleForm = () => {
     setShowForm(!showForm);
-    form.resetFields(); 
+    form.resetFields();
   };
 
-  const onFinish = (values: TReview) => {
+  const onFinish = async (values: TReview) => {
     // Add the new review to the product
-    const newReview = {
+    const reviewInfo = {
       name: values.name,
       rating: values.rating,
       description: values.description,
+      productId: product._id,
     };
-  
-    console.log("New Review:", newReview);
-   
+
+    try {
+      await crateReview(reviewInfo);
+      toast.success("Review added successfully");
+    } catch (err) {
+      if (err instanceof Error) {
+        toast.error(err.message);
+      } else {
+        console.error("Unknown error:", err);
+      }
+    }
+
     toggleForm();
   };
 
@@ -69,7 +82,9 @@ const Reviews = ({ product }: { product: TProduct }) => {
             <Input.TextArea placeholder="Write your's reviews......" />
           </Form.Item>
           <Form.Item>
-            <Button htmlType="submit">Submit Review</Button>
+            <Button loading={isLoading} htmlType="submit">
+              Submit Review
+            </Button>
           </Form.Item>
         </Form>
       )}

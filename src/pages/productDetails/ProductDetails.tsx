@@ -41,19 +41,19 @@ const ProductDetails = () => {
 
   const { data: product, isLoading } = useGetSingleProductForDetailsQuery(id);
 
-  useEffect(() => {
-    if (
-      product &&
-      product.data &&
-      product.data.sizeStok &&
-      product.data.sizeStok.length > 0
-    ) {
-      const initialSize = product.data.sizeStok[0].size || "";
-      setSelectedSize(initialSize);
-      setSelectedStok(product.data.sizeStok[0].stock || "");
-      dispatch(selectSizeForAddToCart(initialSize)); // Dispatch initial selected size
-    }
-  }, [product, dispatch]);
+  // useEffect(() => {
+  //   if (
+  //     product &&
+  //     product.data &&
+  //     product.data.sizeStok &&
+  //     product.data.sizeStok.length > 0
+  //   ) {
+  //     const initialSize = product.data.sizeStok[0].size || "";
+  //     setSelectedSize(initialSize);
+  //     setSelectedStok(product.data.sizeStok[0].stock || "");
+  //     dispatch(selectSizeForAddToCart(initialSize)); // Dispatch initial selected size
+  //   }
+  // }, [product, dispatch]);
 
   const handleSizeSelect = (index: any) => {
     if (
@@ -68,6 +68,7 @@ const ProductDetails = () => {
       setSelectedStok(product.data.sizeStok[index].stock || "");
       dispatch(selectSizeForAddToCart({ productId, size: selectedSizeValue })); // Dispatch selected size and product ID
       setSelectedSizeIndex(index);
+      console.log(productId)
     }
   };
 
@@ -181,8 +182,8 @@ const ProductDetails = () => {
                       key={index}
                       className={`border px-4 py-0 rounded ${
                         selectedSizeIndex === index
-                          ? " bg-teal-500 text-white px-4 py-0 rounded-md flex justify-center items-center"
-                          : " bg-neutral-500 text-white px-4 py-0 rounded-md flex justify-center items-center"
+                          ? " bg-primary text-white px-4 py-0 rounded-md flex justify-center items-center"
+                          : "  border border-primary text-texthexa font-semibold px-3 py-0 rounded-[5px] flex justify-center items-center"
                       } ${
                         item?.stock === 0 ? "line-through text-red-500 " : ""
                       }`}
@@ -243,6 +244,7 @@ const ProductDetails = () => {
 
             <div className="mt-[30px]">
               <Button
+              disabled={selectedSizeIndex==0}
                 className=" bg-primary text-white uppercase tracking-wider font-semibold"
                 onClick={() => dispatch(addToCart(product?.data))}
                 block

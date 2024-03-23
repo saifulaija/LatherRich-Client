@@ -6,6 +6,7 @@ import ShowOrder from "../pages/orderManagement/ShowOrder";
 import AddProduct from "../pages/productManagement/AddProduct";
 import ShowProduct from "../pages/productManagement/ShowProduct";
 import TestVarient from "../pages/productManagement/TestVarient";
+import ShowReview from "../pages/reviewManagement/ShowReview";
 import OrderDetails from "../pages/userOrderManagement/OrderDetails";
 
 
@@ -56,6 +57,17 @@ export const adminPaths = [
         path: "sells-history",
         element: <SellsHistory />,
       },
+    ],
+  },
+  {
+    name: "Review Management",
+    children: [
+      {
+        name: "All Reviews",
+        path: "all-reviews",
+        element: <ShowReview/>,
+      },
+    
     ],
   },
  

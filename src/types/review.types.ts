@@ -1,6 +1,6 @@
 export type TReview={
     name:string;
     rating:number;
-    description:string
-    
+    description:string;
+    _id:string
 }

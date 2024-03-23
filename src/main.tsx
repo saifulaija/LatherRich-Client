@@ -13,15 +13,19 @@ import { getTotals } from "./redux/features/cart/cartSlice.ts";
 import Notification from "./components/notification/Notification.tsx";
 
 
+
+
 store.dispatch(getTotals())
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <Provider store={store}>
+    
       <PersistGate loading={null} persistor={persistor}>
         <RouterProvider router={router} />
       </PersistGate>
       <Notification/>
+     
     </Provider>
     <Toaster position="top-center" richColors/>
    

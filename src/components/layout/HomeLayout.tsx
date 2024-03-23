@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Header from "../header/NewHeader";
 import Footer from "../footer/Footer";
+import GoToTop from "../goToTop/GoToTop";
 
 const HomeLayout = () => {
   return (
@@ -10,6 +11,7 @@ const HomeLayout = () => {
       <div className="flex-grow mt-[65px]">
         <Outlet />
       </div>
+      <GoToTop/>
       <Footer />
     </div>
   );

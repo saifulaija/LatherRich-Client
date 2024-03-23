@@ -109,7 +109,7 @@ const cartSlice = createSlice({
       
       const { productId, size } = action.payload;
 
-      console.log(action.payload)
+     
     
       // Find the index of the product in the cartItems array
       const itemIndex = state.cartItems.findIndex(item => item._id === productId);

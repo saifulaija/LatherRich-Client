@@ -23,17 +23,17 @@ const RelatedProducts = ({value}:{value:any[]}) => {
     { name: "sort", value: "-price" },{name:"category",value:value },
     ...params,
   ]);
-  console.log(setParams);
+  
   return (
     <div className="md:container mx-auto bg-white">
       <Spin spinning={isLoading}>
         <Swiper
           modules={[Navigation, Autoplay]}
-          spaceBetween={10}
+          spaceBetween={12}
           slidesPerView='auto'
           autoplay={{ delay: 5000 }}
           navigation={true}
-          pagination={{ clickable: true, el: ".swiper-pagination" }}
+          pagination={{ clickable: true,  el: ".swiper-pagination" }}
           loopAddBlankSlides={true}
           breakpoints={{
             '@0.00': {
@@ -66,7 +66,7 @@ const RelatedProducts = ({value}:{value:any[]}) => {
                 color="#7d3f98"
               >
                 <Card
-                  key={product?._id}
+                  // key={product?._id}
                   className=" w-[300px] h-[400px]"
                   cover={
                     <motion.div

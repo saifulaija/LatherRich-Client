@@ -4,6 +4,7 @@ import Sidebar from "../sidebar/Sidebar";
 import { Outlet } from "react-router-dom";
 import NewHeader from "../header/NewHeader";
 import Footer from "../footer/Footer";
+import GoToTop from "../goToTop/GoToTop";
 
 const CategoryLayout = () => {
   const { Header, Sider, Content } = Layout;
@@ -39,7 +40,7 @@ const CategoryLayout = () => {
           <Outlet />
         </Content>
       </Layout>
-
+<GoToTop/>
       <Footer />
     </Layout>
   );
