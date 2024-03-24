@@ -6,6 +6,7 @@ import { UserAddOutlined } from "@ant-design/icons";
 import { TReview } from "../../types/review.types";
 import { useCreateReviewMutation } from "../../redux/features/review/reviewApi";
 import { toast } from "sonner";
+import { motion } from "framer-motion";
 
 export type TReviewSchema = {
   name: string;
@@ -48,8 +49,13 @@ const Reviews = ({ product }: { product: TProduct }) => {
   };
 
   return (
-    <div>
-      <div>Reviews: {product.reviews?.length}</div>
+    <motion.div
+   
+    initial={{ opacity:0 }}
+    animate={{ opacity:1 }}
+    transition={{ delay: 1.5, duration:0.9 }}
+  >
+      
       <div className="flex justify-end items-center">
         <Button onClick={toggleForm}>Add Review</Button>
       </div>
@@ -110,7 +116,7 @@ const Reviews = ({ product }: { product: TProduct }) => {
           </Card>
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

@@ -99,6 +99,11 @@ const CheckoutPage = () => {
     },
   ];
 
+
+  if (!cart || !cart.cartItems || cart.cartItems.length === 0) {
+   navigate('/')
+  }
+
   const data = cart?.cartItems?.map((item: any) => ({
     key: item.id,
     image: item.images[0],
@@ -155,22 +160,22 @@ const CheckoutPage = () => {
 
   // for bkash payment ---
 
-  const pay = async () => {
-    try {
-      const { data } = await axios.post(
-        "http://localhost:5000/bkash-payment-create",
-        {
-          amount: 50,
-          orderId: 2,
-        },
-        {
-          withCredentials:true
-        }
-      );
-    } catch (err) {
-      console.log(err)
-    }
-  };
+  // const pay = async () => {
+  //   try {
+  //     const { data } = await axios.post(
+  //       "http://localhost:5000/bkash-payment-create",
+  //       {
+  //         amount: 50,
+  //         orderId: 2,
+  //       },
+  //       {
+  //         withCredentials:true
+  //       }
+  //     );
+  //   } catch (err) {
+  //     console.log(err)
+  //   }
+  // };
 
   return (
     <div className="w-full">

@@ -79,6 +79,10 @@ export const sortOptions = [
   { label: "High To Low", value: "-price" },
   { label: "Low To High", value: "price" },
 ];
+export const sizeOptions = [
+  { label: "34", value: "sizeStok.size" },
+  { label: "38",  value: "sizeStok.size" },
+];
 
 
 export const roleColors = {

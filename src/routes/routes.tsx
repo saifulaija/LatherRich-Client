@@ -5,7 +5,7 @@ import Login from "../pages/login/Login";
 import Home from "../components/home/Home";
 import CategoryLayout from "../components/layout/CategoryLayout";
 import HomeLayout from "../components/layout/HomeLayout";
-import ProductDetails from "../pages/productDetails/ProductDetails";
+// import ProductDetails from "../pages/productDetails/ProductDetails";
 import ExchangeAndComplain from "../pages/exchangeAndComplaince/ExchangeAndComplain";
 import CheckoutPage from "../pages/checkout/CheckoutPage";
 
@@ -19,6 +19,7 @@ import { userPaths } from "./user.route";
 import Success from "../pages/bkashPayment/Success";
 import Error from "../pages/bkashPayment/Error";
 import Register from "../pages/register/Register";
+import NewProductDetails from "../pages/productDetails/NewProductDetails";
 
 const router = createBrowserRouter([
   {
@@ -50,7 +51,8 @@ const router = createBrowserRouter([
       },
       {
         path: "product/:id",
-        element: <ProductDetails />,
+        // element: <ProductDetails />,
+       element: <NewProductDetails/>
       },
 
       {

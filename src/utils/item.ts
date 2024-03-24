@@ -167,6 +167,7 @@ export const sidebarItems = [
       },
     ],
   },
+ 
 ];
 export const itemsSearch = [
   { label: "Clear Filter", value: null },

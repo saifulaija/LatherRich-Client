@@ -11,6 +11,7 @@ import { IoFilterSharp } from "react-icons/io5";
 import { useEffect, useState } from "react";
 import PageNavigation from "../../components/pageNavigation/PageNavigation";
 import Meta from "antd/es/card/Meta";
+import { motion } from "framer-motion";
 
 import LoadingBar from "react-top-loading-bar";
 import { TProduct } from "../../types/product.type";
@@ -18,7 +19,7 @@ import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { getSort } from "../../redux/features/sort/sortSlice";
 import ButtonPrimary from "../../components/button/ButtonPrimary";
 import { PlusOutlined } from "@ant-design/icons";
-import { motion } from "framer-motion";
+
 
 const ProductCategory = () => {
   const sort = useAppSelector((state) => state.sort);
@@ -84,13 +85,14 @@ const ProductCategory = () => {
         </Drawer>
       </div>
       <Spin spinning={isLoading}>
-      <div className="md:container mx-auto md:px-20 py-10">
-        <div className="grid md:grid-col2 lg:grid-cols-3 gap-2">
-          {sortedProducts?.map((product: TProduct, index: number) => (
-           
+        <motion.div initial={{ opacity:0 }}
+    animate={{ opacity:1 }}
+    transition={{ delay: 1.5, duration:1.5 }}className="md:container mx-auto md:px-20 py-10">
+          <div className="grid md:grid-col2 lg:grid-cols-3 gap-2">
+            {sortedProducts?.map((product: TProduct, index: number) => (
               <div key={index}>
                 <Badge.Ribbon
-                placement="start"
+                  placement="start"
                   text={
                     product.discount !== 0 ? `discount${product.discount}%` : ""
                   }
@@ -100,18 +102,20 @@ const ProductCategory = () => {
                     key={product?._id}
                     className=" w-[300px] h-[400px]"
                     cover={
+                   
                       <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.5, delay: 0.5 }}
                         whileHover={{ scale: 1.1 }}
-                        className=" rounded-t-md h-[200px] cursor-pointer border border-neutral-100 shadow-lg overflow-hidden "
+                        className="rounded-t-md cursor-pointer border border-neutral-100 shadow-lg overflow-hidden"
+                        style={{ width: "300px", height: "200px" }} // Adjust width and height as needed
                       >
                         <img
                           alt="example"
                           src={product?.images[0]}
                           loading="lazy"
-                          className="max-w-full max-h-80% rounded-t-md"
+                          className="w-full h-full object-cover rounded-t-md"
                         />
                       </motion.div>
                     }
@@ -166,13 +170,12 @@ const ProductCategory = () => {
                   </Card>
                 </Badge.Ribbon>
               </div>
-          ))}
-        </div>
-      </div>
-          </Spin>
+            ))}
+          </div>
+        </motion.div>
+      </Spin>
     </div>
   );
 };
 
 export default ProductCategory;
-

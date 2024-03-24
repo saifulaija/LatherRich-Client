@@ -152,7 +152,7 @@ const ShoppingCart = () => {
 
               <Row gutter={[4, 4]}>
                 <Col span={24} className="space-y-2">
-                  {cart?.cartItems.map((cartItem: any) => (
+                  {cart?.cartItems?.map((cartItem: any) => (
                     <Card
                       key={cartItem.image}
                       style={{ height: "10" }}
@@ -162,8 +162,8 @@ const ShoppingCart = () => {
                         <Col span={6}>
                           <div className="flex justify-center items-center gap-1">
                             <img
-                              src={cartItem.images[0]}
-                              alt={cartItem.productName}
+                              src={cartItem?.images[0]}
+                              alt={cartItem?.productName}
                               width={30}
                               height={30}
                               loading="lazy"
@@ -173,8 +173,8 @@ const ShoppingCart = () => {
                               strong
                               className="text-gray-500 text-sm overflow-hidden"
                             >
-                              {cartItem.name.length > 10
-                                ? cartItem.name.substring(0, 10) + "..."
+                              {cartItem?.name.length > 10
+                                ? cartItem?.name.substring(0, 10) + "..."
                                 : cartItem.name}
                             </Typography.Text>
                           </div>

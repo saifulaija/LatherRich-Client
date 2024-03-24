@@ -69,13 +69,14 @@ const WomenProduct = () => {
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.5, delay: 0.5 }}
                       whileHover={{ scale: 1.1 }}
-                      className=" rounded-t-md h-[200px] border cursor-wait border-neutral-100 shadow-lg overflow-hidden "
+                      className="rounded-t-md cursor-pointer border border-neutral-100 shadow-lg overflow-hidden"
+                        style={{ width: "300px", height: "200px" }}
                     >
                       <img
                         alt="example"
                         src={product?.images[0]}
                         loading="lazy"
-                        className="max-w-full max-h-80% rounded-t-md"
+                        className="w-full h-full object-cover rounded-t-md"
                       />
                     </motion.div>
                   }

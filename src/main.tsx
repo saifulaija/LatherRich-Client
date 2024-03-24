@@ -10,7 +10,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import { Toaster } from "sonner";
 import router from "./routes/routes.tsx";
 import { getTotals } from "./redux/features/cart/cartSlice.ts";
-import Notification from "./components/notification/Notification.tsx";
+
 
 
 
@@ -24,7 +24,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <PersistGate loading={null} persistor={persistor}>
         <RouterProvider router={router} />
       </PersistGate>
-      <Notification/>
+     
      
     </Provider>
     <Toaster position="top-center" richColors/>

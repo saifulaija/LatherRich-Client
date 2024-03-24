@@ -2,13 +2,22 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { toast } from "sonner";
 
+// const initialState = {
+//   cartItems: localStorage.getItem("cartItems")
+//     ? JSON.parse(localStorage.getItem("cartItems"))
+//     : [],
+//   cartTotalQuantity: 0,
+//   cartTotalAmount: 0,
+// };
+
 const initialState = {
   cartItems: localStorage.getItem("cartItems")
-    ? JSON.parse(localStorage.getItem("cartItems"))
+    ? JSON.parse(localStorage.getItem("cartItems") as string)
     : [],
   cartTotalQuantity: 0,
   cartTotalAmount: 0,
 };
+
 
 const cartSlice = createSlice({
   name: "cart",
@@ -23,6 +32,7 @@ const cartSlice = createSlice({
         state.cartItems[existingIndex] = {
           ...state.cartItems[existingIndex],
           cartQuantity: state.cartItems[existingIndex].cartQuantity + 1,
+          
         };
         toast.info("Increased product quantity", {
           position: "bottom-left",
@@ -36,6 +46,44 @@ const cartSlice = createSlice({
       }
       localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
     },
+
+   
+    //   const productId = action.payload;
+    //   try {
+    //     const exist = state.cartItems.find(
+    //       (product) =>
+    //         product.id === productId.id &&
+    //         product.size === productId.size &&
+    //         product.color === productId.color
+    //     );
+    //     if (exist) {
+    //       exist.amount++;
+    //       exist.totalPrice += productId.price;
+    //       state.totalAmount++;
+    //       state.totalPrice += productId.price;
+    //     } else {
+    //       state.cart.push({
+    //         id: productId.id,
+    //         price: productId.price,
+    //         size: productId.size,
+    //         amount: 1,
+    //         img: productId.img,
+    //         totalPrice: productId.price,
+    //         name: productId.name,
+    //         text: productId.text,
+    //         color: productId.color,
+    //       });
+    //       state.totalAmount++;
+    //       state.totalPrice += productId.price;
+    //     }
+    //   } catch (err) {
+    //     return err;
+    //   }
+    // },
+
+
+
+
     decreaseCart(state, action) {
       const itemIndex = state.cartItems.findIndex(
         (item: any) => item._id === action.payload._id
@@ -104,24 +152,7 @@ const cartSlice = createSlice({
         return state;
       });
     },
-    selectSizeForAddToCart: (state, action) => {
-
-      
-      const { productId, size } = action.payload;
-
-     
-    
-      // Find the index of the product in the cartItems array
-      const itemIndex = state.cartItems.findIndex(item => item._id === productId);
-      
-      if (itemIndex !== -1) {
-        // Update the size property of the product at the specified index
-        state.cartItems[itemIndex].size = size;
-    
-        // Update localStorage
-        localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
-      }
-    },
+   
     
     
     
@@ -160,7 +191,7 @@ export const {
   removeFromCart,
   getTotals,
   clearCart,
-  selectSizeForAddToCart,
+
   decreaseCartBYshop,
 } = cartSlice.actions;
 
