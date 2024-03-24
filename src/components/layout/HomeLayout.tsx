@@ -8,7 +8,7 @@ const HomeLayout = () => {
     <div className="flex flex-col min-h-screen">
       <Header />
 
-      <div className="flex-grow mt-[65px]">
+      <div className="flex-grow mt-[60px]">
         <Outlet />
       </div>
       <GoToTop/>

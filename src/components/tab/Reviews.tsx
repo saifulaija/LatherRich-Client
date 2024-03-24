@@ -54,9 +54,11 @@ const Reviews = ({ product }: { product: TProduct }) => {
     initial={{ opacity:0 }}
     animate={{ opacity:1 }}
     transition={{ delay: 1.5, duration:0.9 }}
+    className="containerflex justify-center items-center"
   >
       
-      <div className="flex justify-end items-center">
+     <div className="max-w-[800px]">
+     <div className="flex justify-end items-center">
         <Button onClick={toggleForm}>Add Review</Button>
       </div>
       {showForm && (
@@ -116,6 +118,7 @@ const Reviews = ({ product }: { product: TProduct }) => {
           </Card>
         ))}
       </div>
+     </div>
     </motion.div>
   );
 };

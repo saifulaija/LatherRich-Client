@@ -20,9 +20,9 @@ import { useCreateProductMutation } from "../../redux/features/product/productAp
 import { TProduct } from "../../types/product.type";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import { useAppSelector } from "../../redux/hooks";
-import { useCurrentUser } from "../../redux/features/auth/authSlice";
+
 import { IoCloseOutline } from "react-icons/io5";
+import CustomeDivider from "../../components/customeDivider/CustomeDivider";
 
 const AddProduct = () => {
   const [fileList, setFileList] = useState<any[]>([]);
@@ -54,10 +54,10 @@ const AddProduct = () => {
   };
  
 
-  const onFinish = async (values) => {
+  const onFinish = async (values:any) => {
     try {
       const uploadedImages = await Promise.all(fileList.map(uploadImage));
-      const formDataWithSizeStok = {
+      const formDataWithSizeStok  = {
         ...values,
         sizeStok: formatSizeStok(),
         images: uploadedImages,
@@ -73,6 +73,7 @@ const AddProduct = () => {
         images: uploadedImages,
         sizeStok: formatSizeStok(),
         tag: values.tag,
+        productType:values.productType,
         discount: values.discount,
         description: values.description,
         productCode:values.productCode
@@ -138,7 +139,7 @@ const AddProduct = () => {
 
   return (
     <div className="container mx-auto max-w-3xl border border-neutral-400 pl-20">
-      <Divider>Product Add</Divider>
+   <CustomeDivider title='Add product'/>
       <Form
         form={form}
         name="register"
@@ -150,6 +151,14 @@ const AddProduct = () => {
         <Form.Item name="name" rules={[{ required: true }]}>
           <Input
             placeholder="Product name...."
+            className="font-bold p-1 text-gray-600"
+            disabled={isLoading}
+            style={{ width: "100%" }}
+          />
+        </Form.Item>
+        <Form.Item name="productType" rules={[{ required: true }]}>
+          <Input
+            placeholder="Product type...."
             className="font-bold p-1 text-gray-600"
             disabled={isLoading}
             style={{ width: "100%" }}

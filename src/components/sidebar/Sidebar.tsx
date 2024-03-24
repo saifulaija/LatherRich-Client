@@ -7,7 +7,7 @@ import { sidebarItems } from "../../utils/item";
 import SubMenu from "antd/es/menu/SubMenu";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { sizeOptions, sortOptions } from "../../types/global.type";
+import {  sortOptions } from "../../types/global.type";
 import { useAppDispatch } from "../../redux/hooks";
 import { changSort } from "../../redux/features/sort/sortSlice";
 

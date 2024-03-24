@@ -3,7 +3,7 @@
 
 
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Button, Divider, Select, Spin } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import { useParams } from "react-router-dom";
@@ -44,9 +44,9 @@ const NewProductDetails = () => {
     setIsSizeSelected(true);
   };
 
-  useEffect(() => {
-    console.log("Selected option:", selectedOption);
-  }, [selectedOption]);
+//   useEffect(() => {
+  
+//   }, [selectedOption]);
 
   const images = product?.data?.images;
   const ProductReviewData = product?.data;

@@ -1,8 +1,3 @@
-
-
-
-
-
 import React from "react";
 import { Tabs } from "antd";
 import type { TabsProps } from "antd";
@@ -19,8 +14,7 @@ const ProductTab: React.FC<{ description: string; product: TProduct }> = ({
   description,
   product,
 }) => {
-  console.log(description);
-  const reviewsNumber=product?.reviews?.length
+  const reviewsNumber = product?.reviews?.length;
   const items: TabsProps["items"] = [
     {
       key: "1",
@@ -47,8 +41,8 @@ const ProductTab: React.FC<{ description: string; product: TProduct }> = ({
     },
     {
       key: "4",
-      label:"Previlige's",
-      children:<TermsAndConditionsPage/>
+      label: "Previlige's",
+      children: <TermsAndConditionsPage />,
     },
   ];
 
@@ -58,9 +52,10 @@ const ProductTab: React.FC<{ description: string; product: TProduct }> = ({
       defaultActiveKey="1"
       items={items}
       onChange={onChange}
+      centered
+      type="card"
     />
   );
 };
 
 export default ProductTab;
-
