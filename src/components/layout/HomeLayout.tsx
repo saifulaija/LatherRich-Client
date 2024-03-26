@@ -11,7 +11,8 @@ const HomeLayout = () => {
       <div className="flex-grow mt-[60px]">
         <Outlet />
       </div>
-      <GoToTop/>
+      <GoToTop />
+
       <Footer />
     </div>
   );

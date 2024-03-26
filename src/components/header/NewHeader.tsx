@@ -8,6 +8,7 @@ import ShoppingCart from "../shopingCart/ShoppingCart";
 import { AiOutlineCaretDown, AiOutlineCaretUp } from "react-icons/ai";
 import Search from "antd/es/input/Search";
 import SubMenu from "antd/es/menu/SubMenu";
+import TopNavbar from "../topNavbar/TopNavbar";
 
 const NewHeader = () => {
   const [drawerVisible, setDrawerVisible] = useState(false);
@@ -62,9 +63,10 @@ const NewHeader = () => {
     <motion.nav
       className="bg-white p-4 fixed top-0 left-0 right-0 z-10 border border-b-2 shadow"
       initial={{ y: -150 }}
-      animate={{ y: -0 }}
+      animate={{ y: 0 }}
       transition={{ delay: 0.5, type: "tween", stiffness: 50 }}
     >
+       
       <div className="container h-[60px] mx-auto flex justify-between items-center">
         <motion.div
           whileHover={{ x: 10 }}
@@ -191,6 +193,7 @@ const NewHeader = () => {
           onClick={() => setDrawerVisible(false)}
         ></div>
       )}
+     <TopNavbar/>
     </motion.nav>
   );
 };
