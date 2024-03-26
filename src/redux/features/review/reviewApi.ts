@@ -7,6 +7,7 @@ const productApi = baseApi.injectEndpoints({
         url: "/reviews",
         method: "GET",
       }),
+      providesTags:['review']
     }),
     createReview: builder.mutation({
       query: (reviewInfo) => ({
@@ -14,7 +15,7 @@ const productApi = baseApi.injectEndpoints({
         method: "POST",
         body: reviewInfo,
       }),
-      invalidatesTags: ["product"],
+      invalidatesTags: ["review","product"],
     }),
     deleteReview: builder.mutation({
       query: (id) => ({

@@ -1,5 +1,3 @@
-
-
 import { useState, useEffect, useRef } from "react";
 import { Drawer, Menu } from "antd";
 import { motion } from "framer-motion";
@@ -36,7 +34,7 @@ const NewHeader = () => {
     setDrawerVisible(false);
   };
 
-  const handleSearch = (value:string) => {
+  const handleSearch = (value: string) => {
     navigate(`/products/search?q=${encodeURIComponent(value)}`);
   };
 
@@ -46,7 +44,7 @@ const NewHeader = () => {
   useEffect(() => {
     const handleOutsideClick = (e) => {
       if (
-        !subMenuRef.current.contains(e.target) &&
+        !subMenuRef?.current?.contains(e.target) &&
         !menuRef.current.contains(e.target)
       ) {
         setActiveSubMenu("");
@@ -91,7 +89,7 @@ const NewHeader = () => {
             {items?.map((item) => (
               <div key={item.key} ref={subMenuRef}>
                 <button
-                  className="text-gray-600 hover:text-gray-300 focus:outline-none mr-4 flex items-center"
+                  className="text-gray-500 hover:text-gray-600  focus:outline-none mr-4 flex items-center"
                   onClick={() => handleMenuItemClick(item.key)}
                 >
                   {item.label}
@@ -116,8 +114,8 @@ const NewHeader = () => {
                     {item.children.map((child) => (
                       <button
                         key={child.key}
-                        onClick={() => handleSubMenuClick(child)}
-                        className="block text-gray-800 text-sm border-l-transparent hover:border-l-gray-500 border-l-4 text-center font-semibold w-[200px] cursor-pointer rounded-r-sm hover:bg-gray-200 py-1 px-1 mt-0"
+                        onClick={() => handleSubMenuClick(child)} 
+                        className="block text-gray-800 text-sm border-l-transparent hover:border-l-green-500 border-l-4 text-center font-semibold w-[200px] cursor-pointer hover:text-white rounded-r-sm hover:bg-primary py-1 px-1 mt-0"
                       >
                         {child.label}
                       </button>

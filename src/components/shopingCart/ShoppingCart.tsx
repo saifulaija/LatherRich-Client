@@ -68,10 +68,10 @@ const ShoppingCart = () => {
               onClick={() => {
                 setCartDrawerOpen(true);
               }}
-              className=" text-[#7d3f98] flex items-center justify-center gap-1"
+              className=" bg-primary text-white flex items-center justify-center gap-1"
             >
               <IoBagAddOutline
-                className="text-[#7d3f98] font-semibold"
+                className=" font-semibold"
                 size={20}
               />
               <span className="font-semibold text-[14px]">
@@ -85,7 +85,7 @@ const ShoppingCart = () => {
           {user ? (
             <Button
               icon={<UserOutlined />}
-              className="uppercase tracking-wide font-semibold text-[#7d3f98]"
+              className="uppercase text-white tracking-wide font-semibold bg-primary"
               onClick={handleLogout}
             >
               Logout
@@ -94,7 +94,7 @@ const ShoppingCart = () => {
             <Link to="/login">
               <Button
                 icon={<UserOutlined />}
-                className="uppercase tracking-wide font-semibold text-[#7d3f98]"
+                className="uppercase text-white tracking-wide font-semibold bg-primary"
               >
                 Login
               </Button>

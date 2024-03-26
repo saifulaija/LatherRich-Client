@@ -5,7 +5,7 @@ import { TReview } from "../../types/review.types";
 import { toast } from "sonner";
 
 const ShowReview = () => {
-  const { data: reviews, isLoading, isFetching } = useGetReviewsQuery("");
+  const { data: reviews, isFetching,isLoading } = useGetReviewsQuery("");
     const [deleteReview] = useDeleteReviewMutation();
   const reviewsData = reviews?.data;
 
@@ -45,7 +45,7 @@ const ShowReview = () => {
       key: "actions",
       render: (text: string, record: TReview) => (
         <Space size="middle">
-          <Button loading={isLoading && isFetching} danger onClick={() => handleDelete(record._id)}>
+          <Button loading={isLoading}  onClick={() => handleDelete(record._id)}>
             Delete
           </Button>
         </Space>
@@ -59,7 +59,7 @@ const ShowReview = () => {
       <Table
         columns={columns}
         dataSource={reviewsData}
-        loading={isLoading || isFetching}
+        loading={isFetching}
       />
     </div>
   );

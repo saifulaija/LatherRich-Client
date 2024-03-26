@@ -24,7 +24,7 @@ const BestSellingProducts = () => {
   ]);
   console.log(setParams);
   return (
-    <div className="md:container mx-auto bg-white">
+    <div className="md:container mx-auto ">
       <Spin spinning={isLoading}>
         <Swiper
           modules={[Navigation, Autoplay]}
@@ -44,13 +44,36 @@ const BestSellingProducts = () => {
             },
             '@1.00': {
               slidesPerView: 3,
-              spaceBetween: 40,
+              spaceBetween: 20,
             },
             '@1.50': {
+              slidesPerView: 3,
+              spaceBetween: 20,
+            },
+            '@2.0': {
               slidesPerView: 4,
-              spaceBetween: 50,
+              spaceBetween: 20,
             },
           }}
+
+          // breakpoints={{
+          //   "@0.00": {
+          //     slidesPerView: 1,
+          //     spaceBetween: 10,
+          //   },
+          //   "@0.75": {
+          //     slidesPerView: 2,
+          //     spaceBetween: 20,
+          //   },
+          //   "@1.00": {
+          //     slidesPerView: 3,
+          //     spaceBetween: 40,
+          //   },
+          //   "@1.50": {
+          //     slidesPerView: 4,
+          //     spaceBetween: 50,
+          //   },
+          // }}
         >
           {productsData?.data?.map((product, index) => (
             <SwiperSlide key={index}>
@@ -70,7 +93,7 @@ const BestSellingProducts = () => {
                       transition={{ duration: 0.5, delay: 0.5 }}
                       whileHover={{ scale: 1.1 }}
                       className="rounded-t-md cursor-pointer border border-neutral-100 shadow-lg overflow-hidden"
-                        style={{ width: "300px", height: "200px" }}
+                      style={{ width: "300px", height: "200px" }}
                     >
                       <img
                         alt="example"

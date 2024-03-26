@@ -17,6 +17,7 @@ const ProductDetails = () => {
   const [isSizeSelected, setIsSizeSelected] = useState(false);
   const { id } = useParams();
   const { data: product, isLoading } = useGetSingleProductForDetailsQuery(id);
+  console.log({id})
 
   const images = product?.data[0]?.images;
   const avgRating = product?.data[0]?.averageRating;
@@ -31,6 +32,8 @@ const ProductDetails = () => {
         value: item.size,
         label: `Size ${item.size} (Stock: ${item.stock})`,
       })) || [];
+
+      
   const handleSelectChange = (selectedOption: any) => {
     setSelectedOption(selectedOption);
     setIsSizeSelected(true);

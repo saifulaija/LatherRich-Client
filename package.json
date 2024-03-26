@@ -19,6 +19,7 @@
     "framer-motion": "^11.0.18",
     "jwt-decode": "^4.0.0",
     "moment": "^2.30.1",
+    "posthog-js": "^1.116.6",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-carousel": "^4.3.0",

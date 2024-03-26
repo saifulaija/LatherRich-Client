@@ -10,8 +10,10 @@ import { PersistGate } from "redux-persist/integration/react";
 import { Toaster } from "sonner";
 import router from "./routes/routes.tsx";
 import { getTotals } from "./redux/features/cart/cartSlice.ts";
-
-
+import posthog from 'posthog-js';
+posthog.init( // new
+  'phc_Bf7srlA7Vf7CxgnOBQeRTlxqVEzU93PN1MU30YQ7Hhr', { api_host: "https://us.posthog.com" }
+)
 
 
 

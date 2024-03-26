@@ -11,6 +11,7 @@ import { useTopBarLoader } from "../../utils/topBarLoader";
 import CustomeDivider from "../customeDivider/CustomeDivider";
 import BestSellingProducts from "../bestSellingProduct/BestSellingProducts";
 import { motion } from "framer-motion";
+import CookieBanner from "../cookieBanner/CookieBanner";
 
 const Home = () => {
   const [progress, setProgress] = useState(0);
@@ -41,6 +42,8 @@ const Home = () => {
       <div className="mt-12 mb-12 ">
         <CustomeDivider title={" Women's Collection"} />
       </div>
+
+      <CookieBanner/>
 
       <WomenProduct />
       <div className="mt-12 mb-12">

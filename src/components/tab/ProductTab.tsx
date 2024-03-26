@@ -4,7 +4,8 @@ import type { TabsProps } from "antd";
 import chart from "../../assets/images/size-chart-for-women.jpg";
 import Reviews from "./Reviews";
 import { TProduct } from "../../types/product.type";
-import TermsAndConditionsPage from "./TermsAndConditionsPage";
+
+import Faq from "./Faq";
 
 const onChange = (key: string) => {
   console.log(key);
@@ -39,10 +40,11 @@ const ProductTab: React.FC<{ description: string; product: TProduct }> = ({
         </div>
       ),
     },
+
     {
       key: "4",
-      label: "Previlige's",
-      children: <TermsAndConditionsPage />,
+      label: "FAQ",
+      children: <Faq />,
     },
   ];
 
@@ -52,10 +54,10 @@ const ProductTab: React.FC<{ description: string; product: TProduct }> = ({
       defaultActiveKey="1"
       items={items}
       onChange={onChange}
-      centered
       type="card"
     />
   );
 };
 
 export default ProductTab;
+

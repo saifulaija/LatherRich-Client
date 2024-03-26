@@ -19,7 +19,7 @@ import { PlusOutlined } from "@ant-design/icons";
 const WomenProduct = () => {
   const [params, setParams] = useState<TQueryParam[]>([]);
   const { data: productsData, isLoading } = useGetAllProductsQuery([
-    { name: "sort", value: "-price" },
+    { name: "sort", value: "-price" },{ name: "category", value: "women" },
     ...params,
   ]);
   console.log(setParams);
@@ -61,7 +61,7 @@ const WomenProduct = () => {
                 color="#7d3f98"
               >
                 <Card
-                  key={product?._id}
+                  // key={product?._id}
                   className=" w-[300px] h-[400px]"
                   cover={
                     <motion.div
