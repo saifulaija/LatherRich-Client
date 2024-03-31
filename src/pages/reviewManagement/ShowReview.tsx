@@ -43,7 +43,7 @@ const ShowReview = () => {
     {
       title: "Actions",
       key: "actions",
-      render: (text: string, record: TReview) => (
+      render: (_text: string, record: TReview) => (
         <Space size="middle">
           <Button loading={isLoading}  onClick={() => handleDelete(record._id)}>
             Delete

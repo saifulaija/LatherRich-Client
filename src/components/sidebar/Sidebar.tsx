@@ -16,6 +16,8 @@ const Sidebar = () => {
   const navigate = useNavigate();
   const [selectedSort, setSelectedSort] = useState("");
 
+  console.log(setSelectedSort)
+
   const handleSubMenuClick = (item: any) => {
     const key = item.key;
     console.log({ key });

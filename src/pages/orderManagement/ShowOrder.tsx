@@ -223,16 +223,29 @@ const ShowOrder = () => {
       dataIndex: "totalPrice",
       render: (price: number) => `৳${price}`,
     },
+    // {
+    //   title: "Delivery Status",
+    //   dataIndex: "deliveryStatus",
+    //   key: "deliveryStatus",
+    //   render: (status: string, record: any) => (
+      
+    //     <Tag color={record.deliveryStatus === "Delivered" ? "green" : "red"}>
+    //       {record.deliveryStatus}
+    //     </Tag>
+    //   ),
+    // },
+
     {
       title: "Delivery Status",
       dataIndex: "deliveryStatus",
       key: "deliveryStatus",
-      render: (status: string, record: any) => (
+      render: ( record: any) => (
         <Tag color={record.deliveryStatus === "Delivered" ? "green" : "red"}>
           {record.deliveryStatus}
         </Tag>
       ),
     },
+    
     {
       title: "Action",
       key: "update",

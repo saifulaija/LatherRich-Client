@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import CustomeDivider from "../../components/customeDivider/CustomeDivider";
 import { Button, Divider, Table } from "antd";
 import { useGetSingleOrderQuery } from "../../redux/features/order/orderApi";
+import { TProduct } from "../../types/product.type";
 
 // DetailRow component
 const DetailRow = ({ title, value }:{title:string, value:string}) => {
@@ -15,12 +16,12 @@ const DetailRow = ({ title, value }:{title:string, value:string}) => {
 
 const OrderDetails = () => {
   const { id } = useParams();
-  const { data, isLoading } = useGetSingleOrderQuery(id);
+  const { data } = useGetSingleOrderQuery(id);
   const columns = [
     {
       title: 'Image',
       dataIndex: 'image',
-      render: image => <img src={image} width={30} alt="" />,
+      render:(image: string) => <img src={image} width={30} alt="" />,
     },
     {
       title: 'Product Name',
@@ -29,7 +30,7 @@ const OrderDetails = () => {
     {
       title: 'Product Size',
       dataIndex: 'size',
-      render: size => <Button>size/{size}</Button>,
+      render: (size:string) => <Button>size/{size}</Button>,
     },
     {
       title: 'Price',
@@ -45,7 +46,7 @@ const OrderDetails = () => {
     },
   ];
 
-  const dataSource = data?.data?.orderProduct.map((product, index) => ({
+  const dataSource = data?.data?.orderProduct.map((product:TProduct, index:number) => ({
     key: index,
     image: product.image,
     name: product.name, 
@@ -55,7 +56,7 @@ const OrderDetails = () => {
     code:product.code 
   }));
 
-  const formatDate = (date) => {
+  const formatDate = (date:string) => {
     return date ? new Date(date).toLocaleDateString() : "";
   };
 

@@ -28,6 +28,7 @@ const ShoppingCart = () => {
   useEffect(() => {
     dispatch(getTotals());
   }, [cart]);
+  console.log(dropdownOpen)
 
   const handleLogout = () => {
     dispatch(logout());

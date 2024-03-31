@@ -12,14 +12,14 @@ import { useState } from "react";
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
+  console.log(loading)
 
   const [login, { isLoading }] = useLoginMutation();
   const navigate = useNavigate();
   const location = useLocation();
-  const from  = location.state?.from.pathname || "/";
+  const from = location.state?.from.pathname || "/";
 
   const dispatch = useAppDispatch();
-
 
   const onFinish = async (values: { email: string; password: string }) => {
     setLoading(true);
@@ -34,7 +34,7 @@ const Login = () => {
 
       // return null;
       const res = await login(userInfo).unwrap();
-      console.log(res)
+      console.log(res);
 
       // const user = verifyToken(res.data.accessToken);
 
@@ -45,7 +45,7 @@ const Login = () => {
       if (user.role === "user") {
         navigate(from, { replace: true });
       } else {
-        navigate('/');
+        navigate("/");
       }
     } catch (error) {
       toast.error((error as any)?.data?.message || "An error occurred");
@@ -91,8 +91,11 @@ const Login = () => {
             <Button className="btn" loading={isLoading} htmlType="submit" block>
               Login Now
             </Button>
-            <div className="text-center mt-4">
-              First time here? <Link to="/register">Register</Link>
+            <div className="text-center mt-4 ">
+              new user?{" "}
+              <span className="text-blue-300">
+                <Link to="/register">Register Here</Link>
+              </span>
             </div>
           </Form.Item>
         </Form>

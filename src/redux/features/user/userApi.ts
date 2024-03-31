@@ -33,7 +33,7 @@ const userApi = baseApi.injectEndpoints({
           params: params,
         };
       },
-      providesTags: ["product", "sell"],
+      providesTags: ["product"],
       transformResponse: (response: TResponseRedux<TUser[]>) => {
         return {
           data: response.data,

@@ -9,9 +9,10 @@ import LoadingBar from "react-top-loading-bar";
 import { useState } from "react";
 import { useTopBarLoader } from "../../utils/topBarLoader";
 import CustomeDivider from "../customeDivider/CustomeDivider";
-import BestSellingProducts from "../bestSellingProduct/BestSellingProducts";
+// import BestSellingProducts from "../bestSellingProduct/BestSellingProducts";
 import { motion } from "framer-motion";
 import CookieBanner from "../cookieBanner/CookieBanner";
+import NewBestSellingProducts from "../bestSellingProduct/NewBestSelling";
 
 const Home = () => {
   const [progress, setProgress] = useState(0);
@@ -32,8 +33,8 @@ const Home = () => {
       <div className="mt-12 mb-12 ">
         <CustomeDivider title={"best selling products"} />
       </div>
-
-      <BestSellingProducts />
+<NewBestSellingProducts/>
+      {/* <BestSellingProducts /> */}
       <div className="mt-12 mb-12 ">
         <CustomeDivider title={" Men's Collection"} />
       </div>

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useEffect, useRef } from "react";
 import { Drawer, Menu } from "antd";
 import { motion } from "framer-motion";
@@ -14,6 +15,7 @@ const NewHeader = () => {
   const [drawerVisible, setDrawerVisible] = useState(false);
   const [activeSubMenu, setActiveSubMenu] = useState("");
   const [isMobile, setIsMobile] = useState(false);
+  console.log(isMobile)
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -25,11 +27,11 @@ const NewHeader = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const handleMenuItemClick = (menu) => {
+  const handleMenuItemClick = (menu:any) => {
     setActiveSubMenu(activeSubMenu === menu ? "" : menu);
   };
 
-  const handleSubMenuClick = (item) => {
+  const handleSubMenuClick = (item:any) => {
     navigate(`/products/${item.key}`);
     setActiveSubMenu("");
     setDrawerVisible(false);
@@ -43,7 +45,7 @@ const NewHeader = () => {
   const subMenuRef = useRef(null);
 
   useEffect(() => {
-    const handleOutsideClick = (e) => {
+    const handleOutsideClick = (e:any) => {
       if (
         !subMenuRef?.current?.contains(e.target) &&
         !menuRef.current.contains(e.target)
@@ -58,6 +60,11 @@ const NewHeader = () => {
       document.removeEventListener("mousedown", handleOutsideClick);
     };
   }, []);
+
+
+ 
+
+
 
   return (
     <motion.nav

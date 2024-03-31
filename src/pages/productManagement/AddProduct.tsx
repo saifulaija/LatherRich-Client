@@ -1,21 +1,23 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   Button,
-
   Divider,
   Form,
   Input,
   InputNumber,
   Select,
- 
   Upload,
   message,
 } from "antd";
 
-import {  PlusOutlined, UploadOutlined } from "@ant-design/icons";
+import { PlusOutlined, UploadOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { useState } from "react";
-import { TResponse, categoryOptions, subCategoryOptions } from "../../types/global.type";
+import {
+  TResponse,
+  categoryOptions,
+  subCategoryOptions,
+} from "../../types/global.type";
 import { useCreateProductMutation } from "../../redux/features/product/productApi";
 import { TProduct } from "../../types/product.type";
 import { toast } from "react-toastify";
@@ -31,11 +33,25 @@ const AddProduct = () => {
   const [sizeStockFields, setSizeStockFields] = useState([
     { size: "", stock: "" },
   ]);
-  const navigate= useNavigate();
- 
+  const navigate = useNavigate();
 
   const [productCreate, { isLoading }] = useCreateProductMutation();
-  const handleSizeStockChange = (index, fieldName, value) => {
+  // const handleSizeStockChange = (index:number, fieldName:any, value:string) => {
+  //   const newFields = [...sizeStockFields];
+  //   newFields[index][fieldName]  = value;
+  //   setSizeStockFields(newFields);
+  // };
+
+  interface SizeStockField {
+    size: string;
+    stock: number;
+  }
+
+  const handleSizeStockChange = (
+    index: number,
+    fieldName: keyof SizeStockField,
+    value: string
+  ) => {
     const newFields = [...sizeStockFields];
     newFields[index][fieldName] = value;
     setSizeStockFields(newFields);
@@ -52,16 +68,17 @@ const AddProduct = () => {
     }));
     return formattedSizeStok;
   };
- 
 
-  const onFinish = async (values:any) => {
+  const onFinish = async (values: any) => {
     try {
       const uploadedImages = await Promise.all(fileList.map(uploadImage));
-      const formDataWithSizeStok  = {
+      const formDataWithSizeStok = {
         ...values,
         sizeStok: formatSizeStok(),
         images: uploadedImages,
       };
+
+      console.log(formDataWithSizeStok);
 
       const productInfo = {
         name: values.name,
@@ -73,23 +90,22 @@ const AddProduct = () => {
         images: uploadedImages,
         sizeStok: formatSizeStok(),
         tag: values.tag,
-        productType:values.productType,
+        productType: values.productType,
         discount: values.discount,
         description: values.description,
-        productCode:values.productCode
+        productCode: values.productCode,
       };
-     
 
       try {
         console.log(productInfo);
-  
+
         const res = (await productCreate(productInfo)) as TResponse<TProduct>;
-  
+
         if (res?.error) {
           toast.error(res?.error?.data?.message);
         } else {
           toast.success("product  created successfully");
-          navigate('/superAdmin/show-product');
+          navigate("/superAdmin/show-product");
         }
       } catch (error) {
         toast.error("something went wrong");
@@ -139,7 +155,7 @@ const AddProduct = () => {
 
   return (
     <div className="container mx-auto max-w-3xl border border-neutral-400 pl-20">
-   <CustomeDivider title='Add product'/>
+      <CustomeDivider title="Add product" />
       <Form
         form={form}
         name="register"
@@ -237,7 +253,11 @@ const AddProduct = () => {
         <Form.Item>
           <Divider>Size & Stok</Divider>
           {sizeStockFields.map((field, index) => (
-            <div className="max-w-full" key={index} style={{ display: "flex", marginBottom: 8 }}>
+            <div
+              className="max-w-full"
+              key={index}
+              style={{ display: "flex", marginBottom: 8 }}
+            >
               <Form.Item style={{ marginRight: 8 }}>
                 <Input
                   style={{ width: "100%" }}
@@ -249,7 +269,7 @@ const AddProduct = () => {
                   }
                 />
               </Form.Item>
-              <Form.Item style={{ marginRight: 8 }}>
+              {/* <Form.Item style={{ marginRight: 8 }}>
                 <InputNumber
                   style={{ width: "100%" }}
                   className="font-bold p-1 text-gray-600"
@@ -259,7 +279,21 @@ const AddProduct = () => {
                     handleSizeStockChange(index, "stock", value)
                   }
                 />
+              </Form.Item> */}
+
+              <Form.Item style={{ marginRight: 8 }}>
+                <InputNumber
+                  style={{ width: "100%" }}
+                  className="font-bold p-1 text-gray-600"
+                  placeholder="Stock"
+                  value={field.stock}
+                  onChange={
+                    (value) =>
+                      handleSizeStockChange(index, "stock", value as string) // Type assertion
+                  }
+                />
               </Form.Item>
+
               <Button
                 type="link"
                 icon={<IoCloseOutline className="text-[18px] font-semibold" />}
@@ -269,12 +303,16 @@ const AddProduct = () => {
                     sizeStockFields.filter((_, idx) => idx !== index)
                   )
                 }
-              >
-               
-              </Button>
+              ></Button>
             </div>
           ))}
-          <Button block  className="border border-neutral-500 text-neutral-600 uppercase tracking-wider font-semibold" type="dashed"  icon={<PlusOutlined />} onClick={handleAddSizeStock}>
+          <Button
+            block
+            className="border border-neutral-500 text-neutral-600 uppercase tracking-wider font-semibold"
+            type="dashed"
+            icon={<PlusOutlined />}
+            onClick={handleAddSizeStock}
+          >
             Add Size & Stock
           </Button>
         </Form.Item>

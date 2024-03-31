@@ -12,6 +12,7 @@ import { Badge, Button, Drawer, List } from "antd";
 import { useGetReviewsQuery } from "../../redux/features/review/reviewApi";
 import { useGetAllOrdersQuery } from "../../redux/features/order/orderApi";
 import { useState } from "react";
+import { TOrder, TReview } from "../../types/global.type";
 
 const CustomeHeader = () => {
   const [reviewsOpen, setReviewsOpen] = useState(false);
@@ -77,10 +78,10 @@ const CustomeHeader = () => {
         >
           <List
             dataSource={orders?.data}
-            renderItem={(item) => {
-             return <List.Item>{item.address} has ordered</List.Item>;
+            renderItem={(item: TOrder) => {
+              return <List.Item>{item?.address} has ordered</List.Item>;
             }}
-          ></List>
+          />
         </Drawer>
         <Drawer
           title="Reviews"
@@ -90,10 +91,10 @@ const CustomeHeader = () => {
           }}
           maskClosable
         >
-           <List
+          <List
             dataSource={reviews?.data}
-            renderItem={(item) => {
-             return <List.Item>{item.description}</List.Item>;
+            renderItem={(item:TReview) => {
+              return <List.Item>{item.description}</List.Item>;
             }}
           ></List>
         </Drawer>

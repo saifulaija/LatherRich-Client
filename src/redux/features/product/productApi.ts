@@ -34,7 +34,7 @@ const productApi = baseApi.injectEndpoints({
           params: params,
         };
       },
-      providesTags: ["product", "sell"],
+      providesTags: ["product"],
       transformResponse: (response: TResponseRedux<TProduct[]>) => {
         return {
           data: response.data,
@@ -61,7 +61,7 @@ const productApi = baseApi.injectEndpoints({
           method: "GET",
         };
       },
-      providesTags: ["branch"],
+    
     }),
    
     deleteProduct: builder.mutation({

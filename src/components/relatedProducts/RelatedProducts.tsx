@@ -23,6 +23,7 @@ const RelatedProducts = ({value}:{value:any[]}) => {
     { name: "sort", value: "-price" },{name:"category",value:value },
     ...params,
   ]);
+  console.log(setParams)
   
   return (
     <div className="md:container mx-auto bg-white">

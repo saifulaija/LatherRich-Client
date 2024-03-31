@@ -34,7 +34,7 @@ export default {
         textprimary:'#4d4f53',
         textsecoundary:'#8a7967',
         texttertiary:'#6d6e70',
-        texthexa:'#404040',
+        texthexa:' rgb(245 208 254)',
         textwhite:'#eff2f3'
       },
     },

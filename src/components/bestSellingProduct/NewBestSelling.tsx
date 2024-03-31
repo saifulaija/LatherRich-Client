@@ -8,7 +8,7 @@ import { Navigation, Autoplay } from "swiper/modules";
 import { useState } from "react";
 import { useGetAllProductsQuery } from "../../redux/features/product/productApi";
 import { TQueryParam } from "../../types/global.type";
-import './MenProduct.css'
+import "./NewBestSelling.css";
 import { motion } from "framer-motion";
 
 import { Link } from "react-router-dom";
@@ -16,7 +16,7 @@ import Meta from "antd/es/card/Meta";
 import ButtonPrimary from "../button/ButtonPrimary";
 import { PlusOutlined } from "@ant-design/icons";
 
-const MenProduct = () => {
+const NewBestSellingProducts = () => {
   const [params, setParams] = useState<TQueryParam[]>([]);
   const { data: productsData, isLoading } = useGetAllProductsQuery([
     { name: "sort", value: "-price" },
@@ -24,9 +24,10 @@ const MenProduct = () => {
   ]);
   console.log(setParams);
   return (
-    <div className="md:container mx-auto bg-white">
+    <div className="md:container mx-auto ">
       <Spin spinning={isLoading}>
         <Swiper
+      
           modules={[Navigation, Autoplay]}
           spaceBetween={10}
           slidesPerView={4}
@@ -34,23 +35,26 @@ const MenProduct = () => {
           navigation={true}
           pagination={{ clickable: true, el: ".swiper-pagination" }}
           breakpoints={{
-            '@0.00': {
+            0: {
               slidesPerView: 1,
               spaceBetween: 10,
             },
-            '@0.75': {
+            480: {
               slidesPerView: 2,
-              spaceBetween: 20,
+              spaceBetween: 10,
             },
-            '@1.00': {
+            768: {
               slidesPerView: 3,
-              spaceBetween: 40,
+              spaceBetween: 15,
             },
-            '@1.50': {
+            1024: {
               slidesPerView: 4,
-              spaceBetween: 50,
+              spaceBetween: 15,
             },
+           
           }}
+
+        
         >
           {productsData?.data?.map((product, index) => (
             <SwiperSlide key={index}>
@@ -70,8 +74,8 @@ const MenProduct = () => {
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.5, delay: 0.5 }}
                       whileHover={{ scale: 1.1 }}
-                      className="rounded-t-md cursor-pointer border border-neutral-100 shadow-lg overflow-hidden"
-                        style={{ width: "300px", height: "200px" }}
+                      className="rounded-t-md cursor-pointer  shadow-2xl overflow-hidden"
+                      style={{ width: "300px", height: "200px" }}
                     >
                       <img
                         alt="example"
@@ -139,4 +143,4 @@ const MenProduct = () => {
   );
 };
 
-export default MenProduct;
+export default NewBestSellingProducts;

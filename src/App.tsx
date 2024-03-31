@@ -1,17 +1,11 @@
-import UserLayout from "./components/layout/UserLayout"
-import Notification from "./components/notification/Notification"
-
-
+import UserLayout from "./components/layout/UserLayout";
 
 function App() {
-
-
   return (
     <>
-     <UserLayout/>
-     <Notification/>
+      <UserLayout />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

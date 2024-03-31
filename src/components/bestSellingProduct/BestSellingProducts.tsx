@@ -27,6 +27,7 @@ const BestSellingProducts = () => {
     <div className="md:container mx-auto ">
       <Spin spinning={isLoading}>
         <Swiper
+      
           modules={[Navigation, Autoplay]}
           spaceBetween={10}
           slidesPerView={4}
@@ -34,50 +35,31 @@ const BestSellingProducts = () => {
           navigation={true}
           pagination={{ clickable: true, el: ".swiper-pagination" }}
           breakpoints={{
-            '@0.00': {
+            0: {
               slidesPerView: 1,
               spaceBetween: 10,
             },
-            '@0.75': {
+            480: {
               slidesPerView: 2,
-              spaceBetween: 20,
+              spaceBetween: 10,
             },
-            '@1.00': {
+            768: {
               slidesPerView: 3,
-              spaceBetween: 20,
+              spaceBetween: 15,
             },
-            '@1.50': {
-              slidesPerView: 3,
-              spaceBetween: 20,
-            },
-            '@2.0': {
+            1024: {
               slidesPerView: 4,
-              spaceBetween: 20,
+              spaceBetween: 15,
             },
+           
           }}
 
-          // breakpoints={{
-          //   "@0.00": {
-          //     slidesPerView: 1,
-          //     spaceBetween: 10,
-          //   },
-          //   "@0.75": {
-          //     slidesPerView: 2,
-          //     spaceBetween: 20,
-          //   },
-          //   "@1.00": {
-          //     slidesPerView: 3,
-          //     spaceBetween: 40,
-          //   },
-          //   "@1.50": {
-          //     slidesPerView: 4,
-          //     spaceBetween: 50,
-          //   },
-          // }}
+        
         >
           {productsData?.data?.map((product, index) => (
             <SwiperSlide key={index}>
               <Badge.Ribbon
+               placement="start"
                 text={
                   product.discount !== 0 ? `discount${product.discount}%` : ""
                 }

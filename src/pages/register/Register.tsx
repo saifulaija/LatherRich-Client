@@ -94,7 +94,7 @@ const Register = () => {
             <Input.Password placeholder="Enter your password" />
           </Form.Item>
 
-          <p className="text-gray-600 text-sm">
+          <p className="text-gray-600 text-sm text-blance">
             Your personal data will be used to support your experience
             throughout this website, to manage access to your account, and for
             other purposes described in our privacy policy.
@@ -105,7 +105,7 @@ const Register = () => {
               Submit
             </Button>
             <div className="text-center mt-4">
-              Already registered? <Link to="/login">Login</Link>
+            Already have an account? <span className="text-blue-400"><Link to="/login">Login Here</Link></span>
             </div>
           </Form.Item>
         </Form>

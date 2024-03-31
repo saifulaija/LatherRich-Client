@@ -1,5 +1,6 @@
 
 import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
+import { TOrder } from '../../types/global.type';
 
 const styles = StyleSheet.create({
   page: {
@@ -27,7 +28,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const OrderPdf = ({ orderData }) => (
+const OrderPdf = ({ orderData }:{orderData:TOrder}) => (
   <Document>
     <Page size="A4" style={styles.page}>
       <View style={styles.section}>

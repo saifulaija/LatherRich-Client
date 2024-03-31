@@ -12,9 +12,11 @@ import { addToCart } from "../../redux/features/cart/cartSlice";
 import RelatedProducts from "../../components/relatedProducts/RelatedProducts";
 import CustomeDivider from "../../components/customeDivider/CustomeDivider";
 
+
 const ProductDetails = () => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [isSizeSelected, setIsSizeSelected] = useState(false);
+  console.log(isSizeSelected)
   const { id } = useParams();
   const { data: product, isLoading } = useGetSingleProductForDetailsQuery(id);
   console.log({id})
@@ -49,8 +51,8 @@ const ProductDetails = () => {
             </div>
           </div>
 
-          <div className="md:max-w-[60%] border border-neutral-[1px] rounded-md md:p-5">
-            <div className="py-5 flex justify-evenly items-center">
+          <div className="md:max-w-[60%] border border-neutral-[1px] rounded-sm">
+            <div className="py-5 flex justify-evenly items-center bg-texthexa">
             <h4 className="text-lg text-balance md:text-xl text-center font-semibold text-textprimary capitalize mb-0">
               {product?.data[0]?.name}
              
@@ -114,9 +116,10 @@ const ProductDetails = () => {
               </p>
             </div>
 
-            <div>
-              <p className="text-textprimary font-serif text-[18px]">
-                Please Pick Size
+            <div className="w-[90%] mx-auto">
+             <div className="space-y-3">
+             <p className="text-textprimary font-serif text-[18px]">
+                Please Pick Size:
               </p>
               <Select
                 className="w-full"
@@ -127,6 +130,7 @@ const ProductDetails = () => {
               />
 
               {selectedOption && <div>Selected size: {selectedOption}</div>}
+             </div>
             </div>
 
             <p className="text-center mt-4 prose text-balance">
@@ -152,6 +156,8 @@ const ProductDetails = () => {
               >
                 ADD TO CART
               </Button>
+
+
             </div>
           </div>
         </div>

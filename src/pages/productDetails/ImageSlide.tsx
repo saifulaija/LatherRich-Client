@@ -1,6 +1,7 @@
 
 
 
+import { type Swiper as SwiperTypes} from "swiper";
 
 
 import { Navigation, Thumbs, FreeMode } from "swiper/modules";
@@ -15,13 +16,14 @@ import './ImageSlide.css'
 
 
 const ImageSlide = ({ images }:{images:[string]}) => {
-  const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  const [thumbsSwiper, setThumbsSwiper] = useState<SwiperTypes | null>(null)
 
   return (
     <>
       <Swiper
+      
         style={{
-          "--swiper-navigation-color": "#fff",
+          // "--swiper-navigation-color": "#fff",
         }}
         modules={[Navigation, FreeMode, Thumbs]}
         spaceBetween={10}

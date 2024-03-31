@@ -95,3 +95,34 @@ export const deliveryColors = {
   processiong: "red",
   completed: "green",
 };
+
+
+export type TOrder= {
+  buyerName: string;
+  buyerEmail: string;
+  orderDate: string; // You might want to use a Date object instead of a string
+  paymentSystem: string;
+  totalPrice: number;
+  additionalInfo: string;
+  address: string;
+  mobile: string; // Assuming it's a string, adjust if necessary
+  deliveryStatus: string;
+  orderProduct: string[]; // Array of order products
+  orderNumber: string;
+}
+
+
+
+
+export type TReview= {
+  _id: string;
+  name: string;
+  productId: string;
+  description: string;
+  rating: number;
+  isDeleted: boolean;
+  createdAt: string; // Consider using Date type if appropriate
+  updatedAt: string; // Consider using Date type if appropriate
+}
+
+

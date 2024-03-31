@@ -55,6 +55,7 @@ const WomenProduct = () => {
           {productsData?.data?.map((product, index) => (
             <SwiperSlide key={index}>
               <Badge.Ribbon
+               placement="start"
                 text={
                   product.discount !== 0 ? `discount${product.discount}%` : ""
                 }

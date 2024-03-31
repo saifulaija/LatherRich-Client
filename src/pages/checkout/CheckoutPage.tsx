@@ -12,7 +12,7 @@ import { useCurrentUser } from "../../redux/features/auth/authSlice";
 import { useCreateOrderMutation } from "../../redux/features/order/orderApi";
 import { toast } from "react-toastify";
 import SslCommerceImg from "../../components/sslCommerceImage/SslCommerceImg";
-import axios from "axios";
+
 
 interface FormValues {
   fullName: string;
@@ -79,7 +79,7 @@ const CheckoutPage = () => {
       title: "Update",
       dataIndex: "edit",
       key: "edit",
-      render: (_, record: any) => (
+      render: (_:any, record: any) => (
         <Link to={`/product/${record.id}`}>
           <Button icon={<EditOutlined />} className="border border-red-400" />
         </Link>
@@ -89,7 +89,7 @@ const CheckoutPage = () => {
       title: "Remove",
       dataIndex: "remove",
       key: "remove",
-      render: (_, record: any) => (
+      render: (_:any, record: any) => (
         <Button
           className="border border-red-400"
           icon={<DeleteOutlined />}
@@ -145,7 +145,7 @@ const CheckoutPage = () => {
     try {
       const res = await createOrder(orderData);
       if ("error" in res) {
-        toast.error(res?.error?.data?.message);
+        // toast.error(res?.error?.data?.message);
       } else {
         navigate(`/order/${orderNumber}`);
 
