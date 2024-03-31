@@ -15,7 +15,7 @@ const NewHeader = () => {
   const [drawerVisible, setDrawerVisible] = useState(false);
   const [activeSubMenu, setActiveSubMenu] = useState("");
   const [isMobile, setIsMobile] = useState(false);
-  console.log(isMobile)
+  console.log(isMobile);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -27,11 +27,11 @@ const NewHeader = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const handleMenuItemClick = (menu:any) => {
+  const handleMenuItemClick = (menu: any) => {
     setActiveSubMenu(activeSubMenu === menu ? "" : menu);
   };
 
-  const handleSubMenuClick = (item:any) => {
+  const handleSubMenuClick = (item: any) => {
     navigate(`/products/${item.key}`);
     setActiveSubMenu("");
     setDrawerVisible(false);
@@ -41,14 +41,18 @@ const NewHeader = () => {
     navigate(`/products/search?q=${encodeURIComponent(value)}`);
   };
 
-  const menuRef = useRef(null);
-  const subMenuRef = useRef(null);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const subMenuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleOutsideClick = (e:any) => {
+    const handleOutsideClick = (e: MouseEvent) => {
       if (
-        !subMenuRef?.current?.contains(e.target) &&
-        !menuRef.current.contains(e.target)
+        subMenuRef.current &&
+        typeof subMenuRef.current.contains === "function" &&
+        !subMenuRef.current.contains(e.target as Node) &&
+        menuRef.current &&
+        typeof menuRef.current.contains === "function" &&
+        !menuRef.current.contains(e.target as Node)
       ) {
         setActiveSubMenu("");
       }
@@ -61,11 +65,6 @@ const NewHeader = () => {
     };
   }, []);
 
-
- 
-
-
-
   return (
     <motion.nav
       className="bg-white p-4 fixed top-0 left-0 right-0 z-10 border border-b-2 shadow"
@@ -73,7 +72,6 @@ const NewHeader = () => {
       animate={{ y: 0 }}
       transition={{ delay: 0.5, type: "tween", stiffness: 50 }}
     >
-       
       <div className="container h-[60px] mx-auto flex justify-between items-center">
         <motion.div
           whileHover={{ x: 10 }}
@@ -123,7 +121,7 @@ const NewHeader = () => {
                     {item.children.map((child) => (
                       <button
                         key={child.key}
-                        onClick={() => handleSubMenuClick(child)} 
+                        onClick={() => handleSubMenuClick(child)}
                         className="block text-gray-800 text-sm border-l-transparent hover:border-l-green-500 border-l-4 text-center font-semibold w-[200px] cursor-pointer hover:text-white rounded-r-sm hover:bg-primary py-1 px-1 mt-0"
                       >
                         {child.label}
@@ -200,7 +198,7 @@ const NewHeader = () => {
           onClick={() => setDrawerVisible(false)}
         ></div>
       )}
-     <TopNavbar/>
+      <TopNavbar />
     </motion.nav>
   );
 };
