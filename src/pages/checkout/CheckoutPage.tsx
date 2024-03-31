@@ -158,24 +158,7 @@ const CheckoutPage = () => {
     console.log("Received values:", orderData);
   };
 
-  // for bkash payment ---
 
-  // const pay = async () => {
-  //   try {
-  //     const { data } = await axios.post(
-  //       "http://localhost:5000/bkash-payment-create",
-  //       {
-  //         amount: 50,
-  //         orderId: 2,
-  //       },
-  //       {
-  //         withCredentials:true
-  //       }
-  //     );
-  //   } catch (err) {
-  //     console.log(err)
-  //   }
-  // };
 
   return (
     <div className="w-full">

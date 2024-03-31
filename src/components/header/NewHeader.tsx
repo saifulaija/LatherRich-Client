@@ -9,7 +9,6 @@ import ShoppingCart from "../shopingCart/ShoppingCart";
 import { AiOutlineCaretDown, AiOutlineCaretUp } from "react-icons/ai";
 import Search from "antd/es/input/Search";
 import SubMenu from "antd/es/menu/SubMenu";
-import TopNavbar from "../topNavbar/TopNavbar";
 
 const NewHeader = () => {
   const [drawerVisible, setDrawerVisible] = useState(false);
@@ -198,7 +197,6 @@ const NewHeader = () => {
           onClick={() => setDrawerVisible(false)}
         ></div>
       )}
-      <TopNavbar />
     </motion.nav>
   );
 };
