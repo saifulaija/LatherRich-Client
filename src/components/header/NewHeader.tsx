@@ -66,12 +66,12 @@ const NewHeader = () => {
 
   return (
     <motion.nav
-      className="bg-white p-4 fixed top-0 left-0 right-0 z-10 border border-b-2 shadow"
+      className="bg-white h-[80px]  fixed top-0 left-0 right-0 z-10 border border-b-[1px] shadow-sm"
       initial={{ y: -150 }}
       animate={{ y: 0 }}
       transition={{ delay: 0.5, duration:0.5 }}
     >
-      <div className="container h-[60px] mx-auto flex justify-between items-center">
+      <div className="container  mx-auto flex justify-between items-center">
         <motion.div
           whileHover={{ x: 10 }}
           transition={{ type: "spring", stiffness: 200, damping: 20 }}

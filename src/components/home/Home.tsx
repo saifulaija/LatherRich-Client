@@ -14,7 +14,7 @@ import NewBestSellingProducts from "../bestSellingProduct/NewBestSelling";
 
 const Home = () => {
   return (
-    <div className="pt-8">
+    <>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -27,14 +27,12 @@ const Home = () => {
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 1.5 }}
       >
-       
-      <SubBanner />
+        <SubBanner />
       </motion.div>
       <div className="mt-12 mb-12 ">
         <CustomeDivider title={"best selling products"} />
       </div>
       <NewBestSellingProducts />
-      {/* <BestSellingProducts /> */}
       <div className="mt-12 mb-12 ">
         <CustomeDivider title={" Men's Collection"} />
       </div>
@@ -51,7 +49,7 @@ const Home = () => {
         <CustomeDivider title={" Kid's Collection"} />
       </div>
       <KidProducts />
-    </div>
+    </>
   );
 };
 

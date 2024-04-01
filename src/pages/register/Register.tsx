@@ -1,25 +1,20 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Button, Form, Input, } from "antd";
+import { Button, Form, Input } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 
 import { toast } from "sonner";
-
 
 import { TResponse, TUser } from "../../types/global.type";
 import { useCreateUserMutation } from "../../redux/features/user/userApi";
 
 const Register = () => {
- 
-
-  const [register,{isLoading}] = useCreateUserMutation();
+  const [register, { isLoading }] = useCreateUserMutation();
   const navigate = useNavigate();
 
   const onFinish = async (values: {
     userName: string;
     email: string;
     password: string;
-   
-   
   }) => {
     const userInfo = {
       userName: values.userName,
@@ -27,10 +22,6 @@ const Register = () => {
       password: values.password,
       role: "user",
     };
-
-
-
-
 
     try {
       const res = (await register(userInfo)) as TResponse<TUser>;
@@ -47,10 +38,8 @@ const Register = () => {
   };
 
   return (
-   
-
-    <div className="w-full flex justify-center p-10">
-      <div className="max-w-[500px] p-8 rounded-lg border border-gray-200 shadow-lg">
+    <div className="w-full flex justify-center ">
+      <div className="max-w-[500px]  rounded-lg border border-gray-200 shadow-lg">
         <h2 className="text-2xl font-bold mb-4 text-center">Register Now</h2>
         <Form
           name="register"
@@ -105,7 +94,10 @@ const Register = () => {
               Submit
             </Button>
             <div className="text-center mt-4">
-            Already have an account? <span className="text-blue-400"><Link to="/login">Login Here</Link></span>
+              Already have an account?{" "}
+              <span className="text-blue-400">
+                <Link to="/login">Login Here</Link>
+              </span>
             </div>
           </Form.Item>
         </Form>

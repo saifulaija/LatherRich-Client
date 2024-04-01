@@ -31,6 +31,7 @@ export default {
       colors: {
         primary: '#7d3f98',
         secondry:'#ce1126',
+        tertiary:'#213641',
         textprimary:'#4d4f53',
         textsecoundary:'#8a7967',
         texttertiary:'#6d6e70',
