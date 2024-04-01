@@ -5,23 +5,16 @@ import WomenProduct from "../womenProduct/WomenProduct";
 import KidProducts from "../kidsProduct/KidProducts";
 
 import SubBanner from "../subBanner/SubBanner";
-import LoadingBar from "react-top-loading-bar";
-import { useState } from "react";
-import { useTopBarLoader } from "../../utils/topBarLoader";
+
 import CustomeDivider from "../customeDivider/CustomeDivider";
-// import BestSellingProducts from "../bestSellingProduct/BestSellingProducts";
+
 import { motion } from "framer-motion";
 import CookieBanner from "../cookieBanner/CookieBanner";
 import NewBestSellingProducts from "../bestSellingProduct/NewBestSelling";
 
 const Home = () => {
-  const [progress, setProgress] = useState(0);
-  useTopBarLoader(setProgress);
-
   return (
     <div className="pt-8">
-      <LoadingBar progress={progress} />
-
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -33,7 +26,7 @@ const Home = () => {
       <div className="mt-12 mb-12 ">
         <CustomeDivider title={"best selling products"} />
       </div>
-<NewBestSellingProducts/>
+      <NewBestSellingProducts />
       {/* <BestSellingProducts /> */}
       <div className="mt-12 mb-12 ">
         <CustomeDivider title={" Men's Collection"} />
@@ -44,7 +37,7 @@ const Home = () => {
         <CustomeDivider title={" Women's Collection"} />
       </div>
 
-      <CookieBanner/>
+      <CookieBanner />
 
       <WomenProduct />
       <div className="mt-12 mb-12">
