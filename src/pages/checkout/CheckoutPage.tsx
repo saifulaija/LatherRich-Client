@@ -306,7 +306,7 @@ const CheckoutPage = () => {
                   className="btn"
                   icon={<IoPlaySkipBackOutline />}
                   loading={isLoading}
-                  // onClick={()=>handleClearCart()}
+                 
                 >
                   Order Place Now
                 </Button>

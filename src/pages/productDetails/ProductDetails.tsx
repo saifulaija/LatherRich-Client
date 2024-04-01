@@ -133,9 +133,9 @@ const ProductDetails = () => {
              </div>
             </div>
 
-            <p className="text-center mt-4 prose text-balance">
+            <p className=" px-2 mt-4 prose text-balanc text-start">
             সারাদেশে ২-৫ দিনে হোম-ডেলিভারি। একসাথে যত খুশি পণ্য অর্ডার করুন, ডেলিভারি চার্জ একই থাকবে । প্রয়োজনে কল করুনঃ 
-              <span className="font-semibold">01324250470</span>
+              <span className="font-semibold">+8801821117913</span>
             </p>
 
             <div className="mt-6">

@@ -13,12 +13,11 @@ const CategoryLayout = () => {
     textAlign: "center",
     marginTop: "34px",
     lineHeight: "35px",
-    height:"100vh",
-    maxHeight:"100%",
+    height: "100vh",
+    maxHeight: "100%",
     color: "#fff",
     backgroundColor: "#fff",
   };
-
 
   const layoutStyle = {
     borderRadius: 8,
@@ -28,19 +27,19 @@ const CategoryLayout = () => {
   };
   return (
     <Layout style={layoutStyle}>
-      <Header>
+      <Header style={{backgroundColor:"#fff"}}>
         <NewHeader />
       </Header>
       <Layout>
-        <Sider width="20%"  style={siderStyle} className="hidden md:block">
+        <Sider width="20%" style={siderStyle} className="hidden md:block">
           <Sidebar />
         </Sider>
 
-        <Content>
+        <Content className="bg-red-500">
           <Outlet />
         </Content>
       </Layout>
-<GoToTop/>
+      <GoToTop />
       <Footer />
     </Layout>
   );
