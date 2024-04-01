@@ -7,6 +7,8 @@ import { toast } from "sonner";
 import { TResponse, TUser } from "../../types/global.type";
 import { useCreateUserMutation } from "../../redux/features/user/userApi";
 
+import { motion } from "framer-motion";
+
 const Register = () => {
   const [register, { isLoading }] = useCreateUserMutation();
   const navigate = useNavigate();
@@ -38,9 +40,11 @@ const Register = () => {
   };
 
   return (
-    <div className="w-full flex justify-center ">
-      <div className="max-w-[500px]  rounded-lg border border-gray-200 shadow-lg">
-        <h2 className="text-2xl font-bold mb-4 text-center">Register Now</h2>
+    <div className="w-full flex p-20 justify-center ">
+      <motion.div initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5, duration: 1.5 }} className="max-w-[500px] p-4 rounded-lg  border-[1px] shadow border-neutral-100 ">
+        <h2 className="text-2xl font-bold mb-4 text-center text-textprimary">Register Now</h2>
         <Form
           name="register"
           onFinish={onFinish}
@@ -101,7 +105,7 @@ const Register = () => {
             </div>
           </Form.Item>
         </Form>
-      </div>
+      </motion.div>
     </div>
   );
 };

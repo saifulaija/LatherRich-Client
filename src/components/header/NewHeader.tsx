@@ -69,7 +69,7 @@ const NewHeader = () => {
       className="bg-white h-[80px]  fixed top-0 left-0 right-0 z-10 border border-b-[1px] shadow-sm"
       initial={{ y: -150 }}
       animate={{ y: 0 }}
-      transition={{ delay: 0.5, duration:0.5 }}
+      transition={{ delay: 0.5, duration: 0.5 }}
     >
       <div className="container  mx-auto flex justify-between items-center">
         <motion.div
@@ -114,7 +114,7 @@ const NewHeader = () => {
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, delay: 0.5 }}
-                    className="absolute bg-white border mt-4 p-2 rounded shadow-lg"
+                    className="absolute bg-red-300 border mt-4 p-2 rounded shadow-lg"
                     style={{ zIndex: 999 }}
                   >
                     {item.children.map((child) => (

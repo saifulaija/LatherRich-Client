@@ -3,6 +3,19 @@ export const items = [
     label: "MEN'S",
     key: "men",
     children: [
+     
+      {
+        label: "BOOT",
+        key: "man-boot",
+      },
+      {
+        label: "LOAFER",
+        key: "man-loafer",
+      },
+      {
+        label: "SANDALS",
+        key: "man-sandal",
+      },
       {
         label: "CASUAL",
         key: "man-causal",
@@ -12,7 +25,7 @@ export const items = [
         key: "man-formal",
       },
       {
-        label: "SPORT",
+        label: "SPORTS",
         key: "man-sport",
       },
     ],
@@ -22,15 +35,27 @@ export const items = [
     key: "women",
     children: [
       {
+        label: "BOOT",
+        key: "women-boot",
+      },
+      {
+        label: "LOAFER",
+        key: "women-loafer",
+      },
+      {
         label: "CASUAL",
         key: "women-causal",
+      },
+      {
+        label: "SANDALS",
+        key: "women-sandal",
       },
       {
         label: "FORMAL",
         key: "women-formal",
       },
       {
-        label: "SPORT",
+        label: "SPORTS",
         key: "women-sport",
       },
     ],
