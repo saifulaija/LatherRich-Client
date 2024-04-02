@@ -7,6 +7,8 @@ import { TReview } from "../../types/review.types";
 import { useCreateReviewMutation } from "../../redux/features/review/reviewApi";
 import { toast } from "sonner";
 import { motion } from "framer-motion";
+import { useAppDispatch } from "../../redux/hooks";
+import { addToReview } from "../../redux/features/review/reviewSlice";
 
 export type TReviewSchema = {
   name: string;
@@ -19,6 +21,7 @@ const Reviews = ({ product }: { product: TProduct }) => {
   const [showForm, setShowForm] = useState(false);
   const [form] = Form.useForm();
   const [crateReview, { isLoading }] = useCreateReviewMutation();
+  const dispatch = useAppDispatch();
 
   const toggleForm = () => {
     setShowForm(!showForm);
@@ -33,7 +36,7 @@ const Reviews = ({ product }: { product: TProduct }) => {
       description: values.description,
       productId: product._id,
     };
-
+    dispatch(addToReview(reviewInfo));
     try {
       await crateReview(reviewInfo);
       toast.success("Review added successfully");
@@ -50,75 +53,104 @@ const Reviews = ({ product }: { product: TProduct }) => {
 
   return (
     <motion.div
-   
-    initial={{ opacity:0 }}
-    animate={{ opacity:1 }}
-    transition={{ delay: 1.5, duration:0.9 }}
-    className="containerflex justify-center items-center"
-  >
-      
-     <div className="max-w-[800px]">
-     <div className="flex justify-end items-center">
-        <Button onClick={toggleForm}>Add Review</Button>
-      </div>
-      {showForm && (
-        <Form
-          form={form}
-          onFinish={onFinish}
-          layout="vertical"
-          className="mt-0 bg-neutral-100 shadow-md space-y-0"
-        >
-          <Form.Item
-            label="Name"
-            name="name"
-            rules={[{ required: true, message: "Please enter your name" }]}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 1.5, duration: 0.9 }}
+      className="containerflex justify-center items-center"
+    >
+      <div className="max-w-[800px]">
+        <div className="flex justify-end items-center">
+          <Button onClick={toggleForm}>Add Review</Button>
+        </div>
+        {showForm && (
+          <Form
+            form={form}
+            onFinish={onFinish}
+            layout="vertical"
+            className="mt-0 bg-neutral-100 shadow-md space-y-0"
           >
-            <Input placeholder="please enter your name" />
-          </Form.Item>
-          <Form.Item
-            label="Rating"
-            name="rating"
-            rules={[{ required: true, message: "Please rate the product" }]}
-          >
-            <Rate />
-          </Form.Item>
-          <Form.Item
-            label="Description"
-            name="description"
-            rules={[{ required: true, message: "Please enter a description" }]}
-          >
-            <Input.TextArea placeholder="Write your's reviews......" />
-          </Form.Item>
-          <Form.Item>
-            <Button loading={isLoading} htmlType="submit">
-              Submit Review
-            </Button>
-          </Form.Item>
-        </Form>
-      )}
+            <Form.Item
+              label="Name"
+              name="name"
+              rules={[{ required: true, message: "Please enter your name" }]}
+            >
+              <Input placeholder="please enter your name" />
+            </Form.Item>
+            <Form.Item
+              label="Rating"
+              name="rating"
+              rules={[{ required: true, message: "Please rate the product" }]}
+            >
+              <Rate />
+            </Form.Item>
+            <Form.Item
+              label="Description"
+              name="description"
+              rules={[
+                { required: true, message: "Please enter a description" },
+              ]}
+            >
+              <Input.TextArea placeholder="Write your's reviews......" />
+            </Form.Item>
+            <Form.Item>
+              <Button loading={isLoading} htmlType="submit">
+                Submit Review
+              </Button>
+            </Form.Item>
+          </Form>
+        )}
 
-      <CustomeDivider title="Review's"></CustomeDivider>
-
-      <div>
-        {product?.reviews?.map((review: TReviewSchema, index: number) => (
-          <Card key={index} className="mb-4">
-            <div className="flex justify-between items-center mb-2">
-              <div className="flex items-center">
-                <UserAddOutlined className="mr-2" />
-                <p className="font-semibold">{review.name}</p>
-              </div>
-              <Rate
-                disabled
-                value={review.rating}
-                className="text-yellow-500"
-              />
+        {/* <div>
+          {product?.reviews?.length > 0 && (
+            <div>
+              <CustomeDivider title="Review's"></CustomeDivider>
+              {product?.reviews?.map((review: TReviewSchema, index: number) => (
+                <Card key={index} className="mb-4">
+                  <div className="flex justify-between items-center mb-2">
+                    <div className="flex items-center">
+                      <UserAddOutlined className="mr-2" />
+                      <p className="font-semibold">{review.name}</p>
+                    </div>
+                    <Rate
+                      disabled
+                      value={review.rating}
+                      className="text-yellow-500"
+                    />
+                  </div>
+                  <Divider className="mb-2" />
+                  <p className="text-sm">{review.description}</p>
+                </Card>
+              ))}
             </div>
-            <Divider className="mb-2" />
-            <p className="text-sm">{review.description}</p>
-          </Card>
-        ))}
+          )}
+        </div> */}
+
+<div>
+  {product?.reviews && product.reviews.length > 0 && (
+    <div>
+      <CustomeDivider title="Review's"></CustomeDivider>
+      {product.reviews.map((review: TReviewSchema, index: number) => (
+        <Card key={index} className="mb-4">
+          <div className="flex justify-between items-center mb-2">
+            <div className="flex items-center">
+              <UserAddOutlined className="mr-2" />
+              <p className="font-semibold">{review.name}</p>
+            </div>
+            <Rate
+              disabled
+              value={review.rating}
+              className="text-yellow-500"
+            />
+          </div>
+          <Divider className="mb-2" />
+          <p className="text-sm">{review.description}</p>
+        </Card>
+      ))}
+    </div>
+  )}
+</div>
+
       </div>
-     </div>
     </motion.div>
   );
 };

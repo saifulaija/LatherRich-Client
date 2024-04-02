@@ -115,14 +115,12 @@ export type TOrder= {
 
 
 export type TReview= {
-  _id: string;
+
   name: string;
   productId: string;
   description: string;
   rating: number;
-  isDeleted: boolean;
-  createdAt: string; // Consider using Date type if appropriate
-  updatedAt: string; // Consider using Date type if appropriate
+ 
 }
 
 

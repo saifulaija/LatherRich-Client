@@ -14,22 +14,26 @@ import {
 import storage from "redux-persist/lib/storage";
 import cartReducer from "./features/cart/cartSlice";
 import sortReducer from "./features/sort/sortSlice";
+import reviewReducer from "./features/review/reviewSlice";
+
 
 
 
 const persistConfig = {
-  key: "auth",
+  key: "root",
   storage,
 };
 
 const persistedAuthReducer = persistReducer(persistConfig, authReducer);
+const persistedReviewReducer = persistReducer(persistConfig, reviewReducer);
 
 export const store = configureStore({
   reducer: {
     [baseApi.reducerPath]: baseApi.reducer,
     auth: persistedAuthReducer,
     cart:cartReducer,
-    sort:sortReducer
+    sort:sortReducer,
+    review:persistedReviewReducer
    
   },
 

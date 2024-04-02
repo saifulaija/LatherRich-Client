@@ -9,7 +9,7 @@ import { FaLandMineOn } from "react-icons/fa6";
 import { BellFilled, MailOutlined, UserOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { Badge, Button, Drawer, List } from "antd";
-import { useGetReviewsQuery } from "../../redux/features/review/reviewApi";
+
 import { useGetAllOrdersQuery } from "../../redux/features/order/orderApi";
 import { useState } from "react";
 import { TOrder, TReview } from "../../types/global.type";
@@ -18,10 +18,12 @@ const CustomeHeader = () => {
   const [reviewsOpen, setReviewsOpen] = useState(false);
   const [orderOpen, setOrderOpen] = useState(false);
   const user = useAppSelector(useCurrentUser);
+  const review = useAppSelector((state) => state.review);
+  
   const dispatch = useAppDispatch();
-  const { data: reviews } = useGetReviewsQuery("");
+
   const { data: orders } = useGetAllOrdersQuery("");
-  const reviewsData = reviews?.data?.length;
+  const reviewsData = review.reviewItems;
   const ordersData = orders?.data?.length;
 
   const handleLogout = () => {
@@ -44,7 +46,7 @@ const CustomeHeader = () => {
       </div>
 
       <div className="flex justify-center items-center gap-6">
-        <Badge count={reviewsData}>
+        <Badge count={review.reviewItems.length}>
           <MailOutlined
             className="text-[24px]"
             onClick={() => {
@@ -92,8 +94,8 @@ const CustomeHeader = () => {
           maskClosable
         >
           <List
-            dataSource={reviews?.data}
-            renderItem={(item:TReview) => {
+            dataSource={reviewsData}
+            renderItem={(item: TReview) => {
               return <List.Item>{item.description}</List.Item>;
             }}
           ></List>
