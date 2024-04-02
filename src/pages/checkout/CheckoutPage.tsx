@@ -12,6 +12,7 @@ import { useCurrentUser } from "../../redux/features/auth/authSlice";
 import { useCreateOrderMutation } from "../../redux/features/order/orderApi";
 import { toast } from "react-toastify";
 import SslCommerceImg from "../../components/sslCommerceImage/SslCommerceImg";
+import { addToOrder } from "../../redux/features/order/orderSlice";
 
 
 interface FormValues {
@@ -28,11 +29,12 @@ const CheckoutPage = () => {
   const [paymentMethod, setPaymentMethod] = useState("");
   const user = useAppSelector(useCurrentUser);
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+ 
 
   const subtotal = cart?.cartTotalAmount || 0;
   const total = subtotal + shippingCost;
 
-  const dispatch = useAppDispatch();
 
   const handleRemoveFromCart = (product: any) => {
     dispatch(removeFromCart(product));
@@ -140,7 +142,13 @@ const CheckoutPage = () => {
       orderNumber,
       orderDate: new Date(),
     };
-    console.log(orderData);
+    
+    const orderSliceData={
+      name:values.fullName,orderNumber
+    }
+
+    dispatch(addToOrder(orderSliceData))
+
 
     try {
       const res = await createOrder(orderData);
