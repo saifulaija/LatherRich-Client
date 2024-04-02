@@ -98,23 +98,22 @@ export const deliveryColors = {
 
 
 export type TOrder= {
-  buyerName: string;
-  buyerEmail: string;
-  orderDate: string; // You might want to use a Date object instead of a string
-  paymentSystem: string;
-  totalPrice: number;
-  additionalInfo: string;
-  address: string;
-  mobile: string; // Assuming it's a string, adjust if necessary
-  deliveryStatus: string;
-  orderProduct: string[]; // Array of order products
-  orderNumber: string;
+ name:string;
+ orderNumber:string
 }
 
 
 
 
 export type TReview= {
+
+  name: string;
+  productId: string;
+  description: string;
+  rating: number;
+ 
+}
+export type T= {
 
   name: string;
   productId: string;

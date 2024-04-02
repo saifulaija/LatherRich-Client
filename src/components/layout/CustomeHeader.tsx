@@ -8,25 +8,27 @@ import { toast } from "sonner";
 import { FaLandMineOn } from "react-icons/fa6";
 import { BellFilled, MailOutlined, UserOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
-import { Badge, Button, Drawer, List, Modal } from "antd";
+import { Badge, Button, List, Modal } from "antd";
 
-import { useGetAllOrdersQuery } from "../../redux/features/order/orderApi";
+
 import { useState } from "react";
-import { TOrder, TReview } from "../../types/global.type";
+import {  TOrder, TReview } from "../../types/global.type";
 import { clearReviewItems } from "../../redux/features/review/reviewSlice";
+import { clearOrderItems } from "../../redux/features/order/orderSlice";
 
 const CustomeHeader = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [reviewsOpen, setReviewsOpen] = useState(false);
-  const [orderOpen, setOrderOpen] = useState(false);
+  const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
+ 
   const user = useAppSelector(useCurrentUser);
   const review = useAppSelector((state) => state.review);
+  const order = useAppSelector((state) => state.order);
 
   const dispatch = useAppDispatch();
 
-  const { data: orders } = useGetAllOrdersQuery("");
+  
   const reviewsData = review.reviewItems;
-  const ordersData = orders?.data?.length;
+  const ordersData =order.orderItems
 
   const handleLogout = () => {
     dispatch(logout());
@@ -40,15 +42,30 @@ const CustomeHeader = () => {
 
   const handleOk = () => {
     setIsModalOpen(false);
-    dispatch(clearReviewItems())
+    dispatch(clearReviewItems());
   };
 
   const handleCancel = () => {
     setIsModalOpen(false);
-    
   };
+
+  //for order modal
+
+  const showOrderModal = () => {
+    setIsOrderModalOpen(true);
+  };
+
+  const handleOrederModalOk = () => {
+    setIsOrderModalOpen(false);
+    dispatch(clearOrderItems());
+  };
+
+  const handleCancelOrderModal = () => {
+    setIsOrderModalOpen(false);
+  };
+
   return (
-    <div className="flex justify-center  md:justify-between items-center bg-white md:p-2 px-1 md:px-8 fixed top-0 left-0 right-0 z-10 border border-b-2 border-b-teal-600 shadow ">
+    <div className="flex justify-center  md:justify-between items-center bg-white md:p-2 px-1 md:px-8 fixed top-0 left-0 right-0 z-10  shadow ">
       <Link to="/">
         <img loading="lazy" src={image} alt="" className="bg-cover bg-center" />
       </Link>
@@ -65,19 +82,12 @@ const CustomeHeader = () => {
         <Badge count={review.reviewItems.length}>
           <MailOutlined
             className="text-[24px]"
-            // onClick={() => {
-            //   setReviewsOpen(true);
-            // }}
+           
             onClick={showModal}
           />
         </Badge>
-        <Badge count={ordersData}>
-          <BellFilled
-            className="text-[24px]"
-            onClick={() => {
-              setOrderOpen(true);
-            }}
-          />
+        <Badge count={order.orderItems.length}>
+          <BellFilled className="text-[24px]" onClick={showOrderModal} />
         </Badge>
         <Button
           icon={<UserOutlined />}
@@ -87,67 +97,42 @@ const CustomeHeader = () => {
           Logout
         </Button>
 
-        <Drawer
-          title="Order's"
-          open={orderOpen}
-          onClose={() => {
-            setOrderOpen(false);
-          }}
-          maskClosable
+        {/* for order modal */}
+
+        <Modal
+          title="Order Product"
+          open={isOrderModalOpen}
+          onOk={handleOrederModalOk}
+          onCancel={handleCancelOrderModal}
         >
           <List
-            dataSource={orders?.data}
+            className="bg-gray-200/50 px-5 rounded-md"
+            dataSource={ordersData}
             renderItem={(item: TOrder) => {
-              return <List.Item>{item?.address} has ordered</List.Item>;
+              return (
+                <List.Item>{` ${item.name}, has oreded. ${item.orderNumber}`}</List.Item>
+              );
             }}
           />
-        </Drawer>
-        {/* <Drawer
-          title="Reviews"
-          open={reviewsOpen}
-          onClose={() => {
-            setReviewsOpen(false);
-          }}
-          maskClosable
-        >
-          <List
-            dataSource={reviewsData}
-            renderItem={(item: TReview) => {
-              return <List.Item>{item.description}</List.Item>;
-            }}
-          ></List>
-        </Drawer> */}
+        </Modal>
 
-        {/* <Modal
+        {/* for review modal */}
+        <Modal
           title="Product Reviews"
           open={isModalOpen}
           onOk={handleOk}
           onCancel={handleCancel}
         >
-           <List
+          <List
+            className="bg-gray-200/50 px-5 rounded-md"
             dataSource={reviewsData}
             renderItem={(item: TReview) => {
-              return <List.Item>`Name:${item.name}, ${item.description}`</List.Item>;
+              return (
+                <List.Item>{`Name: ${item.name}, Comments: ${item.description}`}</List.Item>
+              );
             }}
-          ></List>
-        </Modal> */}
-
-<Modal
-  title="Product Reviews"
-  open={isModalOpen}
-  onOk={handleOk}
-  onCancel={handleCancel}
->
-  <List
-  className="bg-gray-200/50 px-5 rounded-md"
- 
-    dataSource={reviewsData}
-    renderItem={(item: TReview) => {
-      return <List.Item>{`Name: ${item.name}, Comments: ${item.description}`}</List.Item>;
-    }}
-  />
-</Modal>
-
+          />
+        </Modal>
       </div>
     </div>
   );
