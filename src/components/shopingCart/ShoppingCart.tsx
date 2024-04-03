@@ -72,8 +72,8 @@ const ShoppingCart = () => {
               className=" bg-primary text-white flex items-center justify-center gap-1"
             >
               <IoBagAddOutline
-                className=" font-semibold"
-                size={20}
+                className=" font-semibold text-center"
+                size={18}
               />
               <span className="font-semibold text-[14px]">
                 ৳ {cart.cartTotalAmount}

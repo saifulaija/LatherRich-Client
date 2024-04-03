@@ -9,30 +9,29 @@ import NoDataFoundPage from "../noDataFoundPage/NoDataFoundPage";
 import Sidebar from "../../components/sidebar/Sidebar";
 import { IoFilterSharp } from "react-icons/io5";
 import { useEffect, useState } from "react";
-import PageNavigation from "../../components/pageNavigation/PageNavigation";
+
 import Meta from "antd/es/card/Meta";
 import { motion } from "framer-motion";
 
-import LoadingBar from "react-top-loading-bar";
+
 import { TProduct } from "../../types/product.type";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { getSort } from "../../redux/features/sort/sortSlice";
 import ButtonPrimary from "../../components/button/ButtonPrimary";
 import { PlusOutlined } from "@ant-design/icons";
 
-
 const ProductCategory = () => {
   const sort = useAppSelector((state) => state.sort);
   const dispatch = useAppDispatch();
   const { category } = useParams();
-  const [progress, setProgress] = useState(0);
+  
   const [drawerVisible, setDrawerVisible] = useState(false);
   const {
     data: productsData,
     isLoading,
     isFetching,
   } = useGetAllProductsByCategoryQuery(category);
-  console.log(setProgress);
+
 
   useEffect(() => {
     dispatch(getSort());
@@ -62,11 +61,6 @@ const ProductCategory = () => {
 
   return (
     <div className="w-full mt-10">
-      <LoadingBar progress={progress} />
-      <PageNavigation
-        title={`products <RightOutlined /> category  <RightOutlined />  ${category}`}
-      />
-
       <div className=" flex justify-center items-center">
         <button
           className="  text-red-500 font-semibold text-xl md:hidden hover:text-gray-300 focus:outline-none"
@@ -85,9 +79,12 @@ const ProductCategory = () => {
         </Drawer>
       </div>
       <Spin spinning={isLoading}>
-        <motion.div initial={{ opacity:0 }}
-    animate={{ opacity:1 }}
-    transition={{ delay: 1.5, duration:1.5 }}className="md:container mx-auto md:px-20 py-10">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5, duration: 1.5 }}
+          className="md:container mx-auto md:px-20 py-10"
+        >
           <div className="grid md:grid-col2 lg:grid-cols-3 gap-2">
             {sortedProducts?.map((product: TProduct, index: number) => (
               <div key={index}>
@@ -102,12 +99,12 @@ const ProductCategory = () => {
                     key={product?._id}
                     className=" w-[300px] h-[400px]"
                     cover={
-                   
                       <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1, scale: 1 }}
+                      
+                        initial={{opacity:0}}
+                        animate={{opacity:1}}
                         transition={{ duration: 0.5, delay: 0.5 }}
-                        whileHover={{ scale: 1.1 }}
+                        whileHover={{ scale: .95 }}
                         className="rounded-t-md cursor-pointer border border-neutral-100 shadow-lg overflow-hidden"
                         style={{ width: "300px", height: "200px" }} // Adjust width and height as needed
                       >

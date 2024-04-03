@@ -22,13 +22,9 @@ const Home = () => {
       >
         <Banner />
       </motion.div>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 1.5 }}
-      >
+      <div>
         <SubBanner />
-      </motion.div>
+      </div>
       <div className="mt-12 mb-12 ">
         <CustomeDivider title={"best selling products"} />
       </div>

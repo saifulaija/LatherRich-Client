@@ -81,7 +81,7 @@ const NewHeader = () => {
             <img src={logo} alt="Richkid" className="h-10 w-auto mr-4" />
           </Link>
         </motion.div>
-        <div className="max-w-md justify-center items-center hidden sm:inline-flex">
+        <div  className="max-w-md justify-center items-center hidden sm:inline-flex">
           <Search
             placeholder="Search your product ..."
             allowClear
@@ -95,7 +95,8 @@ const NewHeader = () => {
             {items?.map((item) => (
               <div key={item.key} ref={subMenuRef}>
                 <button
-                  className="text-gray-500 hover:text-gray-600  focus:outline-none mr-4 flex items-center"
+                  className="text-textprimary 
+                     focus:outline-none font-medium mr-4 flex items-center"
                   onClick={() => handleMenuItemClick(item.key)}
                 >
                   {item.label}
@@ -111,20 +112,23 @@ const NewHeader = () => {
                 </button>
                 {item.children && activeSubMenu === item.key && (
                   <motion.div
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, y: -30 }}
+                    animate={{ opacity: 1, y: 0,  }}
                     transition={{ duration: 0.3, delay: 0.5 }}
-                    className="absolute bg-red-300 border mt-4 p-2 rounded shadow-lg"
+                    exit={{ opacity: 0, y: 30 }}
+                    className="absolute bg-primary  mt-4 p-4 rounded shadow-lg"
                     style={{ zIndex: 999 }}
                   >
                     {item.children.map((child) => (
-                      <button
+                      <motion.button
+                      whileHover={{ x: 10 }}
+                      transition={{ type: "spring", stiffness: 200, damping: 20, delay:.1 }}
                         key={child.key}
                         onClick={() => handleSubMenuClick(child)}
-                        className="block text-gray-800 text-sm border-l-transparent hover:border-l-green-500 border-l-4 text-center font-semibold w-[200px] cursor-pointer hover:text-white rounded-r-sm hover:bg-primary py-1 px-1 mt-0"
+                        className="block text-gray-800 text-sm hover:border-b-2 hover:border-white hover:border-dashed hover:border-b-white  text-center font-semibold w-[200px] cursor-pointer hover:text-white rounded-r-s py-1 px-1 mt-0"
                       >
                         {child.label}
-                      </button>
+                      </motion.button>
                     ))}
                   </motion.div>
                 )}

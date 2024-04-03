@@ -40,6 +40,7 @@ const ProductDetails = () => {
     setSelectedOption(selectedOption);
     setIsSizeSelected(true);
   };
+ 
 
   return (
     <div className="container mx-auto p-20">
@@ -133,7 +134,7 @@ const ProductDetails = () => {
              </div>
             </div>
 
-            <p className=" px-2 mt-4 prose text-balanc text-start">
+            <p className=" px-7 mt-4 prose text-balanc text-start">
             সারাদেশে ২-৫ দিনে হোম-ডেলিভারি। একসাথে যত খুশি পণ্য অর্ডার করুন, ডেলিভারি চার্জ একই থাকবে । প্রয়োজনে কল করুনঃ 
               <span className="font-semibold">+8801821117913</span>
             </p>

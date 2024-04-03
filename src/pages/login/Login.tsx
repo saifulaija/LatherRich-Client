@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Button, Form, Input } from "antd";
+import { Button, Form, Image, Input } from "antd";
 import { verifyToken } from "../../utils/verifiToken";
 import { setUser } from "../../redux/features/auth/authSlice";
 import { TUser } from "../../types/global.type";
@@ -10,10 +10,11 @@ import { useAppDispatch } from "../../redux/hooks";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import logo from '../../assets/images/PNG-Richkid-Logo.png'
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
-  console.log(loading);
+ 
 
   const [login, { isLoading }] = useLoginMutation();
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ const Login = () => {
 
   const onFinish = async (values: { email: string; password: string }) => {
     setLoading(true);
-    // const toastId = toast.loading("Logging......");
+   
     try {
       const userInfo = {
         email: values.email,
@@ -33,15 +34,15 @@ const Login = () => {
       console.log("login page", userInfo);
       login(userInfo);
 
-      // return null;
+  
       const res = await login(userInfo).unwrap();
       console.log(res);
 
-      // const user = verifyToken(res.data.accessToken);
+ 
 
       const user = verifyToken(res.data.accessToken) as TUser;
       dispatch(setUser({ user: user, token: res.data.accessToken }));
-      toast.success("Logged In");
+      toast.success("Logged In successfully");
       setLoading(false);
       if (user.role === "user") {
         navigate(from, { replace: true });
@@ -53,15 +54,24 @@ const Login = () => {
     }
   };
 
+  const parent = {
+    hidden: { opacity: 0, scale: 0.9 },
+    visible: { opacity: 1, scale: 1 },
+  };
+
+  
+
   return (
     <div className="w-full flex p-20 justify-center ">
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1, duration: 1 }}
-        className="max-w-[500px] w-full px-4 py-6 rounded-lg  border-[1px] shadow border-neutral-100 "
+        variants={parent}
+        initial="hidden"
+        animate="visible"
+        transition={{ ease: "easeInOut", duration: 1,delay:1 }}
+        className="max-w-[500px] w-full px-4 py-6 rounded-lg  border-[3px] shadow-2xl border-neutral-100 "
       >
-        <h2 className="text-2xl font-bold mb-4 text-center text-textprimary">Login Now</h2>
+        <img className="mx-auto" src={logo} alt="logo"/>
+        <h2 className="text-2xl font-bold mb-4 text-center text-textprimary">Login TrendyLeather</h2>
         <Form
           name="register"
           onFinish={onFinish}

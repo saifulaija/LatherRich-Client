@@ -11,7 +11,7 @@ const CategoryLayout = () => {
 
   const siderStyle: React.CSSProperties = {
     textAlign: "center",
-    marginTop: "34px",
+    marginTop: "18px",
     lineHeight: "35px",
     height: "100vh",
     maxHeight: "100%",
@@ -35,7 +35,7 @@ const CategoryLayout = () => {
           <Sidebar />
         </Sider>
 
-        <Content className="bg-red-500">
+        <Content className="bg-red-500  min-h-screen">
           <Outlet />
         </Content>
       </Layout>

@@ -8,6 +8,7 @@ import { TResponse, TUser } from "../../types/global.type";
 import { useCreateUserMutation } from "../../redux/features/user/userApi";
 
 import { motion } from "framer-motion";
+import logo from '../../assets/images/PNG-Richkid-Logo.png'
 
 const Register = () => {
   const [register, { isLoading }] = useCreateUserMutation();
@@ -38,12 +39,20 @@ const Register = () => {
       toast.error("something went wrong");
     }
   };
+  const parent = {
+    hidden: { opacity: 0, scale: 0.9 },
+    visible: { opacity: 1, scale: 1 },
+  };
+
+
 
   return (
     <div className="w-full flex p-20 justify-center ">
-      <motion.div initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 1.5 }} className="max-w-[500px] p-4 rounded-lg  border-[1px] shadow border-neutral-100 ">
+      <motion.div  variants={parent}
+      initial="hidden"
+      animate="visible"
+      transition={{ ease: "easeInOut", duration: 1,delay:1 }} className="max-w-[500px] p-4 rounded-lg  border-[3px] shadow-2xl border-neutral-100 ">
+           <img className="mx-auto" src={logo} alt="logo"/>
         <h2 className="text-2xl font-bold mb-4 text-center text-textprimary">Register Now</h2>
         <Form
           name="register"
