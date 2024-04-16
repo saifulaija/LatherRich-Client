@@ -4,7 +4,7 @@ import { Button, Divider, Table } from "antd";
 import { useGetSingleOrderQuery } from "../../redux/features/order/orderApi";
 import { TProduct } from "../../types/product.type";
 
-// DetailRow component
+
 const DetailRow = ({ title, value }:{title:string, value:string}) => {
   return (
     <div className="flex justify-between items-center px-10 ">

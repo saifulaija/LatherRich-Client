@@ -19,7 +19,7 @@ import { userPaths } from "./user.route";
 import Success from "../pages/bkashPayment/Success";
 import Error from "../pages/bkashPayment/Error";
 import Register from "../pages/register/Register";
-// import NewProductDetails from "../pages/productDetails/NewProductDetails";
+
 
 const router = createBrowserRouter([
   {
@@ -52,7 +52,7 @@ const router = createBrowserRouter([
       {
         path: "product/:id",
         element: <ProductDetails />,
-      //  element: <NewProductDetails/>
+ 
       },
 
       {
