@@ -35,7 +35,7 @@ const CategoryLayout = () => {
           <Sidebar />
         </Sider>
 
-        <Content className="bg-red-500  min-h-screen">
+        <Content className="bg-white min-h-screen">
           <Outlet />
         </Content>
       </Layout>
