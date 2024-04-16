@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Button, Form, Image, Input } from "antd";
+import { Button, Form, Input } from "antd";
 import { verifyToken } from "../../utils/verifiToken";
 import { setUser } from "../../redux/features/auth/authSlice";
 import { TUser } from "../../types/global.type";
@@ -14,7 +14,7 @@ import logo from '../../assets/images/PNG-Richkid-Logo.png'
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
- 
+ console.log(loading)
 
   const [login, { isLoading }] = useLoginMutation();
   const navigate = useNavigate();
